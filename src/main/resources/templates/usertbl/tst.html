@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>demon02</title>
+<link href="/CSS/tst.css" rel="stylesheet"></link>
+<meta charset="utf-8" />
+</head>
+<body>
+	<h1>user_tbl全件表示</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>名前</th>
+				<th>パスワード</th>
+				<th>性別</th>
+				<th>年齢</th>
+				<th>職業</th>
+				<th>メアド</th>
+				<th>自己紹介</th>
+				<th>好きなジャンル</th>
+				<th>登録日時</th>
+				<th>ゲームパス</th>
+				<th>ログイン状況12</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user_tbl : ${UtblSer}" th:object="${user_tbl}">
+				<td class="center" th:text="*{id}"></td>
+				<td class="center" th:text="*{name}"></td>
+				<td class="center" th:text="*{pass}"></td>
+				<td class="center" th:text="*{sex}"></td>
+				<td class="center" th:text="*{age}"></td>
+				<td class="center" th:text="*{job}"></td>
+				<td class="center" th:text="*{email}"></td>
+				<td class="center" th:text="*{profile}"></td>
+				<td class="center" th:text="*{fav}"></td>
+				<td class="center"
+					th:text="${#dates.format(user_tbl.entry, 'yyyy/MM/dd')}"></td>
+				<td class="center" th:text="*{address}"></td>
+				<td class="center" th:text="*{role}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h1>follow_tbl全件表示</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>FKユーザーID</th>
+				<th>フォローユーザーID</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="follow_tbl : ${FollowSer}" th:object="${follow_tbl}">
+				<td class="center" th:text="*{id}"></td>
+				<td class="center" th:text="*{fid}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h1>project_tbl全件表示</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>プロジェクトID</th>
+				<th>FKユーザーID</th>
+				<th>プロジェクト名</th>
+				<th>プロジェクトのpath</th>
+				<th>プロジェクトのジャンル</th>
+				<th>プロジェクト公開非公開</th>
+				<th>プロジェクトを最後に触った時間</th>
+				<th>プロジェクトをアップロードした時間</th>
+				<th>プロジェクトを作成した時間</th>
+				<th>閲覧数</th>
+				<th>DL数</th>
+				<th>プロジェクトの紹介文</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="project_tbl : ${ProjectSer}" th:object="${project_tbl}">
+				<td class="center" th:text="*{id}"></td>
+				<td class="center" th:text="*{uid}"></td>
+				<td class="center" th:text="*{name}"></td>
+				<td class="center" th:text="*{address}"></td>
+				<td class="center" th:text="*{genre}"></td>
+				<td class="center" th:text="*{openflg}"></td>
+				<td class="center" th:text="*{lasttime}"></td>
+				<td class="center" th:text="*{uptime}"></td>
+				<td class="center" th:text="*{maketime}"></td>
+				<td class="center" th:text="${browcnt}"></td>
+				<td class="center" th:text="*{dlcnt}"></td>
+				<td class="center" th:text="*{intro}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h1>IDから1列表示</h1>
+	<form action="/usertbl/tst" method="post">
+		<label>ID:<input class="input" type="text" name="id"></label><br>
+		<div>
+			<input class="search" type="submit" value="検索" />
+		</div>
+	</form>
+
+	<h1>IDに対応する一列の変更、削除</h1>
+	<table border="1" style="border-collapse: collapse;">
+		<tr>
+			<td>ID</td>
+			<td>PASSWORD</td>
+			<td>Email</td>
+			<td>INTRO</td>
+		</tr>
+		<tr>
+			<td>OUT2_ID</td>
+			<td>OUT2_PASSWORD</td>
+			<td>OUT3_Email</td>
+			<td>OUT4_INTRO</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><input type="text" value="change_id"></td>
+			<td><input type="text" value="change_pass"></td>
+			<td><input type="text" value="change_email"></td>
+			<td><input type="text" value="change_INTRO"></td>
+			<td>
+				<button class="favorite styled" type="button">保存</button>
+				<button class="favorite styled" type="button">削除</button>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

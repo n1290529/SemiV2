@@ -1,0 +1,209 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	list-style: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+  }
+  body {
+	font: 15px/1.25 'Alef';
+	color: #f4f4f4;
+  }
+  /*メイン画面*/
+  form {
+	margin: 70px auto;
+	background: #2a3644;
+	width: 347px;
+	text-align: center;
+	padding: 40px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-o-border-radius: 6px;
+	border-radius: 6px;
+  }
+  form > h1 {
+	color: #f4f4f4;
+	text-shadow: 1px 1px 0px rgba(0,0,0,0.7);
+	font-weight: 400;
+	margin-bottom: 20px;
+  }
+  /*テキストボックスの設定(input属性全体の大きさなども含む)*/
+  input {
+	background: rgba(0,0,0,0.2);
+	color: #fff;
+	text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+	display: block;
+	width: 269px;
+	padding: 15px;
+	margin-bottom: 10px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-ms-border-radius: 6px;
+	-o-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-transition: all .1s ease-in-out;
+	-moz-transition: all .1s ease-in-out;
+	transition: all .1s ease-in-out;
+	outline: none;
+  }
+  input:focus {
+	background: rgba(0,0,0,0.1);
+	-webkit-transition: all .1s ease-in-out;
+	-moz-transition: all .1s ease-in-out;
+	transition: all .1s ease-in-out;
+  }
+  ::-webkit-input-placeholder {
+	color: rgba(225,225,225,0.4);
+  }
+  :-moz-placeholder {
+	color: rgba(225,225,225,0.4);
+  }
+  ::-moz-placeholder {
+	color: rgba(225,225,225,0.4);
+  }
+  :-ms-input-placeholder {
+	color: rgba(225,225,225,0.4);
+  }
+  /*チェックボックス関係*/
+  #check{
+	  position: relative;
+	  top: 2px;
+	  display: inline;
+	 width: 14px;
+	 height: 14px;
+	 margin: 0px;
+  }
+/*セレクトボックス場所*/
+	table {
+	  letter-spacing: 0px;
+	  font-family: sans-serif;
+	  font-size: .9rem;
+  }
+  table td{
+	  padding: 3px 1px;
+  
+  }
+  td{
+	  height: 18px;
+  }
+  
+  select{
+	  width: 80px;
+	  height: 26px;
+  }
+  /*セレクトボックス色*/
+  select, option{
+	  border-radius: 6px;
+	  background:#222B36;
+	  color:#fff;
+	}
+  /*年齢、性別、職業のフォント系*/
+.age{
+	padding: relative;
+	width: 40px;
+	height: 26px;
+}
+.sex{
+	padding: relative;
+	width: 40px;
+	height: 26px;
+}
+.job{
+	padding: relative;
+	width: 40px;
+	height: 26px;
+}
+/*利用規約系*/
+.open {
+	cursor:pointer; /* マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように */
+}
+#pop-up {
+	display: none; /* label でコントロールするので input は非表示に */
+}
+.overlay {
+	display: none; /* input にチェックが入るまでは非表示に */
+}
+#pop-up:checked + .overlay {
+	display: block;
+	z-index: 9999;
+	background-color: #00000070;
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+}
+/*利用規約中身*/
+.window {
+	width: 90vw;
+	max-width: 380px;
+	height: 240px;
+	background-color: #ffffff;
+	border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.text {
+	font-size: 18px;
+	margin: 0;
+}
+.close {
+	cursor:pointer;
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	font-size: 20px;
+}
+/*登録のボタン設定*/
+button {
+position: relative;
+display: block;
+margin-top: 15px;
+margin-bottom: 15px;
+padding: 17px;
+width: 270px;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+-ms-border-radius: 6px;
+-o-border-radius: 6px;
+border-radius: 6px;
+-webkit-transition: all .1s ease-in-out;
+-moz-transition: all .1s ease-in-out;
+transition: all .1s ease-in-out;
+font-size: 1.2em;
+background: #f26964;
+color: #f4f4f4;
+box-shadow: 0px 3px 0px #ab4b47;
+cursor: pointer;
+}
+/*url関連*/
+a:link {
+	color:#a9a9a9;
+	}
+  a:visited{
+	color : #a9a9a9;
+  }
+  a:hover{
+	color : #4169e1;
+  }
+  a {
+	text-decoration:none; 
+  }
+  /*利用規約系の色*/
+  .text{
+	  color:#000;
+  }
+  .close{
+	  color: #000;
+  }
+  .open{
+	  color: #ab4b47;
+  }

@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title> 制作 </title>
+  <link rel="stylesheet" href="/CSS/sidebar_GC.css">
+  <link rel="stylesheet" href="/CSS/004-02_Game_creation.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+
+  <script src="/JS/API/google-blockly/blockly_compressed.js"></script>
+  <script src="/JS/API/google-blockly/blocks_compressed.js"></script>
+  <script src="/JS/API/google-blockly/javascript_compressed.js"></script>
+  <script src="/JS/API/google-blockly/msg/js/ja.js"></script>
+
+  <script src="/JS/main05_compile.js"></script>
+  <script src="/JS/main05_declaration.js"></script>
+  <script src="/JS/change_size.js"></script>
+  <script src="/JS/compile_functions.js"></script>
+  <script src="/JS/acorn_interpreter.js"></script>
+
+  <script src="/JS/function_read.js"></script>
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <script>
+    function showCode() {
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      console.log(code);
+    }
+
+    function run_tst() {
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      try {
+        eval(code);
+      } catch (e) {
+        alert("構文エラー:" + e);
+      }
+    }
+
+  </script>
+  <div class="header">
+    <div class="header_item">
+      <div class="logo-details">
+        <i id="header_bug" class='bx bxs-bug-alt'></i>
+        <span class="logo_name">セミファ</span>
+      </div>
+    </div>
+    <div class="header_item" id="search">
+      <h1 id="search_textbox">
+        <input type="text" placeholder="検索" class="top-search">
+        <!-- <i class='bx bx-search-alt-2'></i> -->
+      </h1>
+      <h1>
+        <i class='bx bx-search-alt-2'></i>
+      </h1>
+    </div>
+  </div>
+  <div class="sidebar close">
+    <div class="logo-details">
+      <i id="side_bug" class='bx bxs-bug-alt'></i>
+      <span class="logo_name">セミファ</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          <i class='bx bx-grid-alt'></i>
+          <span class="link_name">ホーム</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">ホーム</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-collection'></i>
+            <span class="link_name">作成</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">作成</a></li>
+          <li><a href="#">チュートリアル</a></li>
+          <li><a href="#">2D作成</a></li>
+          <li><a href="#">3D作成</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-history'></i>
+          <span class="link_name">マイフォルダ</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">マイフォルダ</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-book-alt'></i>
+            <span class="link_name">コード競争</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">競争</a></li>
+          <li><a href="#">問題集</a></li>
+          <li><a href="#">回答集</a></li>
+          <li><a href="#">イベント問題</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-line-chart'></i>
+          <span class="link_name">ランキング</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">ランキング</a></li>
+        </ul>
+      </li>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-cog'></i>
+          <span class="link_name">設定</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">設定</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <img src="/IMG/others/profile.jpg" alt="profileImg">
+          </div>
+          <div class="name-job">
+            <div class="profile_name">マイケルジャクソン</div>
+            <div class="job">野菜スペシャリスト</div>
+          </div>
+          <i class='bx bx-log-out'></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <div id="main">
+      <div id="tst" class="item">
+        <div class="tab-panel">
+          <!--タブ-->
+          <ul class="tab-group">
+            <li class="tab tab-A is-active">
+              <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="17pt" height="8pt"
+                viewBox="0 0 80.000000 34.000000" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,34.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                  <path d="M34 316 c-16 -12 -20 -29 -23 -102 -5 -140 20 -184 106 -184 14 0 38
+              -8 54 -17 28 -17 31 -17 62 0 28 15 69 17 307 20 l275 2 3 148 3 147 -284 0
+              c-277 0 -284 0 -307 -22 l-23 -22 -38 22 c-43 25 -106 29 -135 8z" />
+                </g>
+              </svg>
+              コード
+            </li>
+            <li class="tab tab-B">
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#000000' width='24' height='24'>
+                <path
+                  d="M13.4 2.096a10.08 10.08 0 0 0-8.937 3.331A10.054 10.054 0 0 0 2.096 13.4c.53 3.894 3.458 7.207 7.285 8.246a9.982 9.982 0 0 0 2.618.354l.142-.001a3.001 3.001 0 0 0 2.516-1.426 2.989 2.989 0 0 0 .153-2.879l-.199-.416a1.919 1.919 0 0 1 .094-1.912 2.004 2.004 0 0 1 2.576-.755l.412.197c.412.198.85.299 1.301.299A3.022 3.022 0 0 0 22 12.14a9.935 9.935 0 0 0-.353-2.76c-1.04-3.826-4.353-6.754-8.247-7.284zm5.158 10.909-.412-.197c-1.828-.878-4.07-.198-5.135 1.494-.738 1.176-.813 2.576-.204 3.842l.199.416a.983.983 0 0 1-.051.961.992.992 0 0 1-.844.479h-.112a8.061 8.061 0 0 1-2.095-.283c-3.063-.831-5.403-3.479-5.826-6.586-.321-2.355.352-4.623 1.893-6.389a8.002 8.002 0 0 1 7.16-2.664c3.107.423 5.755 2.764 6.586 5.826.198.73.293 1.474.282 2.207-.012.807-.845 1.183-1.441.894z">
+                </path>
+                <circle cx="7.5" cy="14.5" r="1.5"></circle>
+                <circle cx="7.5" cy="10.5" r="1.5"></circle>
+                <circle cx="10.5" cy="7.5" r="1.5"></circle>
+                <circle cx="14.5" cy="7.5" r="1.5"></circle>
+              </svg>
+              コスチューム
+            </li>
+            <li class="tab tab-C">
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#000000' width='24' height='24'>
+                <path
+                  d="M16 21c3.527-1.547 5.999-4.909 5.999-9S19.527 4.547 16 3v2c2.387 1.386 3.999 4.047 3.999 7S18.387 17.614 16 19v2z">
+                </path>
+                <path
+                  d="M16 7v10c1.225-1.1 2-3.229 2-5s-.775-3.9-2-5zM4 17h2.697L14 21.868V2.132L6.697 7H4c-1.103 0-2 .897-2 2v6c0 1.103.897 2 2 2z">
+                </path>
+              </svg>
+              音
+            </li>
+          </ul>
+          <div class="shortcut undo" title="元に戻す" onclick="o_undo_redo(false)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 24 24' width="26" height="26">
+              <path
+                d="M9 10h6c1.654 0 3 1.346 3 3s-1.346 3-3 3h-3v2h3c2.757 0 5-2.243 5-5s-2.243-5-5-5H9V5L4 9l5 4v-3z" />
+            </svg>
+          </div>
+          <div class="shortcut redo" title="やり直し" onclick="o_undo_redo(true)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 24 24' width="26" height="26">
+              <path
+                d="M9 10h6c1.654 0 3 1.346 3 3s-1.346 3-3 3h-3v2h3c2.757 0 5-2.243 5-5s-2.243-5-5-5H9V5L4 9l5 4v-3z" />
+            </svg>
+          </div>
+          <div class="shortcut load" title="復元" onclick="restore()">
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#000000' width='26' height='26'>
+              <path d="m12 16 4-5h-3V4h-2v7H8z"></path>
+              <path d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"></path>
+            </svg>
+          </div>
+          <div class="shortcut save" title="保存" onclick="save()">
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='#000000' width='26' height='26'>
+              <path d="M11 15h2V9h3l-4-5-4 5h3z"></path>
+              <path d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"></path>
+            </svg>
+          </div>
+
+          <!--タブを切り替えて表示するコンテンツ-->
+          <div class="panel-group">
+            <div class="panel tab-A is-show">
+              <div id="blocklyDiv"></div>
+              <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+                <category name="動き" colour="#e94e4e">
+                  <block type="n_move">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="n_rotation">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <field name="select_lr">select_r</field>
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="xy_both_coordinate">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                    <value name="input2">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="x_coordinate">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <field name="select_xy">select_x</field>
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="n_turn">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="n_rebound">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="get_x_coordinates">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <field name="select_xy">select_x</field>
+                  </block>
+                  <block type="get_turn">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                  </block>
+
+                  <block type="obj_dropbox">
+
+                  </block>
+                </category>
+
+                <category name="見た目" colour="#e9724e">
+                  <block type="text_display">
+                    <value name="input">
+                      <shadow type="text">
+                        <field name="TEXT">こんにちわ</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="wait_for_input"></block>
+                  <block type="input_info"></block>
+                  <block type="change_costume">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <field name="select_costume">costume</field>
+                  </block>
+                  <block type="change_background">
+                    <value name="input_back_dropbox">
+                      <shadow type="back_dropbox">
+                        <field name="background_object">background_object0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="change_size">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="change_effect">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <field name="set_effect">effect</field>
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="remove_image_effect">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <field name="set_effect">effect</field>
+                  </block>
+                  <block type="show">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                    <field name="set_show">show</field>
+                  </block>
+                  <block type="get_size">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="get_effect">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="get_image_name">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="get_background">
+                    <value name="input_back_dropbox">
+                      <shadow type="back_dropbox">
+                        <field name="background_object">background_object0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="get_costume">
+                    <value name="input_dropbox">
+                      <shadow type="obj_dropbox">
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="o_print"></block>
+
+                </category>
+
+                <category name="音" colour="#F79428">
+                  <block type="play_sound">
+                    <value name="input_sound_dropbox">
+                      <shadow type="sound_dropbox">
+                        <field name="sound_object">sound_object0</field>
+                      </shadow>
+                    </value>
+                    <field name="select_ps">play</field>
+                  </block>
+                  <block type="change_sound_volume">
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="change_sound_effect">
+                    <field name="select_sound">sound</field>
+                    <field name="set_se">se</field>
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="remove_sound_effect">
+                    <field name="select_sound">sound</field>
+                  </block>
+                  <block type="get_sound_volume">
+                    <field name="select_sound">sound</field>
+                  </block>
+                  <block type="get_sound_effect">
+                    <field name="select_sound">sound</field>
+                    <field name="set_se">se</field>
+                  </block>
+                  <block type="get_sound_name"></block>
+                </category>
+
+                <category name="制御" colour="#4169e1">
+                  <block type="comparison_operator_equal"></block>
+                  <block type="comparison_operator"></block>
+                  <block type="logical_operator"></block>
+                  <block type="for"></block>
+                  <block type="wait_n_seconds"></block>
+                  <block type="while"></block>
+                  <block type="if">
+                    <value name="if0">
+                      <shadow type="o_true"></shadow>
+                    </value>
+                  </block>
+                  <block type="switch">
+                    <value name="input">
+                      <!-- <shadow type="o_num">
+                        <field name="NUM">22</field>
+                      </shadow> -->
+                    </value>
+                    <value name="ADD0">
+                      <!-- <shadow type="o_num">
+                        <field name="NUM">22</field> 
+                      </shadow> -->
+                    </value>
+                  </block>
+                  <block type="break"></block>
+                  <block type="o_return"></block>
+                  <block type="o_true"></block>
+                  <block type="o_false"></block>
+                  <block type="o_null"></block>
+                </category>
+
+                <category name="調べる" colour="#6881ee">
+                  <block type="get_mouse_xy">
+                    <field name="select_xy">select_x</field>
+                  </block>
+                  <block type="listen_and_wait">
+                    <value name="input">
+                      <shadow type="text">
+                        <field name="TEXT">あなたの名前は?</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="get_answer"></block>
+                  <block type="get_key_num"></block>
+                  <block type="get_username"></block>
+                  <block type="get_date"></block>
+                  <block type="get_time"></block>
+                  <block type="timer">
+                    <field name="select_ms">move</field>
+                  </block>
+                  <block type="get_timer"></block>
+                </category>
+
+                <category name="演算" colour="#1e90ff">
+                  <block type="o_num">
+                  </block>
+                  <block type="operator">
+                    <field name="select_op">plus</field>
+                    <value name="ADD0">
+                      <!-- <shadow type="o_num">
+                        <field name="NUM">0</field>
+                      </shadow> -->
+                    </value>
+                    <value name="ADD1">
+                      <!-- <shadow type="o_num">
+                        <field name="NUM">0</field>
+                      </shadow> -->
+                    </value>
+                  </block>
+                  <block type="bit_operator"></block>
+                  <block type="assignment">
+                    <value name="input">
+                      <shadow type="o_num">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="assignment_paz">
+                    <value name="input">
+                      <shadow type="o_num">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="in_de_crement"></block>
+                  <block type="in_de_crement_paz"></block>
+
+                  <!-- <block type="roots">
+                    <value name="input_left">
+                      <shadow type="math_number">
+                        <field name="NUM">4</field>
+                      </shadow>
+                    </value>
+                    <value name="input_right">
+                      <shadow type="math_number">
+                        <field name="NUM">2</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="square_root">
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">4</field>
+                      </shadow>
+                    </value>
+                  </block> -->
+                  <!-- <block type="log">
+                    <value name="input_left">
+                      <shadow type="math_number">
+                        <field name="NUM">2</field>
+                      </shadow>
+                    </value>
+                    <value name="input_right">
+                      <shadow type="math_number">
+                        <field name="NUM">4</field>
+                      </shadow>
+                    </value>
+                  </block> -->
+                  <!-- <block type="absolute_value">
+                    <value name="input">
+                      <shadow type="math_number">
+                        <field name="NUM">-10</field>
+                      </shadow>
+                    </value>
+                  </block> -->
+
+                  <block type="calculation_1"></block>
+                  <block type="calculation_2"></block>
+                  <block type="calculation_3"></block>
+                  <block type="calculation_4"></block>
+                  <block type="calculation_5"></block>
+                  <block type="calculation"></block>
+                  <block type="lenght">
+                    <value name="input">
+                      <block type="variables_get">
+                        <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+                      </block>
+                    </value>
+                  </block>
+                  <block type="random"></block>
+                  <block type="length"></block>
+                </category>
+
+                <category name="変数" colour="#13c5c5" custom="VARIABLE"></category>
+                <category name="関数" colour="#995BA5">
+                  <block type="procedures_defnoreturn">
+                    <field name="NAME">do something</field>
+                  </block>
+                  <block type="procedures_defreturn">
+                    <field name="NAME">do something</field>
+                  </block>
+                </category>
+
+                <category name="イベント" colour="#FFD700">
+                  <block type="startup"></block>
+                  <block type="key_event"></block>
+                  <block type="mouse_event"></block>
+                  <block type="mouse_over"></block>
+                  <block type="wait_event">
+                    <value name="input">
+                      <shadow type="o_num">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="clear_time"></block>
+                  <!--後回し-->
+                </category>
+
+                <category name="配列" colour="#d89f2c">
+                  <block type="lists_create_with">
+                    <mutation items="0"></mutation>
+                  </block>
+                  <block type="procedures_mutatorarg">
+                    <mutation items="3"></mutation>
+                  </block>
+                  <block type="lists_repeat">
+                    <value name="NUM">
+                      <shadow type="math_number">
+                        <field name="NUM">5</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="get_array">
+                    <value name="input_array">
+                      <block type="variables_get">
+                        <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+                      </block>
+                    </value>
+                    <value name="input_index">
+                      <shadow type="o_num">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="set_array">
+                    <value name="input_array">
+                      <block type="variables_get">
+                        <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+                      </block>
+                    </value>
+                    <value name="input_index">
+                      <shadow type="o_num">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="o_join">
+                    <value name="input_array">
+                      <block type="variables_get">
+                        <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+                      </block>
+                    </value>
+                    <value name="input_index">
+                      <shadow type="text">
+                        <field name="TEXT">,</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="list_slice">
+                    <value name="input_str&ary">
+                      <block type="variables_get">
+                        <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+                      </block>
+                    </value>
+                    <value name="input_first">
+                      <shadow type="o_num">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                    <value name="input_last">
+                      <shadow type="o_num">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="o_indexof">
+                    <value name="input_str&ary">
+                      <block type="variables_get">
+                        <field name="VAR">list</field>
+                      </block>
+                    </value>
+                    <value name="input_index">
+                      <shadow type="text">
+                        <field name="TEXT">a</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </category>
+
+                <category name="テキスト" colour="#5BA58C">
+                  <block type="text">
+                    <field name="TEXT"></field>
+                  </block>
+                  <block type="text_join">
+                    <mutation items="2"></mutation>
+                  </block>
+                  <block type="text_append">
+                    <field name="VAR" id="DDAAA}B]RM{:tQHC0DAm">item</field>
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT"></field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="text_charat"></block>
+                  <block type="text_changeCase">
+                    <field name="CASE">UPPERCASE</field>
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="text_trim">
+                    <field name="MODE">BOTH</field>
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="text_prompt_ext">
+                    <mutation type="TEXT"></mutation>
+                    <field name="TYPE">TEXT</field>
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="o_split">
+                    <value name="input_str">
+                      <block type="variables_get">
+                        <field name="VAR">str</field>
+                      </block>
+                    </value>
+                    <value name="input_index">
+                      <shadow type="text">
+                        <field name="TEXT">,</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </category>
+
+                <category name="カラー" colour="#e48172">
+                  <block type="colour_picker">
+                    <field name="COLOUR">#ff0000</field>
+                  </block>
+                  <block type="colour_random"></block>
+                  <block type="colour_rgb">
+                    <value name="RED">
+                      <shadow type="math_number">
+                        <field name="NUM">100</field>
+                      </shadow>
+                    </value>
+                    <value name="GREEN">
+                      <shadow type="math_number">
+                        <field name="NUM">50</field>
+                      </shadow>
+                    </value>
+                    <value name="BLUE">
+                      <shadow type="math_number">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="colour_blend">
+                    <value name="COLOUR1">
+                      <shadow type="colour_picker">
+                        <field name="COLOUR">#ff0000</field>
+                      </shadow>
+                    </value>
+                    <value name="COLOUR2">
+                      <shadow type="colour_picker">
+                        <field name="COLOUR">#3333ff</field>
+                      </shadow>
+                    </value>
+                    <value name="RATIO">
+                      <shadow type="math_number">
+                        <field name="NUM">0.5</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </category>
+
+                <category name="テスト用" colour="#13c5c5">
+                  <block type="print_alert"></block>
+                  <block type="text_print"></block>
+                  <block type="text"></block>
+                  <block type="o_function">
+                    <field name="NAME">関数1</field>
+                  </block>
+                  <block type="input_key"></block>
+                  <block type="input_key_list_az">
+                    <field name="key_list">key_list0</field>
+                  </block>
+                  <block type="input_key_list_09">
+                    <field name="key_list">key_list0</field>
+                  </block>
+                  <block type="input_key_list_other">
+                    <field name="key_list">key_list0</field>
+                  </block>
+                  <block type="get_mousecode"></block>
+                  <block type="get_mouse"></block>
+                  <block type="block_type">
+                    <value name="input_array">
+                      <block type="variables_get">
+                        <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+                      </block>
+                    </value>
+                    <value name="input_value">
+                      <shadow type="o_num">
+                        <field name="NUM">0</field>
+                      </shadow>
+                    </value>
+                  </block>
+                </category>
+              </xml>
+            </div>
+            <div class="panel tab-B">
+              <p>
+                <button onclick="showCode()">JSにコンパイル(console)</button>
+                <button onclick="run_tst()">実行</button>
+                <textarea id="printbox" rows="10" cols="100"></textarea>
+              </p>
+            </div>
+            <div class="panel tab-C">Content-C</div>
+          </div>
+        </div>
+      </div>
+      <div id="left_element" class="item">
+        <div id="controlls">
+          <svg id="play" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"
+            style="fill: rgba(6, 156, 28, 1);">
+            <path d="M7 6v12l10-6z"></path>
+          </svg>
+          <svg id="stop" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"
+            style="fill: rgba(226, 67, 67, 1);">
+            <path d="M7 7h10v10H7z"></path>
+          </svg>
+          <svg id="fullscreen" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+            style="fill: rgba(206, 201, 200, 0.8);">
+            <path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"></path>
+          </svg>
+        </div>
+        <div class="boxes" id="field">
+        </div>
+        <div id="property">
+          <div id="Oinformation" class="property_item">
+            <div id="OJ_Info">
+              <div>
+                <p style="margin: 0;">オブジェクト</p>
+                <table class="example1">
+                  <tr>
+                    <td>
+                      <p style="margin: 0;">名前</p><input type="text" id="Object_name" name="Object_name"
+                        requiredminlength="4" maxlength="50" onchange="name_dis_change()">
+                    </td>
+                    <td>
+                      <p style="margin: 0;">X</p><input type="text" id="Object_X" name="Object_X" requiredminlength="4"
+                        maxlength="8" size="10" onchange="x_dis_change()">
+                    </td>
+                    <td>
+                      <p style="margin: 0;">Y</p><input type="text" id="Object_Y" name="Object_Y" requiredminlength="4"
+                        maxlength="8" size="10" onchange="y_dis_change()">
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div>
+                <table class="example1">
+                  <tr>
+                    <td>
+                      <p style="margin: 0;">表示</p>
+                      <div class="sample1Area" id="makeImg">
+                        <input type="radio" name="sample1radio" id="sample1on" checked=""
+                          onchange="visibility_dis_on()">
+                        <label for="sample1on">ON</label>
+                        <input type="radio" name="sample1radio" id="sample1off" onchange="visibility_dis_off()">
+                        <label for="sample1off">OFF</label>
+                      </div>
+                    </td>
+                    <td>
+                      <p style="margin: 0;">大きさ</p><input type="text" id="Object_size" name="Object_size"
+                        requiredminlength="4" maxlength="8" size="10" onchange="size_dis_change()">
+                    </td>
+                    <td>
+                      <p style="margin: 0;">向き</p><input type="text" id="Object_direction" name="Object_direction"
+                        requiredminlength="4" maxlength="8" size="10" onchange="angle_dis_change()">
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id="objects">
+            </div>
+
+            <div id="objects_top">
+              <!-- ゴースト -->
+              <div id="chara_div">
+                <label id="chara_label">
+                  <input type="file" id="add_character" style="display: none;" accept="image/*"
+                    onchange="AddPropertyObj(this)">
+                  <img src="/IMG/others/ghost-regular-24.png">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div id="BGinformation" class="property_item">
+            <div id="bg_div">
+              <label id="back_label">
+                <input type="file" id="add_background" style="display: none;" accept="image/*"
+                  onchange="AddPropertyBg(this)">
+                <img src="/IMG/others/landscape-regular-24.png">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="contextmenu">
+    <li id="copyBtn" onclick="menu1()">複製</li>
+    <li id="saveBtn" onclick="menu2()">保存</li>
+    <li id="deleteBtn" onclick="menu3()">削除</li>
+  </div>
+</body>
+<script>
+  Ready();
+
+  function resizeWindow() {
+    var resize_w = document.getElementById("tst").style.width;
+    var resize_h = document.getElementById("tst").style.height;
+
+    resize_w = (parseInt(resize_w.slice(0, -2)) - 74) + "px";//74
+    resize_h = (parseInt(resize_h.slice(0, -2)) - 196) + "px";//196
+
+    document.getElementsByClassName("blocklyZoom")[2].parentElement.style.transform = 'translate(' + resize_w + ',' + resize_h + ')';
+
+  }
+  window.onresize = resizeWindow;
+
+  var scroll_cnt = 0;
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById("BGinformation").addEventListener('scroll', function () {
+      console.log("hello")
+      console.log("縦スクロール：" + $(this).scrollTop());
+      console.log($("#BGinformation").height());
+      console.log($("#BGinformation").height() - 46 + $(this).scrollTop());
+      if (scroll_cnt < $(this).scrollTop()) {//下にスクロール
+        //下方向に無限にスクロールしない為の分岐
+        if ($("#BGinformation").height() > $("#BGinformation").height() - 46 + $(this).scrollTop()) {
+          $("#bg_div").css("top", $("#BGinformation").height() - 46 + $(this).scrollTop());
+        }
+        scroll_cnt = $(this).scrollTop();
+      } else {//上にスクロール
+        $("#bg_div").css("top", $("#BGinformation").height() - 48 + $(this).scrollTop());
+        scroll_cnt = $(this).scrollTop();
+      }
+    });
+
+  });
+</script>
+<script src="/JS/004-02_Game_creation.js"></script>
+<script>
+  var myInterpreter = null;
+  var initFunc = function (interpreter, scope) {
+    var wrapper_Semi_move = function (dropdown_object, value_input) {
+      // console.log(dropdown_object, value_input)
+      return Semi_move(dropdown_object, value_input);
+    };
+    var wrapper_Semi_rotation = function (dropdown_object, value_input, dropdown_select_lr) {
+      return Semi_rotation(dropdown_object, value_input, dropdown_select_lr);
+    }
+    var wrapper_Semi_print = function (value_input) {
+      return Semi_print(value_input);
+    }
+
+    var wrapper_sleep = function (waitMsec) {
+      return sleep(waitMsec);
+    }
+
+    var wrapper_sum = function (array) {
+      return sum(array);
+    }
+
+    var wrapper_avg = function (array) {
+      return avg(array);
+    }
+
+    var wrapper_RanDom = function (min, max) {
+      return RanDom(min, max)
+    }
+
+    var wrapper_Semi_xy_both_coordinate = function (dropdown_object, value_input, value_input2) {
+      return Semi_xy_both_coordinate(dropdown_object, value_input, value_input2);
+    }
+
+    var wrapper_Semi_x_coordinate = function (dropdown_object, dropdown_select_xy, value_input) {
+      return Semi_x_coordinate(dropdown_object, dropdown_select_xy, value_input);
+    }
+
+    var wrapper_Semi_turn = function (dropdown_object, value_input) {
+      return Semi_turn(dropdown_object, value_input);
+    }
+
+    var wrapper_Semi_rebound = function (dropdown_object) {
+      return Semi_rebound(dropdown_object);
+    }
+
+    var wrapper_Semi_get_x_coordinates = function (dropdown_object, dropdown_select_xy) {
+      return Semi_get_x_coordinates(dropdown_object, dropdown_select_xy);
+    }
+
+    var wrapper_get_turn = function (dropdown_object) {
+      return get_turn(dropdown_object);
+    }
+
+    var wrapper_Semi_change_size = function (dropdown_object, value_input) {
+      return Semi_change_size(dropdown_object, value_input);
+    }
+
+    var wrapper_Semi_show = function (dropdown_object, dropdown_set_show) {
+      return Semi_show(dropdown_object, dropdown_set_show);
+    }
+
+    var wrapper_Semi_get_size = function (dropdown_object) {
+      return Semi_get_size(dropdown_object);
+    }
+
+    var wrapper_Semi_get_background = function (dropdown_object) {
+      return Semi_get_background(dropdown_object);
+    }
+
+    var wrapper_Semi_con_back_change = function (dropdown_object) {
+      return Semi_con_back_change(dropdown_object);
+    }
+    var wrapper_alert = function (value) {
+      return Semi_wnidow_alert(value);
+    }
+    var wrapper_Semi_wait_for_input = function () {
+      return Semi_wait_for_input();
+    }
+    var wrapper_Semi_input_info = function () {
+      return Semi_input_info();
+    }
+
+    interpreter.setProperty(scope, 'Semi_move', interpreter.createNativeFunction(wrapper_Semi_move));
+    interpreter.setProperty(scope, 'Semi_rotation', interpreter.createNativeFunction(wrapper_Semi_rotation));
+    interpreter.setProperty(scope, 'Semi_print', interpreter.createNativeFunction(wrapper_Semi_print));
+    interpreter.setProperty(scope, 'sleep', interpreter.createNativeFunction(wrapper_sleep));
+    interpreter.setProperty(scope, 'sum', interpreter.createNativeFunction(wrapper_sum));
+    interpreter.setProperty(scope, 'avg', interpreter.createNativeFunction(wrapper_avg));
+    interpreter.setProperty(scope, 'RanDom', interpreter.createNativeFunction(wrapper_RanDom));
+    interpreter.setProperty(scope, 'Semi_xy_both_coordinate', interpreter.createNativeFunction(wrapper_Semi_xy_both_coordinate));
+    interpreter.setProperty(scope, 'Semi_x_coordinate', interpreter.createNativeFunction(wrapper_Semi_x_coordinate));
+    interpreter.setProperty(scope, 'Semi_turn', interpreter.createNativeFunction(wrapper_Semi_turn));
+    interpreter.setProperty(scope, 'Semi_rebound', interpreter.createNativeFunction(wrapper_Semi_rebound));
+    interpreter.setProperty(scope, 'Semi_get_x_coordinates', interpreter.createNativeFunction(wrapper_Semi_get_x_coordinates));
+    interpreter.setProperty(scope, 'get_turn', interpreter.createNativeFunction(wrapper_get_turn));
+    interpreter.setProperty(scope, 'Semi_change_size', interpreter.createNativeFunction(wrapper_Semi_change_size));
+    interpreter.setProperty(scope, 'Semi_show', interpreter.createNativeFunction(wrapper_Semi_show));
+    interpreter.setProperty(scope, 'Semi_get_size', interpreter.createNativeFunction(wrapper_Semi_get_size));
+    interpreter.setProperty(scope, 'Semi_get_background', interpreter.createNativeFunction(wrapper_Semi_get_background));
+    interpreter.setProperty(scope, 'Semi_con_back_change', interpreter.createNativeFunction(wrapper_Semi_con_back_change));
+    interpreter.setProperty(scope, 'Semi_wnidow_alert', interpreter.createNativeFunction(wrapper_alert));
+    interpreter.setProperty(scope, 'Semi_wait_for_input', interpreter.createNativeFunction(wrapper_Semi_wait_for_input));
+    interpreter.setProperty(scope, 'Semi_input_info', interpreter.createNativeFunction(wrapper_Semi_input_info));
+
+  };
+
+  var pid = 0;
+  var stepCode_flg = 0;
+
+  function double_startup_check() {
+    if (stepCode_flg == 0) {
+      stepCode_flg = 1;
+      stepCode();
+    } else {
+      window.clearTimeout(pid);
+      pid = 0;
+      stepCode();
+    }
+  }
+  function stepCode() {
+    // var myCode = Blockly.JavaScript.workspaceToCode(workspace);
+    // myInterpreter = new Interpreter(myCode, initFunc);
+    if (this.myInterpreter.step()) {
+      pid = window.setTimeout(stepCode, 10);
+    }
+  }
+  function runCode() {
+    var myCode = Blockly.JavaScript.workspaceToCode(workspace);
+    myInterpreter = new Interpreter(myCode, initFunc);
+    myInterpreter.run();
+  }
+
+  $("#play path").click(function () {
+    alert('play');
+    document.getElementById("Object_name").disabled = true;
+    document.getElementById("Object_X").disabled = true;
+    document.getElementById("Object_Y").disabled = true;
+    document.getElementById("Object_size").disabled = true;
+    document.getElementById("Object_direction").disabled = true;
+
+    var myCode = Blockly.JavaScript.workspaceToCode(workspace);
+    myInterpreter = new Interpreter(myCode, initFunc);
+    try {
+
+    } catch (e) {
+      alert("構文エラーです\n" + e)
+    }
+    double_startup_check();
+
+  });
+  $("#stop path").click(function () {
+    alert('stop');
+    document.getElementById("Object_name").disabled = false;
+    document.getElementById("Object_X").disabled = false;
+    document.getElementById("Object_Y").disabled = false;
+    document.getElementById("Object_size").disabled = false;
+    document.getElementById("Object_direction").disabled = false;
+
+    window.clearTimeout(pid);
+  });
+  $("#fullscreen path").click(function () {
+    alert('fullscreen');
+  });
+</script>
+
+</html>

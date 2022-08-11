@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--/* xmlns:secも定義しておく */-->
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>共通</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light bg-light"
+		th:fragment="header">
+		<div class="container-fluid">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" th:href="@{/common}">共通ページ</a></li>
+					<!--/* 管理者ロールだったら表示 */-->
+					<li class="nav-item" sec:authorize="hasRole('ADMIN')"><a
+						class="nav-link active" aria-current="page" th:href="@{/admin}">管理者ページ</a></li>
+					<!--/* ユーザロールだったら表示 */-->
+					<li class="nav-item" sec:authorize="hasRole('USER')"><a
+						class="nav-link active" aria-current="page" th:href="@{/user}">ユーザページ</a></li>
+				</ul>
+				<form class="d-flex" method="post" th:action="@{/logout}">
+					<button class="btn btn-outline-success" type="submit">ログアウト</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+	<main>
+		<h1>共通ページ</h1>
+	</main>
+</body>
+</html>

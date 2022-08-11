@@ -1,0 +1,711 @@
+html {
+   user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   -moz-user-select: none;
+   -khtml-user-select: none;
+   -webkit-user-drag: none;
+   -khtml-user-drag: none;
+   background: #222b36;
+}
+
+/* html,
+body {
+   overflow: hidden
+} */
+
+#main {
+   display: flex;
+   /* overflow: hidden; */
+   width: 1266px;
+   height: 100%;
+}
+
+/* section.home-section{
+   position: relative;
+   z-index: 50;
+} */
+#tst {
+   margin-left: 0;
+   width: 624px;
+   height: 768px;
+   /* overflow: hidden; */
+}
+
+#blocklyDiv {
+   /* padding-top: 50px;
+   padding-left: 20px; */
+   height: auto;
+   width: auto;
+}
+
+#left_element {
+
+   padding-left: 20px;
+   padding-right: 20px;
+   width: 640px;
+   /* height: 910px; */
+   height: 777px;
+   /* overflow: hidden; */
+}
+
+#controlls {
+   position: relative;
+   padding: 0;
+   margin: 0;
+   height: 51px;
+   width: 600px;
+}
+
+#play {
+   position: relative;
+}
+
+#stop {
+   position: relative;
+}
+
+#fullscreen {
+   position: relative;
+   margin-left: 451px;
+   padding-bottom: 9px;
+}
+
+.property_item {
+   float: left;
+}
+
+#Oinformation {
+   /* border: solid 1px #000; */
+   width: 500px;
+}
+
+#OJ_Info {
+   background-color: #EBEBEB;
+   padding-bottom: 5px;
+}
+
+#objects {
+   position: absolute;
+   padding: 0px 0px 0px 0px;
+   height: 300px;
+   width: 500px;
+   background-color: white;
+   overflow-y: scroll;
+}
+
+#objects_top {
+   position: relative;
+   padding: 0;
+   height: 300px;
+   width: 483px;
+   /* overflow: hidden; */
+}
+
+#chara_div {
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   z-index: 100;
+}
+
+#BGinformation {
+   background-color: white;
+   margin-left: 8px;
+   width: 90px;
+   height: 500px;
+   position: relative;
+   overflow-y: scroll;
+}
+
+#BGinformation_top {
+   position: absolute;
+   padding: 0;
+   width: 73px;
+   z-index: 100;
+   left: 0;
+   top: 0;
+}
+
+#bg_div {
+   position: absolute;
+   bottom: 0;
+   margin: 0 14.5px;
+   z-index: 100;
+}
+
+#blocklyDiv {
+   height: 910px;
+   width: 1122px;
+}
+
+.item {
+   float: left;
+}
+
+/* #canvas{
+    width: 600px;
+    height: 400x;
+    padding: 0;
+    border: solid 1px #000;
+    box-sizing: border-box;
+} */
+
+
+
+.boxes {
+   position: relative;
+   width: 600px;
+   height: 400px;
+   background-color: white;
+   overflow: hidden;
+   user-select: none;
+   margin-bottom: 8px;
+   padding: 0;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.box {
+   position: absolute;
+   width: 64px;
+   height: 64px;
+   box-sizing: border-box;
+}
+
+/*左上*/
+.box0 {
+   top: 0;
+   left: 0;
+   z-index: 0;
+   /* background: limegreen; */
+   box-sizing: border-box;
+}
+
+/*右下*/
+.box1 {
+   top: 350px;
+   left: 550px;
+   z-index: 0;
+   /* bottom: 0;
+   right: 0; */
+   /* background: red; */
+   box-sizing: border-box;
+}
+
+.box2 {
+   top: 300px;
+   left: 500px;
+   z-index: 0;
+   /* bottom: 50px;
+   right: 50px; */
+   /* background: blue; */
+}
+
+img {
+   -webkit-user-drag: none;
+}
+
+#preview {
+   width: 50;
+   height: 50;
+}
+
+#property {
+   width: 600px;
+   height: 400px;
+   /* border: solid 1px #000; */
+   box-sizing: border-box;
+}
+
+table.example1 {
+   width: 500px;
+   height: 50;
+   margin: 0;
+   border-spacing: 40px 0px;
+}
+
+table.example1 tr td {
+   width: 110px;
+}
+
+.sample1Area {
+   position: relative;
+   /* 親要素が基点       */
+   margin: 0;
+   /* 中央寄せ           */
+   width: 80px;
+   /* ボタンの横幅       */
+   height: 25px;
+   /* ボタンの高さ       */
+}
+
+.sample1Area input[type="radio"] {
+   display: none;
+   /* チェックボックス非表示 */
+}
+
+.sample1Area label {
+   display: block;
+   /* ボックス要素に変更 */
+   position: absolute;
+   /* 親要素からの相対位置*/
+   top: 0;
+   /* 標準表示位置(上)   */
+   bottom: 0;
+   /* 標準表示位置(下)   */
+   left: 0;
+   /* 標準表示位置(左)   */
+   right: 0;
+   /* 標準表示位置(右)   */
+   text-align: center;
+   /* 文字位置は中央     */
+   line-height: 24px;
+   /* 1行の高さ(中央寄せ)*/
+   font-size: 5pt;
+   /* 文字サイズ         */
+   font-weight: bold;
+   /* 太字               */
+   border: 2px solid #ccc;
+   /* 枠線(一旦四方向)   */
+}
+
+.sample1Area #sample1on+label {
+   right: 50%;
+   /* 右端を中央に変更   */
+   border-radius: 6px 0 0 6px;
+   /* 角丸(左側の上下)   */
+   background: #eee;
+   /* 背景               */
+   color: #666;
+   /* 文字色             */
+   border-right: none;
+   /* 枠線の右側を消す   */
+}
+
+.sample1Area #sample1on:checked+label {
+   /* 背景グラデーション */
+   background: linear-gradient(180deg, #00b359, #006633, #00b359);
+   color: #fff;
+   /* 文字色             */
+   text-shadow: 1px 1px 1px #333;
+   /* 文字に影を付ける   */
+}
+
+.sample1Area #sample1off+label {
+   left: 50%;
+   /* 左端を中央に変更   */
+   border-radius: 0 6px 6px 0;
+   /* 角丸(右側の上下)   */
+   background: #eee;
+   /* 背景               */
+   color: #666;
+   /* 文字色             */
+   border-left: none;
+   /* 枠線の左側を消す   */
+}
+
+.sample1Area #sample1off:checked+label {
+   /* 背景グラデーション */
+   background: linear-gradient(175deg, #ccc, #999, #ccc);
+   color: #fff;
+   /* 文字色             */
+   text-shadow: 1px 1px 1px #333;
+   /* 文字に影を付ける   */
+}
+
+.tab-panel {
+   position: relative;
+   width: auto;
+   margin: 0;
+}
+
+.tab-group {
+   display: flex;
+   margin: 0;
+   padding: 0;
+   float: left;
+}
+
+li.tab {
+   width: 150px;
+   margin-top: 8px;
+   padding-top: 8px;
+   padding-bottom: 8px;
+   background-color: #ccdeff;
+   list-style: none;
+   border: solid 1px #CCC;
+   text-align: center;
+   cursor: pointer;
+   color: #BBB;
+   font-weight: bold;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+li.tab svg {
+   fill: rgb(204, 204, 204);
+}
+
+li.tab svg path {
+   fill: rgb(204, 204, 204);
+}
+
+.panel-group {
+   border-top: none;
+}
+
+.panel {
+   display: none;
+   background-color: seagreen;
+   /* border-left: solid 1px; */
+}
+
+.tab.is-active {
+   background: #FFF;
+   color: rgb(89, 128, 179);
+   transition: all 0.2s ease-out;
+}
+
+.tab.is-active svg {
+   fill: rgb(89, 128, 179);
+}
+
+.tab.is-active svg path {
+   fill: rgb(89, 128, 179);
+}
+
+.panel.is-show {
+   display: block;
+   clear: both;
+}
+
+
+
+/* .button_circle {
+   position: relative;
+   width: 36px;
+   height: 36px;
+   border-radius: 50%;
+   background-color: #1ab67a;
+   border: solid rgba(201, 255, 241, 0.527) 4px;
+   z-index: 100;
+}
+.button_circle:active {
+   -webkit-transform: translateY(2px);
+   transform: translateY(2px);
+ }
+ svg.btn{
+     margin-top: 2px;
+     margin-bottom: 2px;
+     margin-left: 2px;
+     margin-right: 2px;
+     padding: 1px;
+}
+#add_character{
+   left: 441px;
+   top: 251px;
+} */
+/* 追加 */
+.sprite {
+   position: relative;
+   z-index: 1;
+   width: 71px;
+   height: 71px;
+   border-radius: 10px;
+   box-sizing: border-box;
+   user-select: none;
+   margin-top: 10.666px;
+   margin-left: 21.33px;
+   margin-bottom: 10.666px;
+   float: left;
+   top: 0px;
+   background-color: white;
+   /* overflow: hidden; */
+   /* 追加 */
+   /* border: solid #1db443;
+   border-width:2px 2px 2px 2px;
+   outline: 3px solid #1db443; */
+}
+
+.sprite .obj {
+   width: 71px;
+   margin: 0;
+   padding: 0;
+
+}
+
+.obj.img {
+   height: 46px;
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+   border-top: solid 2px #ccc;
+   border-left: solid 2px #ccc;
+   border-right: solid 2px #ccc;
+   text-align: center;
+   /* line-height: 46px;
+   white-space: nowrap; */
+   vertical-align: middle;
+}
+
+.obj.name {
+   height: 25px;
+   border-bottom-left-radius: 10px;
+   border-bottom-right-radius: 10px;
+   background-color: #ccc;
+   font-size: 0.3em;
+   text-align: center;
+   line-height: 25px;
+   border-left: solid 2px #ccc;
+   border-right: solid 2px #ccc;
+   border-bottom: solid 2px #ccc;
+   color: black;
+   text-overflow: ellipsis;
+   /* 文字数がdivの大きさを超えたら…を配置 */
+   white-space: nowrap;
+   overflow: hidden;
+}
+
+.back {
+   position: relative;
+   width: 68px;
+   height: 46px;
+   margin-top: 4px;
+   margin-left: 2.5px;
+   background-color: white;
+   overflow: hidden;
+   border: solid 1px #999;
+   /* box-sizing: unset; */
+   border-radius: 1px;
+   box-sizing: border-box;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+#back_label {
+   width: 44px;
+   height: 44px;
+   background-color: #4d8bff;
+   border: solid rgba(205, 248, 255, 0.7) 4px;
+   background-clip: padding-box;
+   border-radius: 50%;
+   text-align: center;
+   display: inline-block;
+}
+
+#back_label img {
+   padding: 5px 6px 7px 6px;
+}
+
+#chara_label {
+   width: 44px;
+   height: 44px;
+   background-color: #4d8bff;
+   border: solid rgba(205, 248, 255, 0.7) 4px;
+   background-clip: padding-box;
+   border-radius: 50%;
+   text-align: center;
+   display: inline-block;
+}
+
+#chara_label img {
+   padding: 6px;
+   /* color: #e48172 */
+}
+
+.dustbox {
+   position: absolute;
+   width: 20px;
+   height: 20px;
+   z-index: 100;
+   right: 0;
+   top: 0;
+   border-radius: 50%;
+   background-color: rgb(251, 255, 0);
+   display: none;
+}
+
+#Object_name {
+   /* size: 10; */
+   width: 103px;
+   height: 24px;
+   font-size: 13px;
+   text-overflow: ellipsis;
+}
+
+#Object_name:focus {
+   border: solid 2px #ff6a00;
+   outline: none;
+}
+
+#Object_X {
+   width: 103px;
+   height: 24px;
+   font-size: 13px;
+}
+
+#Object_X:focus {
+   border: solid 2px #ff6a00;
+   outline: none;
+}
+
+#Object_Y {
+   width: 103px;
+   height: 24px;
+   font-size: 13px;
+}
+
+#Object_Y:focus {
+   border: solid 2px #ff6a00;
+   outline: none;
+}
+
+#Object_size {
+   width: 103px;
+   height: 24px;
+   font-size: 13px;
+}
+
+#Object_size:focus {
+   border: solid 2px #ff6a00;
+   outline: none;
+}
+
+#Object_direction {
+   width: 103px;
+   height: 24px;
+   font-size: 13px;
+}
+
+#Object_direction:focus {
+   border: solid 2px #ff6a00;
+   outline: none;
+}
+
+/* 元に戻す、やり直す、復元、保存 */
+.shortcut {
+   width: 40px;
+   height: 40px;
+   /* border: solid 1px #CCC; */
+   float: left;
+   margin-top: 11px;
+   background-color: hsl(213, 23%, 17%);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.shortcut:hover {
+   background-color: hsl(213, 23%, 25%);
+}
+
+.shortcut.undo {
+   margin-left: 8px;
+   /* float: left; */
+}
+
+.shortcut.redo {
+   /* float: left; */
+}
+
+.shortcut.load {
+   /* float: left; */
+   margin-left: 658px;
+}
+
+.shortcut.save {
+   /* float: right; */
+}
+
+.shortcut svg {
+   fill: #ccc;
+}
+
+.shortcut.redo svg {
+   transform: scale(-1, 1);
+}
+
+.sprite.is-select {
+   /*変更0414*/
+   outline: 4px solid rgb(135, 206, 235);
+}
+
+.sprite.is-select .obj.img {
+   /*変更0414*/
+   border-top: solid 2px rgb(77, 139, 255);
+   border-left: solid 2px rgb(77, 139, 255);
+   border-right: solid 2px rgb(77, 139, 255);
+}
+
+.sprite.is-select .obj.name {
+   /*変更0414*/
+   border-left: solid 2px rgb(77, 139, 255);
+   border-right: solid 2px rgb(77, 139, 255);
+   border-bottom: solid 2px rgb(77, 139, 255);
+   color: white;
+   background-color: rgb(77, 139, 255);
+}
+
+.sprite.is-select .dustbox {
+   /*変更0414*/
+   display: block;
+}
+
+#shortcut_tst {
+   /* background-color: #006633; */
+   position: absolute;
+   left: 450px;
+   right: 0px;
+   /* overflow: hidden; */
+}
+
+
+#contextmenu {
+   display: none;
+   position: fixed;
+   left: 0px;
+   top: 0px;
+   width: 125px;
+   height: auto;
+   font-size: 14px;
+   background-color: #ffffff;
+   border: 2px solid #cccccc;
+   border-radius: 5px;
+   z-index: 1000;
+   user-select: none;
+}
+
+#contextmenu li {
+   padding: 8px 12px;
+   list-style-type: none;
+   cursor: pointer;
+   /* border: solid 2px black;  */
+}
+
+#contextmenu #deleteBtn {
+   border: solid #cccccc;
+   border-width: 1px 0px 0px 0px;
+   outline: none;
+}
+
+#contextmenu #copyBtn:hover {
+   background-color: rgb(77, 139, 255);
+   border-radius: 5px;
+}
+
+#contextmenu #saveBtn:hover {
+   background-color: rgb(77, 139, 255);
+   border-radius: 5px;
+}
+
+#contextmenu #deleteBtn:hover {
+   background: rgba(255, 128, 0, 0.7);
+   border-radius: 5px;
+}
+
+
+
+.back.is-select-bg {
+   outline: 2px solid rgb(135, 206, 235);
+}
