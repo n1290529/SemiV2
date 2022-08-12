@@ -27,11 +27,23 @@ import com.semi.vp.service.UsertblService;
 @Controller
 public class MainController {
 
-	@GetMapping("/signin")
-	public String index() {
-		return "HTML/001-01_Sign_in";
-	}
+//	@GetMapping("/signin")
+//	public String index() {
+//		return "HTML/001-01_Sign_in";
+//	}
 
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public String index(Model model) {
+		model.addAttribute("iserror",false);
+	    return "HTML/001-01_Sign_in";
+	}
+	
+	@RequestMapping(value = "/signin-error", method = RequestMethod.GET)
+	public String loginError(Model model) {
+		 model.addAttribute("iserror",true);
+		 return "HTML/001-01_Sign_in";
+	}
+	
 	@GetMapping("/common")
 	public String common() {
 		return "common";

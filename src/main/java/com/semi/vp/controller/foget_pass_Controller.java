@@ -12,7 +12,7 @@ public class foget_pass_Controller {
  * @param model Model
  * @return ユーザー情報一覧画面のHTML
  */
-@RequestMapping(value = "/HTML/001-03_foget_pass", method = RequestMethod.GET)	
+@RequestMapping(value = "/forgotpass", method = RequestMethod.GET)	
 public String displayList(Model model) {
   	return "HTML/001-03_foget_pass";
 }

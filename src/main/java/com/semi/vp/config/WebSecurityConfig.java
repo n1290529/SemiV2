@@ -38,8 +38,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// アクセス権限に関する設定
 		http
 			// /**はアクセス制限をかけない
-			.authorizeRequests().antMatchers("/CSS/**",
-					"/top","/common","/signin","/signup","/user/create").permitAll()
+			.authorizeRequests().antMatchers("/CSS/**","/IMG/**",
+					//トップ画面
+					"/top",
+					//サインイン画面
+					"/signin","/signin-error",
+					//サインアップ画面
+					"/signup",
+					//パスワード再登録
+					"/forgotpass",
+					"/common",
+					"/user/create").permitAll()
 			// /adminはADMINロールを持つユーザだけアクセス可能
 			.antMatchers("/admin").hasRole("ADMIN")
 			// /userはUSERロールを持つユーザだけアクセス可能
@@ -56,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			// ログイン画面の設定
 			.loginPage("/signin")
 			// ログインに失敗した場合の遷移先
-			.failureUrl("/signin")
+			.failureUrl("/signin-error")
 			// ユーザIDとパスワードのname設定
 			//inputのIDを使用する。この場合input="username"に入力された値
 			.usernameParameter("username")
@@ -73,7 +82,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.logoutSuccessUrl("/")
 			.invalidateHttpSession(true)//ログアウト後に HttpSession を無効にするかどうかを指定します。true であれば、ログアウト時にセッション情報が削除されます。
 			.deleteCookies("JSESSIONID");//クッキーの削除
-
 		// @formatter:on
 	}
 
