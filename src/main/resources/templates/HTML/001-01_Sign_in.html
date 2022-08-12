@@ -9,7 +9,7 @@
 
 <body>
   <div>
-    <form  method="post" th:action="@{/}">
+    <form  method="post" th:action="@{/signin}">
       <h1>サインイン</h1>
       <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
 				th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">

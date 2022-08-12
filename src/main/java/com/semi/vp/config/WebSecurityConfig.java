@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			// /**はアクセス制限をかけない
 			.authorizeRequests().antMatchers("/CSS/**",
-					"/","/common","/signup","/user/create").permitAll()
+					"/top","/common","/signin","/signup","/user/create").permitAll()
 			// /adminはADMINロールを持つユーザだけアクセス可能
 			.antMatchers("/admin").hasRole("ADMIN")
 			// /userはUSERロールを持つユーザだけアクセス可能
@@ -52,11 +52,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 			// ログインを実行するページを指定。
 			// この設定だと/にPOSTするとログイン処理を行う
-			.loginProcessingUrl("/")
+			.loginProcessingUrl("/signin")
 			// ログイン画面の設定
-			.loginPage("/")
+			.loginPage("/signin")
 			// ログインに失敗した場合の遷移先
-			.failureUrl("/")
+			.failureUrl("/signin")
 			// ユーザIDとパスワードのname設定
 			//inputのIDを使用する。この場合input="username"に入力された値
 			.usernameParameter("username")
@@ -94,6 +94,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// ログイン処理時のユーザー情報をDBから取得する
 		System.out.print("Hellooooooooooooooooooooooo");
 		auth.userDetailsService(uds).passwordEncoder(passwordEncoder());
+//		auth.inMemoryAuthentication()
+//        .withUser("yama3")
+//        .password(passwordEncoder().encode("123456"))
+//        .roles("USER");
 	}
 
 

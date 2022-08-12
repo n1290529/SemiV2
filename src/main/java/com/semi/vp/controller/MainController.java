@@ -27,7 +27,7 @@ import com.semi.vp.service.UsertblService;
 @Controller
 public class MainController {
 
-	@GetMapping("/")
+	@GetMapping("/signin")
 	public String index() {
 		return "HTML/001-01_Sign_in";
 	}

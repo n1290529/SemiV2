@@ -12,7 +12,7 @@ public class Top_Controller {
  * @param model Model
  * @return ユーザー情報一覧画面のHTML
  */
-@RequestMapping(value = "/HTML/002-01-01_Top", method = RequestMethod.GET)	
+@RequestMapping(value = "/top", method = RequestMethod.GET)	
 public String displayList(Model model) {
   	return "HTML/002-01-01_Top";
 }
