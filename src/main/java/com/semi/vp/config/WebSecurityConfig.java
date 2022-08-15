@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					//トップ画面
 					"/top",
 					//サインイン画面
-					"/signin","/signin-error",
+					"/signin",
 					//サインアップ画面
 					"/signup",
 					//パスワード再登録
@@ -67,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			// ログイン画面の設定
 			.loginPage("/signin")
 			// ログインに失敗した場合の遷移先
-			.failureUrl("/signin-error")
+//			.failureUrl("/signin-error")
 			// ユーザIDとパスワードのname設定
 			//inputのIDを使用する。この場合input="username"に入力された値
 			.usernameParameter("username")

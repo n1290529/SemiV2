@@ -11,14 +11,11 @@
 	<div>
 		<form method="post" th:action="@{/signin}">
 			<h1>サインイン</h1>
-			<!--<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+			
+			<p th:if="${error} != null"
 				th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
-				ログインエラーメッセージ</p>-->
-				
-			<div th:if="${iserror}" style="color: red;">
-				<p>ログインできませんでした。やりなおしてください。</p>
-			</div>
-
+				ログインエラーメッセージ</p>
+			
 			<input type="text" id="email" name="username" placeholder="email" />
 			<label id="E_email"></label> <input type="password" id="pass"
 				name="password" placeholder="Password" /> <label id="E_pass"></label>

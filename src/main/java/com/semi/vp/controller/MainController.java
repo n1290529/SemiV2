@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.semi.vp.form.UserRequest;
 import com.semi.vp.service.UserDetailsServiceImpl;
@@ -33,16 +34,17 @@ public class MainController {
 //	}
 
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(@RequestParam(value = "error", required = false)String test,Model model) {
+		model.addAttribute("error",test);
 		model.addAttribute("iserror",false);
 	    return "HTML/001-01_Sign_in";
 	}
-	
-	@RequestMapping(value = "/signin-error", method = RequestMethod.GET)
-	public String loginError(Model model) {
-		 model.addAttribute("iserror",true);
-		 return "HTML/001-01_Sign_in";
-	}
+
+//	@RequestMapping(value = "/signin-error", method = RequestMethod.GET)
+//	public String loginError(Model model) {
+//		 model.addAttribute("iserror",true);
+//		 return "HTML/001-01_Sign_in";
+//	}
 	
 	@GetMapping("/common")
 	public String common() {
@@ -93,16 +95,17 @@ public class MainController {
 	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
 	public String create(@Validated @ModelAttribute UserRequest userRequest, BindingResult result, Model model,HttpServletRequest request) {
 
-		if (result.hasErrors()) {
-			// 入力チェックエラーの場合
-			List<String> errorList = new ArrayList<String>();
-			for (ObjectError error : result.getAllErrors()) {
-				errorList.add(error.getDefaultMessage());
-			}
-			model.addAttribute("validationError", errorList);
-			System.out.println("入力チェックエラー");
-			return "common";
-		}
+		System.out.println(userRequest);
+//		if (result.hasErrors()) {
+//			// 入力チェックエラーの場合
+//			List<String> errorList = new ArrayList<String>();
+//			for (ObjectError error : result.getAllErrors()) {
+//				errorList.add(error.getDefaultMessage());
+//			}
+//			model.addAttribute("validationError", errorList);
+//			System.out.println("入力チェックエラー");
+//			return "common";
+//		}
 		// ユーザー情報の登録
 		if (userService.check(userRequest.getF_email())) {
 			System.out.println("既に存在するメールアドレスです。");

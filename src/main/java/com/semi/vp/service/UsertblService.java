@@ -66,18 +66,18 @@ public class UsertblService {
 	public void create(UserRequest userRequest) {
 		Usertbl user = new Usertbl();
 //   user.setId(5);
-		user.setId("bbbbbb013");// 重複チェック
-		user.setName("bbbbbb013");// 重複チェック？
+		user.setId("bbbbbb014");// 重複チェック
+		user.setName("bbbbbb014");// 重複チェック？
 		user.setPass(passwordEncoder.encode(userRequest.getF_password()));
 		user.setSex(0);
 //   user.setAge(0);
-//   user.setJob("学生");
+   user.setJob("学生");
 		user.setEmail(userRequest.getF_email());
 //   user.setProfile(null);
 //   user.setFav(null);
 //   user.setFav("null");
 		user.setEntry(java.sql.Date.valueOf(LocalDate.now()));
-		user.setAddress("banana13");// 重複チェック
+		user.setAddress("banana14");// 重複チェック
 		user.setRole("USER");
 		UtblRepo.save(user);
 	}
