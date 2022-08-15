@@ -1,0 +1,142 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="meta_header(title,links,scripts)">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
+	rel='stylesheet'>
+<link rel="stylesheet" href="/CSS/sidebar.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/JS/sidebar.js"></script>
+<title th:text="${title}"></title>
+
+<th:block th:replace="${links} ?: _" />
+<th:block th:replace="${scripts} ?: _" />
+</head>
+<body>
+	<div class="header" th:fragment="headbar">
+		<span class="header_item">
+			<div class="logo-details">
+				<i id="header_bug" class='bx bxs-bug-alt'></i> <a
+					th:href="${'/top'}" style="text-decoration: none;"> <span
+					class="logo_name">セミファ</span>
+				</a>
+			</div>
+		</span> <span class="header_item" id="search">
+			<h1 id="search_textbox">
+				<form th:action="@{/search/result}" th:method="get">
+					<input type="text" placeholder="検索" class="top-search"
+						name="keyword"> <label> <input type="submit"
+						name="search" value="search" style="display: none;"> <i
+						class='bx bx-search-alt-2'></i>
+					</label>
+				</form>
+			</h1>
+		</span>
+	</div>
+	<div class="sidebar close" th:fragment="sidebar">
+		<div class="logo-details">
+			<i id="side_bug" class='bx bxs-bug-alt'></i> <span class="logo_name">セミファ</span>
+		</div>
+		<ul class="nav-links">
+			<li><a th:href="${'/top'}"> <i class='bx bx-grid-alt'></i> <span
+					class="link_name">ホーム</span>
+			</a>
+				<ul class="sub-menu blank">
+					<li><a class="link_name" th:href="${'/top'}">ホーム</a></li>
+				</ul></li>
+			<li>
+				<div class="iocn-link">
+					<a th:href="${'/create'}"> <i class='bx bx-collection'></i> <span
+						class="link_name">作成</span>
+					</a> <i class='bx bxs-chevron-down arrow'></i>
+				</div>
+				<ul class="sub-menu">
+					<li><a class="link_name" th:href="${'/create'}">作成</a></li>
+					<li><a th:href="${'/create/tutorial'}">チュートリアル</a></li>
+					<li><a th:href="${'/create/2d'}">2D作成</a></li>
+					<li><a th:href="${'/create/3d'}">3D作成</a></li>
+				</ul>
+			</li>
+			<li><a th:href="${'/myfolder'}"> <i class='bx bx-history'></i>
+					<span class="link_name">マイフォルダ</span>
+			</a>
+				<ul class="sub-menu blank">
+					<li><a class="link_name" th:href="${'/myfolder'}">マイフォルダ</a></li>
+				</ul></li>
+			<li>
+				<div class="iocn-link">
+					<a th:href="${'/comp'}"> <i class='bx bx-book-alt'></i> <span
+						class="link_name">コード競争</span>
+					</a> <i class='bx bxs-chevron-down arrow'></i>
+				</div>
+				<ul class="sub-menu">
+					<li><a class="link_name" th:href="${'/comp'}">競争</a></li>
+					<li><a th:href="${'/comp/tasks'}">問題集</a></li>
+					<li><a th:href="${'/comp/ansers'}">回答集</a></li>
+					<li><a th:href="${'/comp/eventtasks'}">イベント問題</a></li>
+				</ul>
+			</li>
+			<li><a th:href="${'/ranking'}"> <i class='bx bx-line-chart'></i>
+					<span class="link_name">ランキング</span>
+			</a>
+				<ul class="sub-menu blank">
+					<li><a class="link_name" th:href="${'/ranking'}">ランキング</a></li>
+				</ul></li>
+			<li><a th:href="${'/setting'}"> <i class='bx bx-cog'></i> <span
+					class="link_name">設定</span>
+			</a>
+				<ul class="sub-menu blank">
+					<li><a class="link_name" th:href="${'/setting'}">設定</a></li>
+				</ul></li>
+		</ul>
+		<div class="profile-details">
+			<div class="profile-content">
+				<form th:action="${'/profile'}" th:method="get">
+					<label> <input type="submit" name="profile" value="profile"
+						style="display: none;"> <img
+						sec:authorize="isAuthenticated()" src="IMG/profile.png"
+						alt="profileImg"> <img sec:authorize="!isAuthenticated()"
+						src="IMG/user-def.png" alt="profileImg">
+					</label>
+				</form>
+			</div>
+			<div sec:authorize="isAuthenticated()" class="name-job login">
+				<a th:href="${'/profile'}"> <span class="profile_name">マイケルジャクソン</span>
+				</a>
+				<form th:action="@{/logout}" th:method="post">
+					<label> <input type="submit" name="image" value="two"
+						style="display: none;"> <svg class="signout icon"
+							xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+							<path d="M16 13v-2H7V8l-5 4 5 4v-3z"></path>
+							<path
+								d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z">
+							</path>
+						</svg>
+					</label>
+				</form>
+			</div>
+			<div sec:authorize="!isAuthenticated()" class="name-job notlogin">
+				<div class="signin">
+					<a th:href="${'/signin'}"> <svg class="signin icon"
+							xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+							<path d="m13 16 5-4-5-4v3H4v2h9z"></path>
+							<path
+								d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z"></path></svg>
+						ログイン
+					</a>
+				</div>
+				<div class="signup">
+					<a th:href="${'/signup'}"> <svg class="signup icon"
+							xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+							<path
+								d="M4.5 8.552c0 1.995 1.505 3.5 3.5 3.5s3.5-1.505 3.5-3.5-1.505-3.5-3.5-3.5-3.5 1.505-3.5 3.5zM19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3zM4 19h10v-1c0-2.757-2.243-5-5-5H7c-2.757 0-5 2.243-5 5v1h2z"></path></svg>
+						新規会員登録
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
