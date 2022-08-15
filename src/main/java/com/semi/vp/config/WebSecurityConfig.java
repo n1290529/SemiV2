@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			// /**はアクセス制限をかけない
 			.authorizeRequests().antMatchers("/CSS/**","/IMG/**",
+
 					//トップ画面
 					"/top",
 					//サインイン画面
@@ -49,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					"/forgotpass",
 					"/common",
 					"/user/create").permitAll()
+
 			// /adminはADMINロールを持つユーザだけアクセス可能
 			.antMatchers("/admin").hasRole("ADMIN")
 			// /userはUSERロールを持つユーザだけアクセス可能
