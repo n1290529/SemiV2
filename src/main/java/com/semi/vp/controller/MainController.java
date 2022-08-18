@@ -81,7 +81,8 @@ public class MainController {
 		Model.addAttribute("emailC",false);
 		
 		Model.addAttribute("duplication","このemailは既に存在します");
-		Model.addAttribute("agemsg","年齢が選択されていません");
+//		Model.addAttribute("agemsg","年齢が選択されていません");
+		Model.addAttribute("birthmsg","生年月日入力されていません");
 		Model.addAttribute("sexmsg","性別が選択されていません");
 		Model.addAttribute("jobmsg","仕事がありません");
 		Model.addAttribute("checkmsg","利用規約に同意してください");

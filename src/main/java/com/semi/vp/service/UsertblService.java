@@ -131,13 +131,15 @@ public class UsertblService {
 //		System.out.println("sex="+sex);
 //		System.out.println("age="+age);
 //		System.out.println("job"+job);
+//		System.out.println("生年月日"+form.getBirth());
 		
 		Usertbl user = new Usertbl();
 			user.setId(nId);
 			user.setName(form.getUsername());
 			user.setPass(passwordEncoder.encode(form.getPass()));
 			user.setSex(Integer.parseInt(form.getSex()));
-			user.setAge(Integer.parseInt(form.getAge()));
+//			user.setAge(Integer.parseInt(form.getAge()));
+			user.setBirth(form.getBirth());
 			user.setJob(form.getJob());
 			user.setEmail(form.getEmail());
 	//   user.setProfile(null);

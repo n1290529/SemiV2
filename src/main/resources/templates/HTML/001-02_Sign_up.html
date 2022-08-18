@@ -28,23 +28,16 @@
 			<input type="password" name="repass" id="repassword" placeholder="repassword(英数字)" />
 		<p th:if="${#fields.hasErrors('passwordValid')}" th:errors="*{passwordValid}" class="error-message"></p>
 			
-			<span th:if="${#fields.hasErrors('ageValid')}" th:text="${agemsg}" class="error-message"></span><br>
+			<span th:if="${#fields.hasErrors('birthValid')}" th:text="${birthmsg}" class="error-message"></span><br>
 			<span th:if="${#fields.hasErrors('sexValid')}" th:text="${sexmsg}" class="error-message"></span><br>
 			<span th:if="${#fields.hasErrors('jobValid')}" th:text="${jobmsg}" class="error-message"></span>
 			<table id="a1">
 				<tbody>
 					<tr>
-						<td class="age">年齢</td>
-						<td><select name="age" class="sage">
-								<option value="0">-未入力-</option>
-								<option value="1">10代</option>
-								<option value="2">20代</option>
-								<option value="3">30代</option>
-								<option value="4">40代</option>
-								<option value="5">50代</option>
-								<option value="6">60代</option>
-						</select></td>
-
+						<td class="age">生年月日</td>
+						<td>
+							<input class="date" type="date" name="birth">
+						</td>
 						<td class="sex">性別</td>
 						<td><select name="sex" class="ssex">
 								<option value="0">-未入力-</option>

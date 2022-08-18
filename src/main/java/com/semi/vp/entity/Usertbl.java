@@ -38,9 +38,9 @@ public class Usertbl {
 	@Column(name = "USER_SEX", nullable = false)
 	private long sex;
 
-	// 年齢
-	@Column(name = "USER_AGE")
-	private long age;
+	// 生年月日
+	@Column(name = "USER_BIRTH")
+	private java.sql.Date birth;
 
 	// 仕事
 	@Column(name = "USER_JOB", length = 100)

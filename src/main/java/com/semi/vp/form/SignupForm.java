@@ -1,8 +1,12 @@
 package com.semi.vp.form;
 
+import java.sql.Date;
+
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.aspectj.weaver.reflect.Java14GenericSignatureInformationProvider;
 
 public class SignupForm {
 	@NotBlank
@@ -21,10 +25,11 @@ public class SignupForm {
 	@Size(min = 1, max = 20)
 	private String repass;
 
-	private String age;
+//	private String age;
 	private String sex;
 	private String job;
 	private String check;
+	private Date birth;
 
 	// passとrepassに空白はないか?
 	// passとrepassは==か?
@@ -37,18 +42,18 @@ public class SignupForm {
 	}
 
 	// 初回起動時nullになる
-	@AssertTrue
-	public boolean isAgeValid() {
-		//未入力の場合false
-		if (age == null) {
-			return true;
-		} else if (Integer.parseInt(age) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-
-	}
+//	@AssertTrue
+//	public boolean isAgeValid() {
+//		//未入力の場合false
+//		if (age == null) {
+//			return true;
+//		} else if (Integer.parseInt(age) == 0) {
+//			return false;
+//		} else {
+//			return true;
+//		}
+//
+//	}
 
 	@AssertTrue
 	public boolean isSexValid() {
@@ -79,6 +84,15 @@ public class SignupForm {
 		return true;
 	}
 
+	@AssertTrue
+	public boolean isBirthValid() {
+		if (birth == null) {
+			return false;
+		} 
+		return true;
+	}
+	
+	
 	public String getEmail() {
 		return email;
 	}
@@ -107,12 +121,12 @@ public class SignupForm {
 		this.repass = repass;
 	}
 
-	public String getAge() {
-		return age;
-	}
-	public void setAge(String age) {
-		this.age = age;
-	}
+//	public String getAge() {
+//		return age;
+//	}
+//	public void setAge(String age) {
+//		this.age = age;
+//	}
 
 	public String getSex() {
 		return sex;
@@ -133,5 +147,12 @@ public class SignupForm {
 	}
 	public void setCheck(String check) {
 		this.check = check;
+	}
+	
+	public Date getBirth() {
+		return birth;
+	}
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 }
