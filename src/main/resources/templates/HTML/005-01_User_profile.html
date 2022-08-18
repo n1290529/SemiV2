@@ -1,143 +1,154 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head
+	th:replace="HTML/topsidebar :: meta_header('プロフィール',~{::link},~{::script})">
 
-<head th:replace="HTML/topsidebar :: meta_header('トップページ',~{::link},~{::script})">
-	<link rel='stylesheet' th:href="@{'/CSS/005-01_User_profile.css'}">
+<link rel="stylesheet" th:href="@{/CSS/005-01_User_profile.css}">
 </head>
-
 <body>
 	<div th:replace="HTML/topsidebar :: headbar"></div>
 	<div th:replace="HTML/topsidebar :: sidebar"></div>
 	<section class="home-section">
 		<div class="apload">
 			<!-- 画像プレビュー -->
-			<div class="profilechangelist01">
-				<div class="ap00">
-					<input type="file" name="inpFile" id="inpFile">
-					<div class="image-preview" id="imagePreview">
-						<img src="../IMG/profile.jpg" alt="Image Preview"
-							class="image-preview__image"> <span
-							class="image-preview__default-text">Image Preview</span>
-					</div>
-				</div>
-				<!-- 生年月日 -->
-				<div class="userdateofbirth00">
-					<p class="userdateofbirth01">生年月日</p>
-					<input type="text" class="userdateofbirth02" required
-						placeholder="生年月日を入力してください">
-				</div>
-				<!-- 職業 -->
-				<div class="userjobs00">
-					<p class="userjobs01">職業</p>
-					<input type="text" class="userjobs02" placeholder="  職業を入力してください">
-				</div>
-				<!-- おきにジャンル -->
-				<div class="tag00">
-					<p class="favoritegenre">お気に入りのジャンル</p>
-					<select class="tag01" size="1">
-						<option>ジャンルを選択してください</option>
-						<option value="選択肢1">アクションゲーム</option>
-						<option value="選択肢2">ロールプレイングゲーム</option>
-						<option value="選択肢3">シューティングゲーム</option>
-						<option value="選択肢4">アドベンチャーゲーム</option>
-						<option value="選択肢5">シミュレーションゲーム</option>
-						<option value="選択肢6">レースゲーム</option>
-						<option value="選択肢7">パズルゲーム</option>
-						<option value="選択肢8">サンドボックス</option>
-						<option value="選択肢9">音楽ゲーム</option>
-						<option value="選択肢10">テーブルゲーム</option>
-						<option value="選択肢11">スポーツゲーム</option>
-						<option value="選択肢12">その他</option>
-					</select>
-				</div>
-				<!-- 登録日 -->
-				<input type="text" class="userregisterdate" value="0000/00/00登録"
-					readonly>
-			</div>
+
 			<!-- 枠のある場所 -->
 			<div class="profilechangelist02">
-				<!-- ユーザーの名前 -->
-				<div class="usernamechange00">
-					<p class="usernamechange01">名前を変更する</p>
-					<input type="text" class="usernamechange02"
-						value="ガマ星雲第58番惑星宇宙侵攻軍特殊先行工作部隊隊長" placeholder="名前を入力してください"
-						required><br>
-				</div>
-				<!-- 性別チェックボックス -->
-				<div class="checkbox00">
-					<div class="men">
-						<input type="checkbox" value="2" style="transform: scale(1.0);"
-							id="checkbox01" class="permission0" /> <label for="checkbox01">男</label>
+				<form th:action="@{/profile/edit}" th:method="put">
+					<div class="profilechangelist01">
+						<div class="ap">
+							<div class="ap00">
+								<input type="file" name="inpFile" id="inpFile">
+								<div class="image-preview" id="imagePreview">
+									<img src="" alt="Image Preview" class="image-preview__image">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+							</div>
+							<!-- ユーザーの名前 -->
+							<div class="ap01">
+								<p class="tag required">名前</p>
+								<input type="text" class="usernamechange02" name="name"
+									th:value="${user.name}" placeholder="名前を入力してください"
+									required="required">
+								<!-- メアド -->
+								<p class="tag required">メールアドレス</p>
+								<input type="email" class="useremailchange01" name="email"
+									th:value="${user.email}" required="required">
+								<table>
+									<tr>
+										<td>
+											<p class="userdateofbirth01 required">生年月日</p>
+										</td>
+										<td>
+											<p class="userdateofbirth01 required">性別</p>
+										</td>
+									</tr>
+									<tr>
+										<!-- 生年月日 -->
+										<td>
+											<div class="userdateofbirth00">
+												<input type="date" class="userdateofbirth02"
+													required="required" placeholder="生年月日を入力してください">
+											</div>
+										</td>
+										<!-- 性別チェックボックス -->
+										<td>
+											<div class="checkbox00">
+												<span class="men"> <input type="radio" id="men"
+													name="sex" value="men" th:checked="${user.sex == 0}">
+													<label for="men">男</label>
+												</span> <span class="women"> <input type="radio" id="women"
+													name="sex" value="women" th:checked="${user.sex == 1}">
+													<label for="women">女</label>
+												</span> <span class="lgbt"> <input type="radio" id="lgbt"
+													name="sex" value="lgbt" th:checked="${user.sex == 2}">
+													<label for="lgbt">その他</label>
+												</span>
+											</div>
+										</td>
+									</tr>
+								</table>
+								<!-- 登録日 -->
+								<p class="userregisterdate" th:text="${#dates.format(user.entry, 'yyyy/MM/dd') + '登録'}"></p>
+							</div>
+						</div>
+						<div class="ap2">
+							<!-- 職業 -->
+							<div class="userjobs00">
+								<p class="userjobs01">職業</p>
+								<input type="text" class="userjobs02" name="job"
+									placeholder="  職業を入力してください" th:value="${user.job}">
+							</div>
+							<!-- おきにジャンル -->
+							<div class="tag00">
+								<p class="favoritegenre">お気に入りのジャンル</p>
+								<select class="tag01" size="1">
+									<option hidden>ジャンルを選択してください</option>
+									<option value="選択肢1">アクションゲーム</option>
+									<option value="選択肢2">ロールプレイングゲーム</option>
+									<option value="選択肢3">シューティングゲーム</option>
+									<option value="選択肢4">アドベンチャーゲーム</option>
+									<option value="選択肢5">シミュレーションゲーム</option>
+									<option value="選択肢6">レースゲーム</option>
+									<option value="選択肢7">パズルゲーム</option>
+									<option value="選択肢8">サンドボックス</option>
+									<option value="選択肢9">音楽ゲーム</option>
+									<option value="選択肢10">テーブルゲーム</option>
+									<option value="選択肢11">スポーツゲーム</option>
+									<option value="選択肢12">その他</option>
+								</select>
+							</div>
+						</div>
 					</div>
-
-					<div class="women">
-						<input type="checkbox" value="2" style="transform: scale(1.0);"
-							id="checkbox02" class="permission0" /> <label for="checkbox02">女</label>
+					<div class="ap3">
+						<div class="userchangepass00">
+							<input type="submit" class="userchangepass01" value="変更">
+						</div>
+						<!-- ぱすわ -->
+						<div class="userchangepass10">
+							<a href="#" class="userchangepass11">パスワードを変更する</a>
+						</div>
 					</div>
-
-					<div class="lgbt">
-						<input type="checkbox" checked value="2"
-							style="transform: scale(1.0);" id="checkbox03"
-							class="permission0" /> <label for="checkbox03">その他</label>
+					<!-- 自己紹介 -->
+					<div class="selfintroduction00">
+						<textarea cols="70" rows="50" class="selfintroduction02"
+							placeholder="自己紹介" th:text = "${user.profile}"></textarea>
 					</div>
-				</div>
-				<!-- メアド -->
-				<input type="email" class="useremailchange01"
-					value="123456789012345@iwasaki.ne.jp" readonly>
-				<div class="useremailchange00">
-					<a href="#" class="useremailchange02">メールアドレスを変更する</a><br>
-				</div>
-				<!-- ぱすわ -->
-				<div class="userchangepass00">
-					<a href="#" class="userchangepass01">パスワードを変更する</a><br>
-				</div>
-				<!-- 自己紹介 -->
-				<div class="selfintroduction00">
-					<p class="selfintroduction01">自己紹介を入力してください</p>
-					<textarea cols="70" rows="50" class="selfintroduction02"
-						placeholder="自己紹介"></textarea>
-				</div>
-				<!-- ボタン -->
-			</div>
-			<div class="btn00">
-				<a href="#" class="btn_06-2"><span>変更</span></a>
+					<!-- ボタン -->
+				</form>
 			</div>
 		</div>
 	</section>
-		<script>
-			/*画像プレビューJS*/
-			const inpFile = document.getElementById("inpFile");
-			const previewContainer = document.getElementById("imagePreview");
-			const previewImage = previewContainer
-					.querySelector(".image-preview__image");
-			const previewDefaultText = previewContainer
-					.querySelector(".image-preview__default-text");
+	<script>
+		/*画像プレビューJS*/
+		const inpFile = document.getElementById("inpFile");
+		const previewContainer = document.getElementById("imagePreview");
+		const previewImage = previewContainer
+				.querySelector(".image-preview__image");
+		const previewDefaultText = previewContainer
+				.querySelector(".image-preview__default-text");
 
-			inpFile.addEventListener("change", function() {
-				const file = this.files[0];
+		inpFile.addEventListener("change", function() {
+			const file = this.files[0];
 
-				if (file) {
-					const reader = new FileReader();
+			if (file) {
+				const reader = new FileReader();
 
-					previewDefaultText.style.display = "none";
-					previewImage.style.display = "block";
+				previewDefaultText.style.display = "none";
+				previewImage.style.display = "block";
 
-					reader.addEventListener("load", function() {
-						previewImage.setAttribute("src", this.result);
-					});
+				reader.addEventListener("load", function() {
+					previewImage.setAttribute("src", this.result);
+				});
 
-					reader.readAsDataURL(file);
-				} else {
-					previewDefaultText.style.display = "null";
-					previewImage.style.display = "null";
-					previewImage.setAttribute("src", "");
-				}
-			});
-		</script>
-
+				reader.readAsDataURL(file);
+			} else {
+				previewDefaultText.style.display = "null";
+				previewImage.style.display = "null";
+				previewImage.setAttribute("src", "");
+			}
+		});
+	</script>
 </body>
-
 </html>
-
-

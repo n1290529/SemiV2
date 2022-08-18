@@ -1,20 +1,70 @@
 /* アップロード画面のcss */
 /* 背景設定（いじるな） */
-.apload{
-  position: fixed;
+/* a:link {
+  color: #000;
+}
+
+a:visited {
+  color: #000;
+}
+
+a:hover {
+  color: #000;
+}
+
+a:active {
+  color: #000;
+} */
+
+.apload {
+  position: absolute;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   background-color: #222b36;
 }
-/* サムネ設定（デザイン） */
-.ap00{
-  position: absolute;
-  top: 130px;
-  left: 200px;
+
+.ap {
+  position: relative;
+  width: 100%;
+  height: 242px;
+  display: flex;
 }
-.image-preview{
+
+.ap2 {
+  position: relative;
+  width: calc(100% - 295px);
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ap3 {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+/* サムネ設定（デザイン） */
+.ap00 {
+  position: relative;
+  width: 200px;
+
+}
+
+.ap01 {
+  position: relative;
+  width: calc(100% - 200px);
+}
+
+.ap01 table {
+  width: 470px;
+  margin-left: 95px;
+  width: calc(100% - 95px);
+}
+
+.image-preview {
   max-width: 200px;
   max-height: 200px;
   min-width: 200px;
@@ -28,99 +78,108 @@
   font-weight: bold;
   color: #cccccc;
 }
-.image-preview__image{
+
+.image-preview__image {
   display: none;
   max-width: 200px;
   max-height: 200px;
   min-width: 200px;
   min-height: 200px;
 }
+
 /* 生年月日 */
-.userdateofbirth00{
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  top: 400px;
-  left: 200px;
+.userdateofbirth00 {
+  position: relative;
 }
-.userdateofbirth01{
+
+.userdateofbirth01 {
   color: #fff;
 }
-.userdateofbirth02{
+
+.userdateofbirth02 {
   padding: 7px;
+  width: 170px;
   font-size: 16px;
   border-radius: 6px;
   border: none;
   color: #fff;
-  background-color: #11101d;
+  background-color: #1d1b31;
 }
+
 /* 職業入力欄 */
-.userjobs00{
-  position: absolute;
+.userjobs00 {
+  position: relative;
   margin: 0;
   padding: 0;
-  top: 470px;
-  left: 200px;
 }
-.userjobs01{
+
+.userjobs01 {
   color: #fff;
 }
-.userjobs02{
+
+.userjobs02 {
   padding: 7px;
   font-size: 16px;
   border-radius: 6px;
   border: none;
   color: #fff;
-  background-color: #11101d;
+  background-color: #1d1b31;
 }
+
 /* タグ設定（デザイン） */
-.tag00{
-  position: fixed;
+.tag00 {
+  position: relative;
   margin: 0;
   padding: 0;
-  top: 555px;
-  left: 200px;
 }
-.tag01{
-  position: absolute;
+
+.tag01 {
+  position: relative;
   font-size: 18px;
   margin: 0;
   padding: 0;
+  height: 39px;
   border-radius: 6px;
-  color: #fff;
-  background-color: #11101d;
-}
-.favoritegenre{
-  color: #fff;
-}
-/* 登録日 */
-.userregisterdate{
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  top: 800px;
-  left: 200px;
   border: none;
-  font-size: 24px;
+  color: #fff;
+  background-color: #1d1b31;
+}
+
+.favoritegenre {
+  color: #fff;
+}
+
+/* 登録日 */
+.userregisterdate {
+  position: relative;
+  margin-left: 95px;
+  padding: 0;
+  border: none;
+  font-size: 15px;
   color: #ccc;
   background-color: #222b36;
+  width: fit-content;
 }
+
 /* 背景その２ */
-.profilechangelist02{
+.profilechangelist02 {
   position: absolute;
-  margin: 0;
-  padding: 0;
+  padding: 20px;
   width: 900px;
   height: 800px;
-  top: 100px;
-  left: 580px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
   border: none;
   border-radius: 6px;
   background-color: #11101d;
 }
+
 /* 名前変更 */
-.usernamechange00{
-  position: absolute;
+/* .usernamechange00{
+  position: relative;
   margin: 0;
   padding: 0;
   top: 50px;
@@ -129,82 +188,80 @@
 .usernamechange01{
   font-size: 24px;
   color: #fff;
-}
-.usernamechange02{
-  position: absolute;
-  margin: 0;
+} */
+.usernamechange02 {
+  position: relative;
+  margin-left: 95px;
   padding: 0;
-  width: 400px;
-  height: 45px;
+  width: calc(100% - 95px);
+  height: 40px;
   font-size: 24px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   border-radius: 6px;
-  left: 30px;
   border: none;
   color: #fff;
   background-color: #1d1b31;
 }
+
 /* 性別選択 */
-.checkbox00{
-  position: absolute;
+.checkbox00 {
+  position: relative;
   margin: 0;
   padding: 0;
-  top: 80px;
-  left: 150px;
   font-size: 24px;
   color: #fff;
-  font-weight:bold;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
 }
-.permission0{
-	width: 20px;
-	height: 20px;
+
+.permission0 {
+  width: 20px;
+  height: 20px;
 }
-.men{
-  position: absolute;
+
+.men {
+  position: relative;
   margin: 0;
   padding: 0;
   width: 50px;
   height: 50px;
-  top: 130px;
-  left: 100px;
 }
-.women{
-  position: absolute;
+
+.women {
+  position: relative;
   margin: 0;
   padding: 0;
   width: 50px;
   height: 50px;
-  top: 130px;
-  left: 200px;
 }
-.lgbt{
-  position: absolute;
+
+.lgbt {
+  position: relative;
   margin: 0;
   padding: 0;
   width: 100px;
   height: 50px;
-  top: 130px;
-  left: 300px;
 }
+
 /* メアド設定*/
-.useremailchange01{
-  position: absolute;
-  margin: 0;
+.useremailchange01 {
+  position: relative;
+  margin-left: 95px;
   padding: 0;
-  width: 450px;
+  width: calc(100% - 95px);
   height: 40px;
-  top: 260px;
-  left: 150px;
-  text-align: center;
   font-size: 24px;
   border: none;
   border-radius: 6px;
   color: #fff;
   background-color: #1d1b31;
 }
-.useremailchange00{
+
+.useremailchange00 {
   position: absolute;
   margin: 0;
   padding: 0;
@@ -217,61 +274,90 @@
   border-radius: 6px;
   background-color: #ccc;
 }
-.useremailchange02{
+
+.useremailchange02 {
   position: relative;
   margin: 0;
   padding: 0;
   top: 12px;
-  font-weight:bold;
+  font-weight: bold;
   text-decoration: none;
 }
-/* パスワード設定 */
-.userchangepass00{
-  position: absolute;
-  margin: 0;
-  padding: 0;
+
+
+.userchangepass00 {
+  position: relative;
+  margin: 25px 0 25px 0;
   width: 200px;
   height: 50px;
-  top: 330px;
-  left: 650px;
+  margin-left: auto;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  background-color: #e1000e;
+}
+/* パスワード設定 */
+.userchangepass10 {
+  position: relative;
+  margin: 25px 0 25px 0;
+  width: 200px;
+  height: 50px;
+  margin-left: 20px;
   text-align: center;
   border: none;
   border-radius: 6px;
   background-color: #ccc;
 }
-.userchangepass01{
+
+.userchangepass01 {
   position: relative;
   margin: 0;
   padding: 0;
-  top: 12px;
-  font-weight:bold;
+  width: 200px;
+  height: 50px;
+  border-radius: 6px;
+  font-weight: bold;
   text-decoration: none;
+  font-size: 100%;
+  color: #fff;
+  user-select: none;
+  background: none;
+  border: none;
 }
-a:link { color: #000; }
-a:visited { color: #000; }
-a:hover { color: #000; }
-a:active { color: #000; }
-/* 自己紹介デザイン */
-.selfintroduction00{
-  position: absolute;
+
+.userchangepass11 {
+  position: relative;
   margin: 0;
-  padding: 0;
+  padding: 13.5px 20px 13.5px 20px;
+  top: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  user-select: none;
+}
+
+
+
+/* 自己紹介デザイン */
+.selfintroduction00 {
+  position: relative;
   border: none;
   border-radius: 6px;
-  left: 25px;
-  top: 370px;
+  width: 860px;
 }
-.selfintroduction01{
+
+.selfintroduction01 {
   padding-left: 15px;
   font-size: 24px;
   color: #fff;
 }
-.selfintroduction02{
-  position: absolute;
+
+.selfintroduction02 {
+  position: relative;
   margin: 0;
   padding: 0;
-  max-width: 840px;
-  max-height: 370px;
+  width: 100%;
+  height: 353px;
   font-size: 24px;
   border: none;
   border-radius: 6px;
@@ -280,15 +366,18 @@ a:active { color: #000; }
   color: #fff;
   background-color: #1d1b31;
   resize: none;
+  box-sizing: border-box;
 }
+
 /* ボタン配置、設定（デザイン） */
 .btn00 {
-  position: absolute;
-  top: 715px;
-  left: 1560px;
-  max-width: 300px;
-  margin: 60px auto;
+  position: relative;
+  width: 250px;
+  top: calc((100% - 800px)/2 + 800px - 124px);
+  left: calc((100% - 900px)/2 + 900px);
+  margin-left: 60px;
 }
+
 /*=============
 a.btn_06-2
 =============*/
@@ -309,6 +398,7 @@ a.btn_06-2 {
   margin: 0 auto;
   position: relative;
 }
+
 a.btn_06-2 span {
   position: relative;
   display: block;
@@ -316,6 +406,7 @@ a.btn_06-2 span {
   transition: 0.3s;
   z-index: +1;
 }
+
 a.btn_06-2:after {
   content: "";
   position: absolute;
@@ -330,19 +421,32 @@ a.btn_06-2:after {
   transform: translate(-3px, -3px);
   transition: 0.3s;
 }
+
 a.btn_06-2:hover span {
   transform: translate(0, 0);
 }
+
 a.btn_06-2:hover:after {
   transform: translate(0, 0);
 }
+
 @media all and (max-width: 1023px) {
   a.btn_06-2 {
     font-size: 18px;
   }
 }
+
 @media all and (max-width: 767px) {
   a.btn_06-2 {
     font-size: 16px;
   }
+}
+.tag {
+  margin-left: 95px;
+  color: #fff;
+}
+.required::after {
+  content: " *";
+  color: #e1000e;
+  vertical-align: middle;
 }

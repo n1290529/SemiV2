@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.semi.vp.entity.Usertbl;
 import com.semi.vp.repository.UsertblRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -58,7 +59,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
 	UsertblRepository UserRepo;
-	public List<com.semi.vp.entity.Usertbl> oneReco(String str) {
-        return UserRepo.findByEmail2(str);
+	public Usertbl oneReco(String str) {
+        return UserRepo.getByEmail(str);
     }
 }

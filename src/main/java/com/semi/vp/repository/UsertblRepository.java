@@ -17,8 +17,7 @@ public interface UsertblRepository extends JpaRepository<Usertbl, String> {
 	
 	Usertbl findByEmail(String email);
 	
-	@Query("select u from Usertbl u where u.email = ?1")
-	List<Usertbl> findByEmail2(String email);
+	Usertbl getByEmail(String email);
 	
 	boolean existsByEmail(String email);
 	boolean existsById(String id);
