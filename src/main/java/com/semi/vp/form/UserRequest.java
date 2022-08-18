@@ -6,13 +6,10 @@ import lombok.Data;
 
 @Data
 public class UserRequest implements Serializable {
-/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-private String F_email;
+	private String F_email;
 
-private String F_password;
+	private String F_password;
 
 }

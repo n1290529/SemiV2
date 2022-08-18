@@ -26,7 +26,7 @@
 		</span> <span class="header_item" id="search">
 			<h1 id="search_textbox">
 				<form th:action="@{/search/result}" th:method="get">
-					<input type="text" placeholder="検索" class="top-search"
+					<input type="search" placeholder="検索" class="top-search"
 						name="keyword"> <label> <input type="submit"
 						name="search" value="search" style="display: none;"> <i
 						class='bx bx-search-alt-2'></i>
@@ -93,17 +93,13 @@
 		</ul>
 		<div class="profile-details">
 			<div class="profile-content">
-				<form th:action="${'/profile'}" th:method="get">
-					<label> <input type="submit" name="profile" value="profile"
-						style="display: none;"> <img
-						sec:authorize="isAuthenticated()" src="IMG/profile.png"
-						alt="profileImg"> <img sec:authorize="!isAuthenticated()"
-						src="IMG/user-def.png" alt="profileImg">
-					</label>
-				</form>
+				<a th:href="${'/profile'}"> <img
+					sec:authorize="isAuthenticated()" src="IMG/profile.png"
+					alt="profileImg"> <img sec:authorize="!isAuthenticated()"
+					src="IMG/user-def.png" alt="profileImg"></a>
 			</div>
 			<div sec:authorize="isAuthenticated()" class="name-job login">
-				<a th:href="${'/profile'}"> <span class="profile_name">マイケルジャクソン</span>
+				<a th:href="${'/profile'}"> <span class="profile_name" th:text="${user.name}"></span>
 				</a>
 				<form th:action="@{/logout}" th:method="post">
 					<label> <input type="submit" name="image" value="two"
