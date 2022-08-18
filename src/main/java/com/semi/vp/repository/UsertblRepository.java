@@ -21,4 +21,5 @@ public interface UsertblRepository extends JpaRepository<Usertbl, String> {
 	List<Usertbl> findByEmail2(String email);
 	
 	boolean existsByEmail(String email);
+	boolean existsById(String id);
 }

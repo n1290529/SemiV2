@@ -1,19 +1,17 @@
 package com.semi.vp.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.ServletException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -21,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.semi.vp.form.UserRequest;
+import com.semi.vp.form.SignupForm;
+
 import com.semi.vp.service.UserDetailsServiceImpl;
 import com.semi.vp.service.UsertblService;
+
 
 @Controller
 public class MainController {
@@ -37,26 +37,24 @@ public class MainController {
 	public String index(@RequestParam(value = "error", required = false)String test,Model model) {
 		model.addAttribute("error",test);
 		model.addAttribute("iserror",false);
+		
 	    return "HTML/001-01_Sign_in";
 	}
 
-//	@RequestMapping(value = "/signin-error", method = RequestMethod.GET)
-//	public String loginError(Model model) {
-//		 model.addAttribute("iserror",true);
-//		 return "HTML/001-01_Sign_in";
-//	}
-	
+//テスト用------------------
 	@GetMapping("/common")
 	public String common() {
 		return "common";
 	}
+	@GetMapping("/admin")
+	public String admin() {
+		return "admin";
+	}
 
-//	@GetMapping("/user")
-//	public String user() {
-//		return "user";
-//	}
 	@Autowired
 	UserDetailsServiceImpl udsi;
+	@Autowired
+	UsertblService userService;
 
 	@GetMapping("/user")
 	public String user(HttpServletRequest request, Model model) {
@@ -68,59 +66,40 @@ public class MainController {
 		model.addAttribute("udsi", udsi.oneReco(authentication.getName()));
 		return "user";
 	}
-
-	@GetMapping("/admin")
-	public String admin() {
-		return "admin";
-	}
-
+	
+//-------------------
+	//アカウント登録前
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String displayAdd(Model model) {
-		// 入力フォームで取り扱うオブジェクトを設定
-		model.addAttribute("userRequest", new UserRequest());
-		// 表示するHTMLを指定
+	public String displayAdd(@ModelAttribute("form") SignupForm form) {
 		return "HTML/001-02_Sign_up";
 	}
-
-	/**
-	 * ユーザー新規登録
-	 * 
-	 * @param userRequest リクエストデータ
-	 * @param model       Model
-	 * @return ユーザー情報一覧画面
-	 */
-	@Autowired
-	private UsertblService userService;
-
-	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
-	public String create(@Validated @ModelAttribute UserRequest userRequest, BindingResult result, Model model,HttpServletRequest request) {
-
-		System.out.println(userRequest);
-//		if (result.hasErrors()) {
-//			// 入力チェックエラーの場合
-//			List<String> errorList = new ArrayList<String>();
-//			for (ObjectError error : result.getAllErrors()) {
-//				errorList.add(error.getDefaultMessage());
-//			}
-//			model.addAttribute("validationError", errorList);
-//			System.out.println("入力チェックエラー");
-//			return "common";
-//		}
-		// ユーザー情報の登録
-		if (userService.check(userRequest.getF_email())) {
-			System.out.println("既に存在するメールアドレスです。");
-			return "redirect:HTML/001-02_Sign_up";
-		} else {
-			System.out.println(userRequest.getF_email());
-			userService.create(userRequest);
-			
-			try {
-	            request.login(userRequest.getF_email(), userRequest.getF_password());
-	        } catch (ServletException e) {
-	            e.printStackTrace();
-	        }
-			return "redirect:/common";
+	//アカウント登録後
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public String displayAdd2(Model Model,@Valid @ModelAttribute("form") SignupForm form, BindingResult result) {
+		
+		//emai重複用変数
+		Model.addAttribute("emailC",false);
+		
+		Model.addAttribute("duplication","このemailは既に存在します");
+		Model.addAttribute("agemsg","年齢が選択されていません");
+		Model.addAttribute("sexmsg","性別が選択されていません");
+		Model.addAttribute("jobmsg","仕事がありません");
+		Model.addAttribute("checkmsg","利用規約に同意してください");
+		
+		if(result.hasErrors()) {
+			return "HTML/001-02_Sign_up";
 		}
-
+		
+		//アカウント作成,Form経由でUsertblServiceのuserRegistrationを使用
+		//emailが既に存在する場合falseが返ってくる
+		if(!userService.userRegistration(form)) {
+			Model.addAttribute("emailC",true);
+			return "HTML/001-02_Sign_up";
+		}else {
+			return "redirect:/top";
+		}
+		
+		
 	}
+	
 }

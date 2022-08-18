@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>パスワードを忘れた</title>
@@ -7,12 +7,15 @@
 </head>
 <body>
   <div> 
-  <form>
+  <form  th:method="put" th:action="@{/registerpass}" th:object="${form}">
     <h1>パスワード再登録</h1>
-    <input type="text" id="email" placeholder="email"/><label id="E_email"></label>
+    <!-- 
+     -->
+     
+    <span th:if="${value1}!=null" th:text="${value1}" class="error-message"></span>
+    <input type="text" name="email" id="email" placeholder="email"/><label id="E_email"></label>
     <button>送信</button>
-    <p><a href="#" id="forget"><small>サインインに戻る</small></a></p>	
+    <p><a href="/signin" id="forget"><small>サインインに戻る</small></a></p>	
   </form>
   </div>
 </body>
-  </html>

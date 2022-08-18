@@ -1,83 +1,95 @@
 <!DOCTYPE html>
-<html lang="ja"xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>サインアップ</title>
-    <link rel="stylesheet" href="/CSS/001-02_Sign_up_style.css" type="text/css" />
+<meta charset="UTF-8">
+<title>サインアップ</title>
+<link rel="stylesheet" href="/CSS/001-02_Sign_up_style.css"
+	type="text/css" />
 </head>
 
 <body>
-    <div>
-        <form th:action="@{/user/create}" th:object="${userRequest}" method="post">
-            <h1>サインアップ</h1>
-            <input type="text" th:field="*{F_email}" id="email" placeholder="email" /> <label id="E_email"></label>
-            <input type="text" id="username" placeholder="username" /> <label id="E_username"></label>
-            <input type="password" th:field="*{F_password}" id="password" placeholder="password(英数字)" /> <label id="E_passwurd"></label>
-            <input type="password" id="repassword" placeholder="repassword(英数字)" /> <label id="E_repasseord"></label>
-            <table id="a1">
-                <tbody>
-                    <tr>
+	<div>
+	<!-- 
+	 -->
+	
+		<form th:action="@{/signup}" method="post" th:object="${form}">
+			<h1>サインアップ</h1>
+			<span th:if="${emailC}" th:text="${duplication}" class="error-message"></span>
+			
+				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></span>
+			<input type="text" name="email" id="email" placeholder="email" />
+				<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></span>
+			<input type="text" name="username" id="username" placeholder="username" />
+				<span th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}" class="error-message"></span>
+			<input type="password" name="pass" id="password" placeholder="password(英数字)" />
+				<span th:if="${#fields.hasErrors('repass')}" th:errors="*{repass}" class="error-message"></span>
+			<input type="password" name="repass" id="repassword" placeholder="repassword(英数字)" />
+		<p th:if="${#fields.hasErrors('passwordValid')}" th:errors="*{passwordValid}" class="error-message"></p>
+			
+			<span th:if="${#fields.hasErrors('ageValid')}" th:text="${agemsg}" class="error-message"></span><br>
+			<span th:if="${#fields.hasErrors('sexValid')}" th:text="${sexmsg}" class="error-message"></span><br>
+			<span th:if="${#fields.hasErrors('jobValid')}" th:text="${jobmsg}" class="error-message"></span>
+			<table id="a1">
+				<tbody>
+					<tr>
+						<td class="age">年齢</td>
+						<td><select name="age" class="sage">
+								<option value="0">-未入力-</option>
+								<option value="1">10代</option>
+								<option value="2">20代</option>
+								<option value="3">30代</option>
+								<option value="4">40代</option>
+								<option value="5">50代</option>
+								<option value="6">60代</option>
+						</select></td>
 
-                        <td class="age">年齢</td>
-                        <td>
-                            <select required class="sage">
-                                <option value="0">-未入力-</option>
-                                <option value="1">10代</option>
-                                <option value="2">20代</option>
-                                <option value="3">30代</option>
-                                <option value="4">40代</option>
-                                <option value="5">50代</option>
-                                <option value="6">60代</option>
-                            </select>
-                        </td>
+						<td class="sex">性別</td>
+						<td><select name="sex" class="ssex">
+								<option value="0">-未入力-</option>
+								<option value="1">男</option>
+								<option value="2">女</option>
+								<option value="3">その他</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td class="job">職業</td>
+						<td><select name="job" class="sjob">
+								<option value="0">-未入力-</option>
+								<option value="1">社会人</option>
+								<option value="2">勇者</option>
+								<option value="3">遊び人</option>
+								<option value="4">魔法使い</option>
+								<option value="5">僧侶</option>
+								<option value="6">旅芸人</option>
+								<option value="7">働いてません</option>
+								<option value="8">グラップラー</option>
+								<option value="9">自宅警備員</option>
+								<option value="10">学生</option>
+								<option value="11">多分働いている</option>
+						</select></td>
+					</tr>
+				</tbody>
+			</table>
 
-                        <td class="sex">性別</td>
-                        <td>
-                            <select class="ssex">
-                                <option value="0">-未入力-</option>
-                                <option value="1">男</option>
-                                <option value="2">女</option>
-                                <option value="3">その他</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="job">職業</td>
-                        <td><select class="sjob">
-                                <option value="0">-未入力-</option>
-                                <option value="1">社会人</option>
-                                <option value="2">勇者</option>
-                                <option value="3">遊び人</option>
-                                <option value="4">魔法使い</option>
-                                <option value="5">僧侶</option>
-                                <option value="6">旅芸人</option>
-                                <option value="7">働いてません</option>
-                                <option value="8">グラップラー</option>
-                                <option value="9">自宅警備員</option>
-                                <option value="10">学生</option>
-                                <option value="11">多分働いている</option>
-                            </select></td>
-                    </tr>
-                </tbody>
-            </table>
-            <table>
-                <td><input type="checkbox" id="check" />
-                    <label class="open" for="pop-up">利用規約</label>
-                    <input type="checkbox" id="pop-up">
-                    <div class="overlay">
-                        <div class="window">
-                            <label class="close" for="pop-up">×</label>
-                            <p class="text">hello world</p>
-                        </div>
-                    </div>
-                    <label for="check">に同意します</label>
-                </td>
-            </table>
-            <button>登録</button>
-            <p><a href="#" id="signin"><small>ログイン画面へ戻る</small></a></p>
-        </form>
-    </div>
+			<span th:if="${#fields.hasErrors('checkValid')}" th:text="${checkmsg}" class="error-message"></span>
+			<input name="check" type="checkbox" id="check" />
+			<label class="open"for="pop-up">利用規約</label> <input type="checkbox" id="pop-up">
+			<div class="overlay">
+				<div class="window">
+					<label class="close" for="pop-up">×</label>
+					<p class="text">hello world</p>
+				</div>
+			</div>
+			<label for="check">に同意します</label>
+
+			<button>登録</button>
+			<p>
+				<a href="/signin" id="signin"><small>ログイン画面へ戻る</small></a>
+			</p>
+		</form>
+	</div>
 </body>
 
 </html>
