@@ -33,8 +33,8 @@
 									required="required">
 								<!-- メアド -->
 								<p class="tag required">メールアドレス</p>
-								<input type="email" class="useremailchange01" name="email"
-									th:value="${user.email}" required="required">
+								<input type="email" class="useremailchange01"
+									th:value="${user.email}" disabled="disabled">
 								<table>
 									<tr>
 										<td>
@@ -48,29 +48,31 @@
 										<!-- 生年月日 -->
 										<td>
 											<div class="userdateofbirth00">
-												<input type="date" class="userdateofbirth02"
-													required="required" placeholder="生年月日を入力してください">
+												<input type="date" class="userdateofbirth02" name="birth"
+													required="required" placeholder="生年月日を入力してください"
+													th:value="${user.birth}">
 											</div>
 										</td>
 										<!-- 性別チェックボックス -->
 										<td>
 											<div class="checkbox00">
 												<span class="men"> <input type="radio" id="men"
-													name="sex" value="men" th:checked="${user.sex == 0}">
-													<label for="men">男</label>
+													name="sex" value=0 th:checked="${user.sex == 0}"> <label
+													for="men">男</label>
 												</span> <span class="women"> <input type="radio" id="women"
-													name="sex" value="women" th:checked="${user.sex == 1}">
-													<label for="women">女</label>
+													name="sex" value=1 th:checked="${user.sex == 1}"> <label
+													for="women">女</label>
 												</span> <span class="lgbt"> <input type="radio" id="lgbt"
-													name="sex" value="lgbt" th:checked="${user.sex == 2}">
-													<label for="lgbt">その他</label>
+													name="sex" value=2 th:checked="${user.sex == 2}"> <label
+													for="lgbt">その他</label>
 												</span>
 											</div>
 										</td>
 									</tr>
 								</table>
 								<!-- 登録日 -->
-								<p class="userregisterdate" th:text="${#dates.format(user.entry, 'yyyy/MM/dd') + '登録'}"></p>
+								<p class="userregisterdate"
+									th:text="${#dates.format(user.entry, 'yyyy/MM/dd') + '登録'}"></p>
 							</div>
 						</div>
 						<div class="ap2">
@@ -83,20 +85,20 @@
 							<!-- おきにジャンル -->
 							<div class="tag00">
 								<p class="favoritegenre">お気に入りのジャンル</p>
-								<select class="tag01" size="1">
+								<select class="tag01" name="fav" size="1">
 									<option hidden>ジャンルを選択してください</option>
-									<option value="選択肢1">アクションゲーム</option>
-									<option value="選択肢2">ロールプレイングゲーム</option>
-									<option value="選択肢3">シューティングゲーム</option>
-									<option value="選択肢4">アドベンチャーゲーム</option>
-									<option value="選択肢5">シミュレーションゲーム</option>
-									<option value="選択肢6">レースゲーム</option>
-									<option value="選択肢7">パズルゲーム</option>
-									<option value="選択肢8">サンドボックス</option>
-									<option value="選択肢9">音楽ゲーム</option>
-									<option value="選択肢10">テーブルゲーム</option>
-									<option value="選択肢11">スポーツゲーム</option>
-									<option value="選択肢12">その他</option>
+									<option value="アクションゲーム">アクションゲーム</option>
+									<option value="ロールプレイングゲーム">ロールプレイングゲーム</option>
+									<option value="シューティングゲーム">シューティングゲーム</option>
+									<option value="アドベンチャーゲーム">アドベンチャーゲーム</option>
+									<option value="シミュレーションゲーム">シミュレーションゲーム</option>
+									<option value="レースゲーム">レースゲーム</option>
+									<option value="パズルゲーム">パズルゲーム</option>
+									<option value="サンドボックス">サンドボックス</option>
+									<option value="音楽ゲーム">音楽ゲーム</option>
+									<option value="テーブルゲーム">テーブルゲーム</option>
+									<option value="スポーツゲーム">スポーツゲーム</option>
+									<option value="その他">その他</option>
 								</select>
 							</div>
 						</div>
@@ -104,6 +106,9 @@
 					<div class="ap3">
 						<div class="userchangepass00">
 							<input type="submit" class="userchangepass01" value="変更">
+						</div>
+						<div class="userchangepass10">
+							<a href="#" class="userchangepass11 email">メールアドレスを変更する</a>
 						</div>
 						<!-- ぱすわ -->
 						<div class="userchangepass10">
@@ -113,7 +118,7 @@
 					<!-- 自己紹介 -->
 					<div class="selfintroduction00">
 						<textarea cols="70" rows="50" class="selfintroduction02"
-							placeholder="自己紹介" th:text = "${user.profile}"></textarea>
+							placeholder="自己紹介" th:text="${user.profile}" name="profile"></textarea>
 					</div>
 					<!-- ボタン -->
 				</form>

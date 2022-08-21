@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.semi.vp.entity.Usertbl;
 import com.semi.vp.form.SignupForm;
-
+import com.semi.vp.form.UserForm;
 import com.semi.vp.repository.UsertblRepository;
 
 //User_tblのService宣言
@@ -49,10 +49,15 @@ public class UsertblService {
 //		}
 	}
 
-	public void UpdateAccount(Usertbl newA) {
-		if (UtblRepo.existsById(newA.getId())) {
-			UtblRepo.save(newA);
-		}
+	public void UpdateAccount(String id, UserForm form) {
+		Usertbl changeStatusUser = UtblRepo.getOne(id);
+		changeStatusUser.setName(form.getName());
+		changeStatusUser.setBirth(form.getBirth());
+		changeStatusUser.setSex(form.getSex());
+		changeStatusUser.setJob(form.getJob());
+		changeStatusUser.setFav(form.getFav());
+		changeStatusUser.setProfile(form.getProfile());
+		UtblRepo.save(changeStatusUser);
 	}
 
 	public void DeleteAccount(String id) {
