@@ -2,8 +2,6 @@ package com.semi.vp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -69,85 +67,4 @@ public class Usertbl {
 	// ログイン状況
 	@Column(name = "USER_ROLE", nullable = false)
 	private String role;
-	
-	
-//	public Usertbl(String emil, String username, String pass,long sex,long age,String job,String role) {
-//		this.email = emil;
-//		this.name = username;
-//		this.pass = pass;
-//		this.sex = sex;
-//		this.age = age;
-//		this.job = job;
-//		this.role = role;
-//	}
-//	public String getId() {
-//		return id;
-//	}
-//
-//	public void setId(String id) {
-//		this.id = id;
-//	}
-//	
-//	public String getName() {
-//		return name;
-//	}
-//	public void set(String name) {
-//		this.name = name;
-//	}
-//	
-//	public String getPass() {
-//		return pass;
-//	}
-//	public void setPass(String pass) {
-//		this.pass = pass;
-//	}
-//	
-//	public long getAge() {
-//		return age;
-//	}
-//	public void setAge(long age) {
-//		this.age = age;
-//	}
-//	
-//	public String getJob() {
-//		return job;
-//	}
-//	public void setJob(String job) {
-//		this.job =job;
-//	}
-//	
-//	public String getEmail() {
-//		return email;
-//	}
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
-//	
-//	public String getProfile() {
-//		return profile;
-//	}
-//	public void setProfile(String profile) {
-//		this.profile = profile;;
-//	}
-//	
-//	public String getFav() {
-//		return fav;
-//	}
-//	public void setFav(String fav) {
-//		this.fav = fav;
-//	}
-//	
-//	public String getAddres() {
-//		return address;
-//	}
-//	public void setAddres(String address) {
-//		this.address = address;
-//	}
-//	
-//	public String getRole() {
-//		return role;
-//	}
-//	public void setRole(String role) {
-//		this.role = role;
-//	}
 }

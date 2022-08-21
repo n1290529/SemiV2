@@ -35,10 +35,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	//ログイン認証機能
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println(username);
 		var user = this.usertblRepository.findByEmail(username);
+		System.out.println(user);
 		// もしユーザが見つからなかった場合、例外を投げる
 		if (user == null) {
+			System.out.println("例外エラー");
 			throw new UsernameNotFoundException("User [" + username + "] not found.");
 		}
 		return createUser(user);

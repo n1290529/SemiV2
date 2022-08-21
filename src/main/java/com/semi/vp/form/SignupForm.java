@@ -3,32 +3,38 @@ package com.semi.vp.form;
 import java.sql.Date;
 
 import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Email;
 
-import org.aspectj.weaver.reflect.Java14GenericSignatureInformationProvider;
 
 public class SignupForm {
-	@NotBlank
-	@Size(min = 1, max = 20)
+	@NotEmpty
+	@Email
 	private String email;
 
-	@NotBlank
-	@Size(min = 1, max = 20)
+	@NotEmpty
+	@Size(max = 30)
 	private String username;
 
-	@NotBlank
-	@Size(min = 1, max = 20)
+	@NotEmpty
+	@Size(min = 6, max = 30)
 	private String pass;
 
-	@NotBlank
-	@Size(min = 1, max = 20)
+	@NotEmpty
+	@Size(min = 6, max = 30)
 	private String repass;
 
 //	private String age;
+	@NotEmpty
 	private String sex;
+	@NotEmpty
 	private String job;
+	@NotEmpty
 	private String check;
+//	@NotEmpty　使えないっぽい
+	@PastOrPresent
 	private Date birth;
 
 	// passとrepassに空白はないか?
@@ -66,16 +72,6 @@ public class SignupForm {
 		}
 	}
 
-	@AssertTrue
-	public boolean isJobValid() {
-		if (job == null) {
-			return true;
-		} else if (Integer.parseInt(job) == 0) {
-			return false;
-		} else {
-			return true;
-		}
-	}
 	@AssertTrue
 	public boolean isCheckValid() {
 		if (check == null) {

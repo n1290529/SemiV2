@@ -16,6 +16,9 @@ import com.semi.vp.service.UserDetailsServiceImpl;
 public class Top_Controller {
 	@Autowired
 	UserDetailsServiceImpl userservise;
+	@Autowired
+	UserDetailsServiceImpl udsi;
+	
 	/**
 	 * ユーザー情報一覧画面を表示
 	 * 
@@ -24,6 +27,7 @@ public class Top_Controller {
 	 */
 	@RequestMapping(value = "/top", method = RequestMethod.GET)
 	public String displayList(HttpServletRequest request, Model model) {
+		
 		try {
 			HttpSession session = request.getSession();
 			SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");

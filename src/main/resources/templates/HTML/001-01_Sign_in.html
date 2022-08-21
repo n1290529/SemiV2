@@ -16,19 +16,19 @@
 				th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
 				ログインエラーメッセージ</p>
 			
-			<input type="text" id="email" name="eemail" placeholder="email" />
+			<input type="text" id="email" name="username" placeholder="email" />
 			<label id="E_email"></label>
-			<input type="password" id="pass"name="ppass" placeholder="Password" />
+			<input type="password" id="pass"name="password" placeholder="Password" />
 			<label id="E_pass"></label>
 			
 			<input  type="checkbox" id="checkbox-1-1" class="custom-checkbox" />
 			<label for="checkbox-1-1">パスワードを保存します</label>
 			<button type="submit">サインイン</button>
 			<p>
-				<a href="forgetpass" id="forget"><small>パスワードを忘れた場合</small></a>
+				<a th:href="${'/forgetpass'}" id="forget"><small>パスワードを忘れた場合</small></a>
 			</p>
 			<p>
-				<a href="signup" id="new account"><small>新しくアカウントを作る</small></a>
+				<a th:href="${'/signup'}" id="new account"><small>新しくアカウントを作る</small></a>
 			</p>
 
 		</form>

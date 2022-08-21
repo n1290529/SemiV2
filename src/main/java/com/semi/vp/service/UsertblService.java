@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 
-import javax.validation.constraints.Email;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,17 +14,14 @@ import com.semi.vp.form.SignupForm;
 
 import com.semi.vp.repository.UsertblRepository;
 
-//User_tblのService宣言
 @Service
 public class UsertblService {
 
-//User_tblのRpository呼び出しとUtblRepoでの実装
 	@Autowired
 	UsertblRepository UtblRepo;
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	
-	// ユーザーTBLの内容を全検索
+
 	public List<Usertbl> searchAll() {
 		return UtblRepo.findAll();
 	}
@@ -44,9 +39,7 @@ public class UsertblService {
 	}
 
 	public void Singup(Usertbl newA) {
-//		if (!UtblRepo.existsById(newA[0].getId())) {
 		UtblRepo.save(newA);
-//		}
 	}
 
 	public void UpdateAccount(Usertbl newA) {
@@ -60,11 +53,7 @@ public class UsertblService {
 			UtblRepo.deleteById(id);
 		}
 	}
-	
-//	 //ユーザー情報 全検索
-//	public List<Usertbl> searchAll() {
-//		return usertblRepository.findAll();
-//	}
+
 
 //Emailチェック
 	public boolean check(String name) {
@@ -123,33 +112,18 @@ public class UsertblService {
 			nId=getRandomString(10);
 		}
 		
-//		System.out.println(nId);
-//		System.out.println(UtblRepo.existsById(nId));		
-//		System.out.println("email="+email);
-//		System.out.println("username="+username);
-//		System.out.println("pass="+pass);
-//		System.out.println("sex="+sex);
-//		System.out.println("age="+age);
-//		System.out.println("job"+job);
-//		System.out.println("生年月日"+form.getBirth());
-		
 		Usertbl user = new Usertbl();
 			user.setId(nId);
 			user.setName(form.getUsername());
 			user.setPass(passwordEncoder.encode(form.getPass()));
 			user.setSex(Integer.parseInt(form.getSex()));
-//			user.setAge(Integer.parseInt(form.getAge()));
 			user.setBirth(form.getBirth());
 			user.setJob(form.getJob());
 			user.setEmail(form.getEmail());
-	//   user.setProfile(null);
-	//   user.setFav(null);
-	//   user.setFav("null");
 			user.setEntry(java.sql.Date.valueOf(LocalDate.now()));
 			user.setAddress(nId+"/");
 			user.setRole("USER");
 			UtblRepo.save(user);
-			System.out.println("アカウント作成");
 			return true;
 	}
 }

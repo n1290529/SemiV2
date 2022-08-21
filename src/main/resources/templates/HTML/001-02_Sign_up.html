@@ -11,26 +11,28 @@
 
 <body>
 	<div>
-	<!-- 
-	 -->
 	
-		<form th:action="@{/signup}" method="post" th:object="${form}">
+		<form th:action="@{/signup/register}" method="post" th:object="${form}">
 			<h1>サインアップ</h1>
-			<span th:if="${emailC}" th:text="${duplication}" class="error-message"></span>
+			<span th:if="${emailC}" th:text="既にそのメールアドレスは登録されています" class="error-message"></span>
 			
-				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></span>
+				<span th:if="${emailCheck}!=null" th:text="メールアドレスを正しく入力してください" class="error-message"></span>
 			<input type="text" name="email" id="email" placeholder="email" />
-				<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></span>
-			<input type="text" name="username" id="username" placeholder="username" />
-				<span th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}" class="error-message"></span>
-			<input type="password" name="pass" id="password" placeholder="password(英数字)" />
-				<span th:if="${#fields.hasErrors('repass')}" th:errors="*{repass}" class="error-message"></span>
-			<input type="password" name="repass" id="repassword" placeholder="repassword(英数字)" />
-		<p th:if="${#fields.hasErrors('passwordValid')}" th:errors="*{passwordValid}" class="error-message"></p>
 			
-			<span th:if="${#fields.hasErrors('birthValid')}" th:text="${birthmsg}" class="error-message"></span><br>
-			<span th:if="${#fields.hasErrors('sexValid')}" th:text="${sexmsg}" class="error-message"></span><br>
-			<span th:if="${#fields.hasErrors('jobValid')}" th:text="${jobmsg}" class="error-message"></span>
+				<span th:if="${usernameCheck}!=null" th:text="ユーザーネームを正しく入力してください" class="error-message"></span>
+			<input type="text" name="username" id="username" placeholder="username" />
+			
+				<span th:if="${passCheck}!=null" th:text="パスワードを正しく入力してください" class="error-message"></span>
+			<input type="password" name="pass" id="password" placeholder="password(英数字)" />
+			
+				<span th:if="${repassCheck}!=null" th:text="パスワードを正しく入力してください" class="error-message"></span>
+			<input type="password" name="repass" id="repassword" placeholder="repassword(英数字)" />
+			
+		<p th:if="${passABCheck}!=null" th:text="${passABCheck}" class="error-message"></p>
+			
+			<span th:if="${birthCheck}!=null" th:text="生年月日を正しく入力してください" class="error-message"></span><br>
+			<span th:if="${sexCheck}!=null" th:text="${sexCheck}" class="error-message"></span><br>
+			<span th:if="${jobCheck}!=null" th:text="${jobCheck}" class="error-message"></span>
 			<table id="a1">
 				<tbody>
 					<tr>
@@ -49,24 +51,24 @@
 					<tr>
 						<td class="job">職業</td>
 						<td><select name="job" class="sjob">
-								<option value="0">-未入力-</option>
-								<option value="1">社会人</option>
-								<option value="2">勇者</option>
-								<option value="3">遊び人</option>
-								<option value="4">魔法使い</option>
-								<option value="5">僧侶</option>
-								<option value="6">旅芸人</option>
-								<option value="7">働いてません</option>
-								<option value="8">グラップラー</option>
-								<option value="9">自宅警備員</option>
-								<option value="10">学生</option>
-								<option value="11">多分働いている</option>
+								<option value="未入力">-未入力-</option>
+								<option value="社会人">社会人</option>
+								<option value="勇者">勇者</option>
+								<option value="遊び人">遊び人</option>
+								<option value="魔法使い">魔法使い</option>
+								<option value="僧侶">僧侶</option>
+								<option value="旅芸人">旅芸人</option>
+								<option value="働いてません">働いてません</option>
+								<option value="グラップラー">グラップラー</option>
+								<option value="自宅警備員">自宅警備員</option>
+								<option value="学生">学生</option>
+								<option value="多分働いている">多分働いている</option>
 						</select></td>
 					</tr>
 				</tbody>
 			</table>
 
-			<span th:if="${#fields.hasErrors('checkValid')}" th:text="${checkmsg}" class="error-message"></span>
+			<span th:if="${cboxCheck}!=null" th:text="${cboxCheck}" class="error-message"></span>
 			<input name="check" type="checkbox" id="check" />
 			<label class="open"for="pop-up">利用規約</label> <input type="checkbox" id="pop-up">
 			<div class="overlay">
@@ -79,7 +81,7 @@
 
 			<button>登録</button>
 			<p>
-				<a href="/signin" id="signin"><small>ログイン画面へ戻る</small></a>
+				<a th:href="${'/signin'}" id="signin"><small>ログイン画面へ戻る</small></a>
 			</p>
 		</form>
 	</div>

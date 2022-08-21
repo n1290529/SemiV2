@@ -15,7 +15,7 @@
     <span th:if="${value1}!=null" th:text="${value1}" class="error-message"></span>
     <input type="text" name="email" id="email" placeholder="email"/><label id="E_email"></label>
     <button>送信</button>
-    <p><a href="/signin" id="forget"><small>サインインに戻る</small></a></p>	
+    <p><a th:href="${'/signin'}" id="forget"><small>サインインに戻る</small></a></p>	
   </form>
   </div>
 </body>

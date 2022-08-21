@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					//サインイン画面
 					"/signin",
 					//サインアップ画面
-					"/signup",
+					"/signup","/signup/register",
 					//パスワード再登録
 					"/forgetpass","/registerpass",
 					"/common",
@@ -70,8 +70,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //			.failureUrl("/signin-error")
 			// ユーザIDとパスワードのname設定
 			//inputのIDを使用する。この場合input="username"に入力された値
-			.usernameParameter("eemail")
-			.passwordParameter("ppass")
+			.usernameParameter("username")
+			.passwordParameter("password")
 			// ログインに成功した場合の遷移先
 			.defaultSuccessUrl("/common", true);
 		
