@@ -26,7 +26,6 @@ public class SignupForm {
 	@Size(min = 6, max = 30)
 	private String repass;
 
-//	private String age;
 	@NotEmpty
 	private String sex;
 	@NotEmpty
@@ -37,8 +36,6 @@ public class SignupForm {
 	@PastOrPresent
 	private Date birth;
 
-	// passとrepassに空白はないか?
-	// passとrepassは==か?
 	@AssertTrue
 	public boolean isPasswordValid() {
 		if (pass == null || repass == null) {
@@ -46,20 +43,6 @@ public class SignupForm {
 		}
 		return pass.equals(repass);
 	}
-
-	// 初回起動時nullになる
-//	@AssertTrue
-//	public boolean isAgeValid() {
-//		//未入力の場合false
-//		if (age == null) {
-//			return true;
-//		} else if (Integer.parseInt(age) == 0) {
-//			return false;
-//		} else {
-//			return true;
-//		}
-//
-//	}
 
 	@AssertTrue
 	public boolean isSexValid() {
@@ -116,13 +99,6 @@ public class SignupForm {
 	public void setRepass(String repass) {
 		this.repass = repass;
 	}
-
-//	public String getAge() {
-//		return age;
-//	}
-//	public void setAge(String age) {
-//		this.age = age;
-//	}
 
 	public String getSex() {
 		return sex;
