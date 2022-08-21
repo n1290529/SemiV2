@@ -1,21 +1,3 @@
-/* アップロード画面のcss */
-/* 背景設定（いじるな） */
-/* a:link {
-  color: #000;
-}
-
-a:visited {
-  color: #000;
-}
-
-a:hover {
-  color: #000;
-}
-
-a:active {
-  color: #000;
-} */
-
 .apload {
   position: absolute;
   margin: 0;
@@ -176,19 +158,6 @@ a:active {
   border-radius: 6px;
   background-color: #11101d;
 }
-
-/* 名前変更 */
-/* .usernamechange00{
-  position: relative;
-  margin: 0;
-  padding: 0;
-  top: 50px;
-  left: 100px;
-}
-.usernamechange01{
-  font-size: 24px;
-  color: #fff;
-} */
 .usernamechange02 {
   position: relative;
   margin-left: 95px;
@@ -288,7 +257,7 @@ a:active {
 .userchangepass00 {
   position: relative;
   margin: 25px 0 25px 0;
-  width: 200px;
+  width: 180px;
   height: 50px;
   margin-left: auto;
   text-align: center;
@@ -300,9 +269,9 @@ a:active {
 .userchangepass10 {
   position: relative;
   margin: 25px 0 25px 0;
-  width: 200px;
+  width: 180px;
   height: 50px;
-  margin-left: 20px;
+  margin-left: 13.5px;
   text-align: center;
   border: none;
   border-radius: 6px;
@@ -313,12 +282,12 @@ a:active {
   position: relative;
   margin: 0;
   padding: 0;
-  width: 200px;
+  width: 180px;
   height: 50px;
   border-radius: 6px;
   font-weight: bold;
   text-decoration: none;
-  font-size: 100%;
+  font-size: 93%;
   color: #fff;
   user-select: none;
   background: none;
@@ -328,12 +297,18 @@ a:active {
 .userchangepass11 {
   position: relative;
   margin: 0;
-  padding: 13.5px 20px 13.5px 20px;
   top: 13px;
   font-weight: bold;
   text-decoration: none;
+  font-size: 93%;
   color: #000;
   user-select: none;
+}
+.userchangepass11.email{
+  padding: 13.5px 0px 13.5px 0px;
+}
+.userchangepass11.pass{
+  padding: 13.5px 15.5px 13.5px 15.5px;
 }
 
 

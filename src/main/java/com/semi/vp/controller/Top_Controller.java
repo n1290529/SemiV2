@@ -32,7 +32,7 @@ public class Top_Controller {
 			HttpSession session = request.getSession();
 			SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
-			
+			System.out.println("aaaaa"+authentication.getName());
 			model.addAttribute("user", userservise.oneReco(authentication.getName()));			
 		} catch (Exception e) {
 			// TODO: handle exception

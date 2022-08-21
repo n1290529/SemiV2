@@ -8,10 +8,7 @@
 <body>
   <div> 
   <form  th:method="put" th:action="@{/registerpass}" th:object="${form}">
-    <h1>パスワード再登録</h1>
-    <!-- 
-     -->
-     
+    <h1>パスワード再登録</h1>     
     <span th:if="${value1}!=null" th:text="${value1}" class="error-message"></span>
     <input type="text" name="email" id="email" placeholder="email"/><label id="E_email"></label>
     <button>送信</button>
