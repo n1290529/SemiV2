@@ -1,6 +1,10 @@
 package com.semi.vp.service;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
@@ -108,7 +112,7 @@ public class UsertblService {
 
 		String nId=getRandomString(10);
 		Integer count=0;
-		//ID重複用wile分
+//ID重複用wile分
 		while(UtblRepo.existsById(nId)) {
 			if(count>=100) {
 				return false;
@@ -126,9 +130,31 @@ public class UsertblService {
 			user.setJob(form.getJob());
 			user.setEmail(form.getEmail());
 			user.setEntry(java.sql.Date.valueOf(LocalDate.now()));
-			user.setAddress(nId+"/");
+			//\SemiV2\src\main\resources\static\USERs/nId
+			user.setAddress("/"+nId);
 			user.setRole("USER");
 			UtblRepo.save(user);
+			
+			makeDir(nId);
+			
 			return true;
+	}
+/**
+ * ユーザーディレクトリ作成用関数
+ * 呼び出し場所:userRegistration
+ * \SemiV2\src\main\resources\static\USERs/id　として作成
+ * @param str id=nId
+ * 
+ */
+	public void makeDir(String id) {
+		
+		Path p = Paths.get("./src/main/resources/static/USERs/"+id);
+		System.out.println("ディレクトリを作成");
+		
+		try{
+		  Files.createDirectory(p);
+		}catch(IOException e){
+		  System.out.println("ユーザーディレクトリ作成用関数"+e);
+		}
 	}
 }

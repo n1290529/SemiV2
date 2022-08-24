@@ -21,7 +21,6 @@ import com.semi.vp.service.UserDetailsServiceImpl;
 public class MainController {
 
 	
-
 //テスト用------------------
 	@GetMapping("/common")
 	public String common() {
