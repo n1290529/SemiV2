@@ -13,13 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.semi.vp.form.UserForm;
-import com.semi.vp.service.UserDetailsServiceImpl;
 import com.semi.vp.service.UsertblService;
 
 @Controller
 public class User_profile_Controller {
-	@Autowired
-	UserDetailsServiceImpl userservise;
 	@Autowired
 	UsertblService usertblservise;
 	/**
@@ -34,7 +31,7 @@ public class User_profile_Controller {
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 		
-		model.addAttribute("user", userservise.oneReco(authentication.getName()));
+		model.addAttribute("user", usertblservise.oneReco(authentication.getName()));
 		return "HTML/005-01_User_profile";
 	}
 	
@@ -44,7 +41,7 @@ public class User_profile_Controller {
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 
-		usertblservise.UpdateAccount(userservise.oneReco(authentication.getName()).getId(), userForm);
+		usertblservise.UpdateAccount(usertblservise.oneReco(authentication.getName()).getId(), userForm);
 		return "redirect:/profile";
 	}
 }

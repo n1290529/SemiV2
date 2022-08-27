@@ -1,19 +1,39 @@
 package com.semi.vp.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.semi.vp.service.ProjectService;
+import com.semi.vp.service.UsertblService;
+
+
 @Controller
 public class User_folder_Controller {
-	/**
- * ユーザー情報一覧画面を表示
- * @param model Model
- * @return ユーザー情報一覧画面のHTML
- */
-@RequestMapping(value = "/HTML/004-01_User_folder", method = RequestMethod.GET)	
-public String displayList(Model model) {
-  	return "HTML/004-01_User_folder";
-}
+	@Autowired
+	UsertblService usertblservice;
+	@Autowired
+	ProjectService projectservice;
+
+	@RequestMapping(value = "/myfolder", method = RequestMethod.GET)
+	public String displayList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
+		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
+		System.out.println("aaaaa" + authentication.getName());
+		
+		
+		String userId=usertblservice.oneReco(authentication.getName()).getId();
+		
+		model.addAttribute("projectList",projectservice.getProjects(userId));
+		
+		model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
+		return "HTML/004-01_User_folder";
+	}
 }

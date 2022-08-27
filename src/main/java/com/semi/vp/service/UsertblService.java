@@ -25,6 +25,8 @@ public class UsertblService {
 	UsertblRepository UtblRepo;
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	@Autowired
+	UsertblRepository UserRepo;
 
 	public List<Usertbl> searchAll() {
 		return UtblRepo.findAll();
@@ -63,12 +65,11 @@ public class UsertblService {
 		}
 	}
 
-
 //Emailチェック
 	public boolean check(String name) {
 		return UtblRepo.existsByEmail(name);
 	}
-	
+
 	static String getRandomString(int i) {
 
 		// bind the length
@@ -101,60 +102,63 @@ public class UsertblService {
 		// the resulting string
 		return thebuffer.toString();
 	}
-	
-	//アカウント作成
+
+	// アカウント作成
 	public boolean userRegistration(SignupForm form) {
-		//emailが存在した場合,if分にはtrueが返ってくる。
-		if(UtblRepo.existsByEmail(form.getEmail())) {
+		// emailが存在した場合,if分にはtrueが返ってくる。
+		if (UtblRepo.existsByEmail(form.getEmail())) {
 			System.out.println("email exists");
 			return false;
 		}
 
-		String nId=getRandomString(10);
-		Integer count=0;
+		String nId = getRandomString(10);
+		Integer count = 0;
 //ID重複用wile分
-		while(UtblRepo.existsById(nId)) {
-			if(count>=100) {
+		while (UtblRepo.existsById(nId)) {
+			if (count >= 100) {
 				return false;
 			}
-			count++;//無限ループ用
-			nId=getRandomString(10);
+			count++;// 無限ループ用
+			nId = getRandomString(10);
 		}
-		
+
 		Usertbl user = new Usertbl();
-			user.setId(nId);
-			user.setName(form.getUsername());
-			user.setPass(passwordEncoder.encode(form.getPass()));
-			user.setSex(Integer.parseInt(form.getSex()));
-			user.setBirth(form.getBirth());
-			user.setJob(form.getJob());
-			user.setEmail(form.getEmail());
-			user.setEntry(java.sql.Date.valueOf(LocalDate.now()));
-			//\SemiV2\src\main\resources\static\USERs/nId
-			user.setAddress("/"+nId);
-			user.setRole("USER");
-			UtblRepo.save(user);
-			
-			makeDir(nId);
-			
-			return true;
+		user.setId(nId);
+		user.setName(form.getUsername());
+		user.setPass(passwordEncoder.encode(form.getPass()));
+		user.setSex(Integer.parseInt(form.getSex()));
+		user.setBirth(form.getBirth());
+		user.setJob(form.getJob());
+		user.setEmail(form.getEmail());
+		user.setEntry(java.sql.Date.valueOf(LocalDate.now()));
+		user.setAddress(nId);
+		user.setRole("USER");
+		UtblRepo.save(user);
+
+		makeDir(nId);
+
+		return true;
 	}
-/**
- * ユーザーディレクトリ作成用関数
- * 呼び出し場所:userRegistration
- * \SemiV2\src\main\resources\static\USERs/id　として作成
- * @param str id=nId
- * 
- */
+
+	/**
+	 * ユーザーディレクトリ作成用関数 呼び出し場所:userRegistration
+	 * \SemiV2\src\main\resources\static\USERs/id として作成
+	 * 
+	 * @param str id=nId
+	 * 
+	 */
 	public void makeDir(String id) {
-		
-		Path p = Paths.get("./src/main/resources/static/USERs/"+id);
-		System.out.println("ディレクトリを作成");
-		
-		try{
-		  Files.createDirectory(p);
-		}catch(IOException e){
-		  System.out.println("ユーザーディレクトリ作成用関数"+e);
+
+		Path p = Paths.get("./src/main/resources/static/USERs/" + id);
+
+		try {
+			Files.createDirectory(p);
+		} catch (IOException e) {
+			System.out.println("ユーザーディレクトリ作成用関数:" + e);
 		}
 	}
+	
+	public Usertbl oneReco(String str) {
+        return UserRepo.getByEmail(str);
+    }
 }

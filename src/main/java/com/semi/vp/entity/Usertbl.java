@@ -67,4 +67,6 @@ public class Usertbl {
 	// ログイン状況
 	@Column(name = "USER_ROLE", nullable = false)
 	private String role;
+
+
 }

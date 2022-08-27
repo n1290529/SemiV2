@@ -58,9 +58,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		return userDetails;
 	}
 	
-	@Autowired
-	UsertblRepository UserRepo;
-	public Usertbl oneReco(String str) {
-        return UserRepo.getByEmail(str);
-    }
+	
+	
 }

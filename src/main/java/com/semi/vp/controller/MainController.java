@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.semi.vp.service.UserDetailsServiceImpl;
+import com.semi.vp.service.UsertblService;
 
 
 @Controller
@@ -32,7 +32,7 @@ public class MainController {
 	}
 
 	@Autowired
-	UserDetailsServiceImpl udsi;
+	UsertblService usertblservice;
 	@Autowired
 	UserDetailsService uds;
 
@@ -43,9 +43,9 @@ public class MainController {
 		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 		
 		System.out.println(authentication);
-		System.out.print(udsi.oneReco(authentication.getName()));
+		System.out.print(usertblservice.oneReco(authentication.getName()));
 		
-		model.addAttribute("udsi", udsi.oneReco(authentication.getName()));
+		model.addAttribute("udsi", usertblservice.oneReco(authentication.getName()));
 		return "user";
 	}
 	

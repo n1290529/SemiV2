@@ -10,21 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.semi.vp.service.UserDetailsServiceImpl;
+import com.semi.vp.service.UsertblService;
 
 @Controller
 public class Top_Controller {
 	@Autowired
-	UserDetailsServiceImpl userservise;
-	@Autowired
-	UserDetailsServiceImpl udsi;
+	UsertblService usertblservice;
 	
-	/**
-	 * ユーザー情報一覧画面を表示
-	 * 
-	 * @param model Model
-	 * @return ユーザー情報一覧画面のHTML
-	 */
+
 	@RequestMapping(value = "/top", method = RequestMethod.GET)
 	public String displayList(HttpServletRequest request, Model model) {
 		
@@ -33,7 +26,7 @@ public class Top_Controller {
 			SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 			System.out.println("aaaaa"+authentication.getName());
-			model.addAttribute("user", userservise.oneReco(authentication.getName()));			
+			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
