@@ -1169,13 +1169,12 @@ document.addEventListener('DOMContentLoaded', function () {//タブ
     };
 }, false);
 function save() {//保存
-    console.log(8888888888);
-    console.log("sssss");
-    const savename = window.prompt("保存名を入力してください");
+    console.log("hello");
+    const savename = window.prompt("test保存名を入力してください");
+    
     // const XMLcodebox = document.getElementById("blockscodebox");
     const XMLcode = Blockly.Xml.workspaceToDom(workspace);
     myBlockXml[savename] = [Blockly.Xml.domToText(XMLcode), field.innerHTML, document.getElementById("objects").innerHTML, document.getElementById("BGinformation").innerHTML, object_match_id, layer];
-
 }
 function restore() {//復元
     const savename = window.prompt("復元したいファイル名を入力してください");
