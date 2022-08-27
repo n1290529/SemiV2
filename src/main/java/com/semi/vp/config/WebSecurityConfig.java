@@ -1,5 +1,6 @@
 package com.semi.vp.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/** ログイン処理を行うインスタンスをDI */
+	@Autowired
 	private final UserDetailsService uds;
 
 	/**
