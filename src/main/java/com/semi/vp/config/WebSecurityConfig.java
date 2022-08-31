@@ -62,6 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// ログインに関する設定
 		http
+		//CSRFを切るやつ　使っちゃダメ
+//		.csrf().disable()
 			.formLogin()
 			// ログインを実行するページを指定。
 			// この設定だと/にPOSTするとログイン処理を行う

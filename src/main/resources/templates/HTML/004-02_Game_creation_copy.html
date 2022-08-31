@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -27,6 +28,8 @@
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 
 <body>
@@ -939,6 +942,7 @@
     <li id="saveBtn" onclick="menu2()">保存</li>
     <li id="deleteBtn" onclick="menu3()">削除</li>
   </div>
+
 </body>
 <script>
   Ready();
