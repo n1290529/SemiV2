@@ -9,22 +9,12 @@ html {
    background: #222b36;
 }
 
-/* html,
-body {
-   overflow: hidden
-} */
-
 #main {
    display: flex;
-   /* overflow: hidden; */
    width: 1266px;
    height: 100%;
 }
 
-/* section.home-section{
-   position: relative;
-   z-index: 50;
-} */
 #tst {
    margin-left: 0;
    width: 624px;
@@ -222,11 +212,11 @@ table.example1 {
    width: 500px;
    height: 50;
    margin: 0;
-   border-spacing: 40px 0px;
+   border-spacing: 5px 0px;
 }
 
 table.example1 tr td {
-   width: 110px;
+   width: 160px;
 }
 
 .sample1Area {
@@ -234,7 +224,7 @@ table.example1 tr td {
    /* 親要素が基点       */
    margin: 0;
    /* 中央寄せ           */
-   width: 80px;
+   width: 160px;
    /* ボタンの横幅       */
    height: 25px;
    /* ボタンの高さ       */
@@ -447,7 +437,21 @@ li.tab svg path {
    /* line-height: 46px;
    white-space: nowrap; */
    vertical-align: middle;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   box-sizing: border-box;
+
 }
+
+/* 
+.obj.img img {
+   position: relative;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+} */
+
 
 .obj.name {
    height: 25px;
@@ -479,8 +483,11 @@ li.tab svg path {
    /* box-sizing: unset; */
    border-radius: 1px;
    box-sizing: border-box;
-   background-repeat: no-repeat;
-   background-position: center;
+   /* background-repeat: no-repeat; */
+   /* background-position: center; */
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 #back_label {
@@ -528,7 +535,7 @@ li.tab svg path {
 
 #Object_name {
    /* size: 10; */
-   width: 103px;
+   width: 160px;
    height: 24px;
    font-size: 13px;
    text-overflow: ellipsis;
@@ -540,7 +547,7 @@ li.tab svg path {
 }
 
 #Object_X {
-   width: 103px;
+   width: 160px;
    height: 24px;
    font-size: 13px;
 }
@@ -551,7 +558,7 @@ li.tab svg path {
 }
 
 #Object_Y {
-   width: 103px;
+   width: 160px;
    height: 24px;
    font-size: 13px;
 }
@@ -561,8 +568,19 @@ li.tab svg path {
    outline: none;
 }
 
-#Object_size {
+/* #Object_size {
    width: 103px;
+   height: 24px;
+   font-size: 13px;
+} */
+#sizeX {
+   width: 77.5px;
+   height: 24px;
+   font-size: 13px;
+}
+
+#sizeY {
+   width: 77.5px;
    height: 24px;
    font-size: 13px;
 }
@@ -573,7 +591,7 @@ li.tab svg path {
 }
 
 #Object_direction {
-   width: 103px;
+   width: 160px;
    height: 24px;
    font-size: 13px;
 }
@@ -602,20 +620,10 @@ li.tab svg path {
 
 .shortcut.undo {
    margin-left: 8px;
-   /* float: left; */
-}
-
-.shortcut.redo {
-   /* float: left; */
 }
 
 .shortcut.load {
-   /* float: left; */
    margin-left: 658px;
-}
-
-.shortcut.save {
-   /* float: right; */
 }
 
 .shortcut svg {
@@ -706,6 +714,26 @@ li.tab svg path {
 
 
 
+/* .back.is-select-bg {
+   outline: 2px solid rgb(135, 206, 235);
+} */
+/* .sprite:hover{
+} */
+.sprite:hover .obj {
+   /* background-color: rgb(77, 139, 255); */
+   border-color: rgb(77, 139, 255);
+}
+
+.sprite:hover .name {
+   background-color: rgb(77, 139, 255);
+   color: white;
+}
+
 .back.is-select-bg {
    outline: 2px solid rgb(135, 206, 235);
+   border: 2px solid rgb(77, 139, 255);
+}
+
+.back:hover {
+   border: 2px solid rgb(77, 139, 255);
 }

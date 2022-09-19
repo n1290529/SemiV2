@@ -82,7 +82,7 @@ public class Game_creation_copy_Controller {
 
 				// USERs/userid/プロジェクト名が存在するかを確認し、存在する場合jsonを上書き保存。存在しない場合dir作成した後jsonを保存。
 				// jsonファイルはsave.jsonで固定
-				usertblservice.searchProjctDir(userId, title, json.getBlockly());
+				usertblservice.searchProjctDir(userId, title, json);
 				// DB更新処理
 				projectservice.projectUpdateLasttime(userId, title);
 			} else {
@@ -90,7 +90,7 @@ public class Game_creation_copy_Controller {
 
 				// DBにプロジェクトレコードを登録する為の関数
 				projectservice.projectCreate(userId, title);
-				usertblservice.searchProjctDir(userId, title, json.getBlockly());
+				usertblservice.searchProjctDir(userId, title, json);
 			}
 
 		} catch (Exception e) {
