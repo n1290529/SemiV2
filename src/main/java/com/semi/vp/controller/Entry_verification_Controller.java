@@ -37,7 +37,7 @@ public class Entry_verification_Controller {
 	 * @return HTML/004-03_Entry_verification
 	 */
 	@RequestMapping(value = "/projectconfig/{title}", method = RequestMethod.GET)
-	public String displayList2(HttpServletRequest request, Model model,@PathVariable String title,@Valid @ModelAttribute("form") ProjectConfigForm form) {
+	public String displayList2(HttpServletRequest request, Model model,@PathVariable String title) {
 		HttpSession session = request.getSession();
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();

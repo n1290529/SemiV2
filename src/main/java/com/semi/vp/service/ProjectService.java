@@ -19,6 +19,8 @@ public class ProjectService {
 //User_tblのRpository呼び出しとUtblRepoでの実装
 	@Autowired
 	ProjectRepository ProjctRepo;
+	@Autowired
+	UsertblService usertblservice;
 
 	// ユーザーTBLの内容を全検索
 	public List<Projecttbl> searchAll() {
@@ -51,6 +53,15 @@ public class ProjectService {
 	}
 	
 	/**
+	 * uidとtitleを用いて一意のレコードが存在するか確認する。
+	 * @param uid
+	 * @param title
+	 * @return
+	 */
+	public boolean existOneReco(String uid,String title){
+		return ProjctRepo.existsByUidAndName(uid, title);
+	}
+	/**
 	 * project_tbl更新用メソッド
 	 * @param form ProjectConfigForm
 	 * @param id PROJ_ID
@@ -67,5 +78,48 @@ public class ProjectService {
 		updateStatus.setGenre(form.getGenre1()+","+form.getGenre2());
 		updateStatus.setLasttime(dateObj);
 		ProjctRepo.save(updateStatus);
+	}
+	
+	/**
+	 * 主にGame_creation_copy_Controllerで使用するProjectTblに新規レコードを追加するための関数。
+	 *アラートから取得したtitleと同名のディレクトリが存在しない場合に使用される。
+	 * IDは10桁の乱数を使用
+	 * @param uid userId
+	 * @param title アラートから取得した作業ディレクトリ名
+	 */
+	public void projectCreate(String uid,String title) {
+		Date dateObj = new Date();
+		
+		String projectId = UsertblService.getRandomString(10);
+		Integer count = 0;
+		//ID重複用wile分
+		while (ProjctRepo.existsById(projectId)) {
+			if (count >= 100) {
+				break;
+			}
+			count++;// 無限ループ用
+			projectId = UsertblService.getRandomString(10);
+		}
+		
+		Projecttbl createStatus = new Projecttbl();
+		createStatus.setId(projectId);
+		createStatus.setAddress("/USERs/"+uid+"/"+title);
+		createStatus.setUid(uid);
+		createStatus.setName(title);
+		createStatus.setLasttime(dateObj);
+		createStatus.setMaketime(dateObj);
+		ProjctRepo.save(createStatus);
+	}
+	/**
+	 * 主にGame_creation_copy_Controllerで使用するProjectTblのLasttimeを更新する関数
+	 * @param uid
+	 * @param title
+	 */
+	public void projectUpdateLasttime(String uid,String title) {
+		Date dateObj = new Date();
+		
+		Projecttbl UpdateStatus = ProjctRepo.findByUidAndName(uid,title).get();
+		UpdateStatus.setLasttime(dateObj);
+		ProjctRepo.save(UpdateStatus);
 	}
 }

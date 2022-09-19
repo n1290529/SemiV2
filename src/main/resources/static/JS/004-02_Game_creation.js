@@ -900,7 +900,6 @@ function Delete_Obj2(nowB) {//右クリック、消去関数
 			back_change_target(bg.id.substring(7));
 		}
 	}
-	nowB.remove();
 }
 async function AddPropertyBg(e) {
 	if (!e.value.length) {//背景キャンセルバグ
@@ -1170,35 +1169,45 @@ document.addEventListener('DOMContentLoaded', function() {//タブ
 }, false);
 function save() {//保存
 	const savename = window.prompt("test保存名を入力してください");
+	if (savename != null) {
+		// const XMLcodebox = document.getElementById("blockscodebox");
+		var XMLcode = Blockly.Xml.workspaceToDom(workspace);
+		myBlockXml[savename] = [Blockly.Xml.domToText(XMLcode), field.innerHTML, document.getElementById("objects").innerHTML, document.getElementById("BGinformation").innerHTML, object_match_id, layer];
 
-	// const XMLcodebox = document.getElementById("blockscodebox");
-	const XMLcode = Blockly.Xml.workspaceToDom(workspace);
-	myBlockXml[savename] = [Blockly.Xml.domToText(XMLcode), field.innerHTML, document.getElementById("objects").innerHTML, document.getElementById("BGinformation").innerHTML, object_match_id, layer];
-	console.log(myBlockXml[savename])
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});
 
+		var BlocklyJson = xml2json(XMLcode, "  ");
 
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
-	$(document).ajaxSend(function(e, xhr, options) {
-	  xhr.setRequestHeader(header, token);
-	});
+		var postData = {
+			blockly: JSON.parse(BlocklyJson),
+			savename: savename
+		}
 
-	$.ajax({
-		url: "http://localhost:8080/bbb",
-		type: "POST",
-		data: {
-			aaa: "ddddd",
-			bbb: "rrrr"
-		},
-		dataType: "json"  // レスポンスデータをjson形式と指定する
-	})
-		.done(function(data) {
-			//$(".notes").append(`<div>${data.note}</div>`);  // JSON形式のレスポンスからnoteを取得
-			//$("#note").val("");
+		$.ajax({
+			url: "http://localhost:8080/create/send",
+			type: "POST",
+			data: JSON.stringify(postData),
+			contentType: 'application/json',
+			dataType: "json"  // レスポンスデータをjson形式と指定する
 		})
-		.fail(function() {
-			alert("error!");
-		})
+			.done(function(data, textStatus, jqXHR) {
+				//			console.log('success');
+				//			console.log(data);
+				//			console.log(textStatus);
+				//			console.log(jqXHR);
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				alert("error!");
+				//			console.log('失敗');
+				//			console.log(jqXHR);
+				//			console.log(textStatus);
+				//			console.log(errorThrown);
+			})
+	}
 
 }
 
@@ -1209,6 +1218,7 @@ function restore() {//復元
 		workspace.clear();
 		Blockly.Xml.domToWorkspace(xml, workspace);
 
+/*
 		field.innerHTML = myBlockXml[savename][1];
 		document.getElementById("objects").innerHTML = myBlockXml[savename][2];
 		document.getElementById("BGinformation").innerHTML = myBlockXml[savename][3];
@@ -1219,26 +1229,26 @@ function restore() {//復元
 		object_elems = document.querySelectorAll(".box");//オブジェクトイベント配列
 		object_elems.forEach(//オブジェクトにeventを生成
 			function(target) {
-			Add_obj_event(target.id);
-		layer.push(parseInt(target.id));
+				Add_obj_event(target.id);
+				layer.push(parseInt(target.id));
+			}
+		);
+
+		sprite_elems = document.querySelectorAll(".sprite");//spriteイベント配列
+		sprite_elems.forEach(//スプライトにeventを生成
+			function(target) {
+				Add_property_Event(target.id);
+			}
+		);
+
+		back_elems = document.querySelectorAll(".back");//背景イベント配列
+		back_elems.forEach(//背景にeventを生成
+			function(target) {
+				Add_property_Event(target.id);
+			}
+		);
+	*/} catch (e) {
+		alert("保存されていません");
 	}
-        );
-
-	sprite_elems = document.querySelectorAll(".sprite");//spriteイベント配列
-	sprite_elems.forEach(//スプライトにeventを生成
-		function(target) {
-			Add_property_Event(target.id);
-		}
-	);
-
-	back_elems = document.querySelectorAll(".back");//背景イベント配列
-	back_elems.forEach(//背景にeventを生成
-		function(target) {
-			Add_property_Event(target.id);
-		}
-	);
-} catch (e) {
-	alert("保存されていません");
-}
 }
 

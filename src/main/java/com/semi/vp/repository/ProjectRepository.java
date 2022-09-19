@@ -17,4 +17,18 @@ public interface ProjectRepository extends JpaRepository<Projecttbl, String> {
 
 	List<Projecttbl> findByUid(String uid);
 	Optional<Projecttbl> findByUidAndName(String uid, String title);
+	
+	/**
+	 * idとtitleからレコードが存在するか確認する。
+	 * @param uid userId
+	 * @param title アラートの入力値
+	 * @return
+	 */
+	Boolean existsByUidAndName(String uid,String title);
+	
+	/**
+	 * idからレコードが存在するかを確認する
+	 * @param id 10桁の乱数
+	 */
+	boolean existsById(String id);
 }
