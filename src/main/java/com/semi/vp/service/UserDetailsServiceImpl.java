@@ -1,7 +1,6 @@
 package com.semi.vp.service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +60,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	UsertblRepository UserRepo;
 	public Usertbl oneReco(String str) {
-        return UserRepo.getByEmail(str);
-    }
+		return UserRepo.getByEmail(str);
+	}
 }
