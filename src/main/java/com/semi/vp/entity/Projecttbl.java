@@ -34,11 +34,15 @@ public class Projecttbl {
 
 //プロジェクトのジャンル
 	@Column(name = "PROJ_GENRE")
-	private int genre;
+	private String genre;
 
 //プロジェクト公開非公開
 	@Column(name = "PROJ_OPEN_FLG", nullable = false)
-	private int openflg = 0;
+	private boolean openflg;
+	
+//ダウンロード許可
+	@Column(name="PROJ_DL_FLG",nullable = false)
+	private boolean dlflg;
 
 //プロジェクトを最後に触った時間
 	@Column(name = "PROJ_LAST_TIME")

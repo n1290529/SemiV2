@@ -1,6 +1,9 @@
 package com.semi.vp.service;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,6 +28,8 @@ public class UsertblService {
 	UsertblRepository UtblRepo;
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	@Autowired
+	UsertblRepository UserRepo;
 
 	public List<Usertbl> searchAll() {
 		return UtblRepo.findAll();
@@ -129,8 +134,12 @@ public class UsertblService {
 		user.setJob(form.getJob());
 		user.setEmail(form.getEmail());
 		user.setEntry(java.sql.Date.valueOf(LocalDate.now()));
+
 		// \SemiV2\src\main\resources\static\USERs/nId
 		user.setAddress("/" + nId);
+
+		user.setAddress(nId);
+
 		user.setRole("USER");
 		UtblRepo.save(user);
 
@@ -140,15 +149,22 @@ public class UsertblService {
 	}
 
 	/**
+	 * 
 	 * ユーザーディレクトリ作成用関数 呼び出し場所:userRegistration
 	 * \SemiV2\src\main\resources\static\USERs/id として作成
 	 * 
 	 * @param str id=nId
 	 * 
+	 *  USERs直下にid名でディレクトリを作成する関数 呼び出し場所:UsertblService
+	 *  \SemiV2\src\main\resources\static\USERs/id として作成
+	 * 
+	 * @param str id nId
+	 * 
 	 */
 	public void makeDir(String id) {
 
 		Path p = Paths.get("./src/main/resources/static/USERs/" + id);
+
 		System.out.println("ディレクトリを作成");
 
 		try {
@@ -156,5 +172,53 @@ public class UsertblService {
 		} catch (IOException e) {
 			System.out.println("ユーザーディレクトリ作成用関数" + e);
 		}
+		try {
+			Files.createDirectory(p);
+		} catch (IOException e) {
+			System.out.println("ユーザーディレクトリ作成用関数:" + e);
+		}
+	}
+
+	/**
+	 * /USERs直下にuserId名のディレクトリーが存在するかどうかを確認し、存在しない場合USERs直下にIDめいのディレクトリを新規作成する。
+	 * 存在しない場合userId名でディレクトリを作成 呼び出し場所:Game_creation_copy_Controller
+	 * 
+	 * @param id userId
+	 */
+	public void searchUserDir(String id) {
+		File userFileExist = new File("./src/main/resources/static/USERs/" + id);
+		if (!userFileExist.exists()) {
+			// USERs直下にIDディレクトリが存在しなかった場合の処理
+			makeDir(id);
+		}
+	}
+
+	/**
+	 * /USERs/ID/直下にアラートから取得したtitleと同一の作業ディレクトリが存在するか確認し、 存在する場合、save.jsonを上書き保存する。
+	 * 存在しなかった場合、作業ディレクトリを新規作成した後、save.jsonを作成する
+	 * 
+	 * @param id ユーザーID
+	 * @param title   プロジェクトタイトル
+	 * @param json 保存情報JSON
+	 */
+	public void searchProjctDir(String id, String title, Object json) {
+		File userFileExist = new File("./src/main/resources/static/USERs/" + id + "/" + title);
+		if (!userFileExist.exists()) {
+			// 作業ディレクトリが存在しない場合の処理
+			makeDir(id + "/" + title);
+		}
+
+		// json保存処理
+		String savepath = "./src/main/resources/static/USERs/" + id + "/" + title + "/save.json";
+		try (PrintWriter out = new PrintWriter(new FileWriter(savepath))) {
+			out.write(json.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public Usertbl oneReco(String str) {
+		return UserRepo.getByEmail(str);
 	}
 }

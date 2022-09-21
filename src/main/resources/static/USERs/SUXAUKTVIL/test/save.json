@@ -1,0 +1,11 @@
+{
+    "object_data": {
+        "version": "5.2.4",
+        "objects": []
+    },
+    "check_name": [],
+    "background_src": {},
+    "background_cnt": 0,
+    "blockly": "<xml xmlns=\"https://developers.google.com/blockly/xml\"></xml>",
+    "savename": "test"
+}
