@@ -112,7 +112,7 @@ public class Game_creation_copy_Controller {
 			ObjectMapper objectMapper = new ObjectMapper();
 			if (projectservice.existOneReco(userId, title)) {
 				// レコードが存在する場合の処理
-
+				System.out.println("レコードが存在する");
 				// USERs/userid/プロジェクト名が存在するかを確認し、存在する場合jsonを上書き保存。存在しない場合dir作成した後jsonを保存。
 				// jsonファイルはsave.jsonで固定
 				usertblservice.searchProjctDir(userId, title, objectMapper.writeValueAsString(json));
@@ -120,7 +120,7 @@ public class Game_creation_copy_Controller {
 				projectservice.projectUpdateLasttime(userId, title);
 			} else {
 				// レコードが存在しない場合の処理
-
+				System.out.println("レコードが存在しない");
 				// DBにプロジェクトレコードを登録する為の関数
 				projectservice.projectCreate(userId, title);
 				usertblservice.searchProjctDir(userId, title, objectMapper.writeValueAsString(json));

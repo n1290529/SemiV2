@@ -2,6 +2,7 @@ package com.semi.vp.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -90,11 +91,13 @@ public class ProjectService {
 	public void projectCreate(String uid,String title) {
 		Date dateObj = new Date();
 		
-		String projectId = UsertblService.getRandomString(10);
+		UUID uuid = UUID.randomUUID();
+		String projectId = uuid.toString();
+		
 		Integer count = 0;
 		//ID重複用wile分
 		while (ProjctRepo.existsById(projectId)) {
-			if (count >= 100) {
+			if (count >= 10) {
 				break;
 			}
 			count++;// 無限ループ用

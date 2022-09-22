@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -114,11 +115,12 @@ public class UsertblService {
 			return false;
 		}
 
-		String nId = getRandomString(10);
+		UUID uuid = UUID.randomUUID();
+		String nId = uuid.toString();
 		Integer count = 0;
 //ID重複用wile分
 		while (UtblRepo.existsById(nId)) {
-			if (count >= 100) {
+			if (count >= 10) {
 				return false;
 			}
 			count++;// 無限ループ用
@@ -187,6 +189,7 @@ public class UsertblService {
 	 */
 	public void searchUserDir(String id) {
 		File userFileExist = new File("./src/main/resources/static/USERs/" + id);
+		System.out.println("test");
 		if (!userFileExist.exists()) {
 			// USERs直下にIDディレクトリが存在しなかった場合の処理
 			makeDir(id);

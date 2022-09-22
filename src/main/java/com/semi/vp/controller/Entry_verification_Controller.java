@@ -42,6 +42,7 @@ public class Entry_verification_Controller {
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 		//サイドバー用
+		System.out.println("UNKOOOO"+authentication.getName());
 		model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		
 		//セッション(email)からusertblのユーザーIDを取得,URLのtitleと併せてprojectレコードを一意検索

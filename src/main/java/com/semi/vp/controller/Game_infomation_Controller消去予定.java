@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class Game_infomation_Controller {
+public class Game_infomation_Controller消去予定 {
 	/**
  * ユーザー情報一覧画面を表示
  * @param model Model
