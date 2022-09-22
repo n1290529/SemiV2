@@ -1,32 +1,24 @@
 package com.semi.vp.controller;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.semi.vp.form.BlocklyJson;
 import com.semi.vp.service.ProjectService;
 import com.semi.vp.service.UsertblService;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,23 +32,55 @@ public class Game_creation_copy_Controller {
 	@Autowired
 	ProjectService projectservice;
 
+	/**
+	 * ゲーム制作画面コントローラー(default)
+	 * 
+	 * @param request セッション情報
+	 * @param model   モデル
+	 * @return ゲーム制作画面
+	 */
 	@GetMapping(value = "/create")
-	public String createProject(Model model) {
-		Path path = Paths.get("./src/main/resources/static/DEFAULT_DATA/save.json");
-		
+	public String createProject(HttpServletRequest request, Model model) {
 		try {
+			HttpSession session = request.getSession();
+			SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
+			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
+			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
+
+			Path path = Paths.get("./src/main/resources/static/DEFAULT_DATA/save.json");
+
 			String content = Files.readString(path);
-//			System.out.println(content);
 			model.addAttribute("inputJson", content);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		return "HTML/004-02_Game_creation_copy";
 	}
 
+	/**
+	 * ゲーム制作画面コントローラー(タイトル指定)
+	 * 
+	 * @param request セッション情報
+	 * @param model   モデル
+	 * @param title   プロジェクトタイトル
+	 * @return ゲーム制作画面
+	 */
 	@GetMapping(value = "/create/{title}")
-	public String createTitleProject() {
-		// savedataの読み込み処理
+	public String createTitleProject(HttpServletRequest request, Model model, @PathVariable String title) {
+		try {
+			HttpSession session = request.getSession();
+			SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
+			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
+			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
+
+			String userId = usertblservice.oneReco(authentication.getName()).getId();
+			Path path = Paths.get("./src/main/resources/static/USERs/" + userId + "/" + title + "/save.json");
+			try {
+				String content = Files.readString(path);
+				model.addAttribute("inputJson", content);
+			} catch (Exception e) {
+			}
+		} catch (Exception e) {
+		}
 
 		return "HTML/004-02_Game_creation_copy";
 	}
@@ -71,7 +95,6 @@ public class Game_creation_copy_Controller {
 	@PostMapping("/create/send")
 	@ResponseBody
 	public BlocklyJson createSendProject(@RequestBody BlocklyJson json, HttpServletRequest request) {
-
 		try {
 			// セッション情報の取得
 			HttpSession session = request.getSession();
@@ -105,7 +128,6 @@ public class Game_creation_copy_Controller {
 
 		} catch (Exception e) {
 			System.out.println(e);
-//			System.out.println("セッションが読み込めていない可能性が高い");
 		}
 		return json;
 	}
