@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:fragment="meta_header(title,links,scripts)">
+<head th:fragment="meta_header(title,meta,links,scripts)">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
@@ -11,6 +11,7 @@
 <script src="/JS/sidebar.js"></script>
 <title th:text="${title}"></title>
 
+<th:block th:replace="${meta} ?: _" />
 <th:block th:replace="${links} ?: _" />
 <th:block th:replace="${scripts} ?: _" />
 </head>

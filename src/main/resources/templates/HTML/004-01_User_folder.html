@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org/"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head
-	th:replace="HTML/topsidebar :: meta_header('マイフォルダー',~{::link},~{::script})">
+	th:replace="HTML/topsidebar :: meta_header('マイフォルダー',~{::meta},~{::link},~{::script})">
 <link rel="stylesheet" th:href="@{/CSS/004-01_User_folder.css}">
 </head>
 <body>

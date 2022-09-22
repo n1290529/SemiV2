@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/"
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+
+
 <head
-	th:replace="HTML/topsidebar :: meta_header('制作',~{::link},~{::script})">
+	th:replace="HTML/topsidebar :: meta_header('制作',~{::meta},~{::link},~{::script})">
 	
-<meta name="_csrf" th:content="${_csrf.token}" />
-<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
+<meta th:name="_csrf" th:content="${_csrf.token}" />
+<meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
 
 <link rel="stylesheet" th:href="@{/CSS/sidebar_GC.css}">
 <link rel="stylesheet" th:href="@{/CSS/004-02_Game_creation.css}">

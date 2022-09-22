@@ -882,6 +882,9 @@ let outputJson;
  */
 function save() {
 	const savename = window.prompt("保存名を入力してください");
+	console.log("tsttrtttt");
+	console.log(savename);
+	
 	if (savename != null) {
 		const XMLcode = Blockly.Xml.workspaceToDom(workspace);
 		let postJsonCollection = saveCanvas();
@@ -893,6 +896,7 @@ function save() {
 
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
+		
 		$(document).ajaxSend(function(e, xhr, options) {
 			xhr.setRequestHeader(header, token);
 		});

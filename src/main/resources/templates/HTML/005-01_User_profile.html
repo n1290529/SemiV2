@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head
-	th:replace="HTML/topsidebar :: meta_header('プロフィール',~{::link},~{::script})">
+	th:replace="HTML/topsidebar :: meta_header('プロフィール',~{::meta},~{::link},~{::script})">
 
 <link rel="stylesheet" th:href="@{/CSS/005-01_User_profile.css}">
 </head>
