@@ -1,11 +1,13 @@
 package com.semi.vp.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,20 +22,20 @@ public class Usertbl {
 
 	// ID
 	@Id
-	@Column(name = "USER_ID", nullable = false, unique = true, length = 10)
+	@Column(name = "USER_ID")
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 
 	// 名前
-	@Column(name = "USER_NAME", nullable = false, length = 50)
+	@Column(name = "USER_NAME")
 	private String name;
 
 	// パスワード
-	@Column(name = "USER_PASS", nullable = false, length = 255)
+	@Column(name = "USER_PASS")
 	private String pass;
 
 	// 性別
-	@Column(name = "USER_SEX", nullable = false)
+	@Column(name = "USER_SEX")
 	private long sex;
 
 	// 生年月日
@@ -41,32 +43,32 @@ public class Usertbl {
 	private java.sql.Date birth;
 
 	// 仕事
-	@Column(name = "USER_JOB", length = 100)
+	@Column(name = "USER_JOB")
 	private String job;
 
 	// メアド
-	@Column(name = "USER_EMAIL", nullable = false, unique = true, length = 319)
+	@Column(name = "USER_EMAIL")
 	private String email;
 
 	// 自己紹介
-	@Column(name = "USER_PROFILE", length = 400)
+	@Column(name = "USER_PROFILE")
 	private String profile;
 
 	// お気に入りのジャンル
-	@Column(name = "USER_FAV", length = 45)
+	@Column(name = "USER_FAV")
 	private String fav;
 
 	// 登録日時
-	@Column(name = "USER_ENTRY", nullable = false)
-	private java.sql.Date entry;
+	@Column(name = "USER_ENTRY")
+	@CreationTimestamp
+	private LocalDateTime entry;
 
 	// ゲームアドレス
-	@Column(name = "USER_GAME_ADDRESS", nullable = false, length = 100)
+	@Column(name = "USER_GAME_ADDRESS")
 	private String address;
 
 	// ログイン状況
-	@Column(name = "USER_ROLE", nullable = false)
+	@Column(name = "USER_ROLE")
 	private String role;
-
 
 }
