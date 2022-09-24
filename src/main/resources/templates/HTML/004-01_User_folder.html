@@ -28,7 +28,7 @@
 							<div>
 								<span class="views" th:text="${projects.browcnt+'回閲覧'}"></span><br>
 								<span class="date"
-									th:text="${'制作日：'+#dates.format(projects.maketime, 'yyyy/MM/dd')}"></span><br>
+									th:text="${'制作日：'+#temporals.format(projects.maketime, 'yyyy/MM/dd')}"></span><br>
 							</div>
 						</div>
 					</div>
