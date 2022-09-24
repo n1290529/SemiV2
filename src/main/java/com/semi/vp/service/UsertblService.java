@@ -157,8 +157,8 @@ public class UsertblService {
 	 * 
 	 * @param str id=nId
 	 * 
-	 *  USERs直下にid名でディレクトリを作成する関数 呼び出し場所:UsertblService
-	 *  \SemiV2\src\main\resources\static\USERs/id として作成
+	 *            USERs直下にid名でディレクトリを作成する関数 呼び出し場所:UsertblService
+	 *            \SemiV2\src\main\resources\static\USERs/id として作成
 	 * 
 	 * @param str id nId
 	 * 
@@ -200,9 +200,9 @@ public class UsertblService {
 	 * /USERs/ID/直下にアラートから取得したtitleと同一の作業ディレクトリが存在するか確認し、 存在する場合、save.jsonを上書き保存する。
 	 * 存在しなかった場合、作業ディレクトリを新規作成した後、save.jsonを作成する
 	 * 
-	 * @param id ユーザーID
-	 * @param title   プロジェクトタイトル
-	 * @param json 保存情報JSON
+	 * @param id    ユーザーID
+	 * @param title プロジェクトタイトル
+	 * @param json  保存情報JSON
 	 */
 	public void searchProjctDir(String id, String title, Object json) {
 		File userFileExist = new File("./src/main/resources/static/USERs/" + id + "/" + title);
@@ -217,6 +217,26 @@ public class UsertblService {
 			out.write(json.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void changeProjectDir(String id, String beforeTitle, String afterTitle) {
+		//作業ディレクトリの名称が変更されている
+		if (beforeTitle != afterTitle) {
+			File userFileExist = new File("./src/main/resources/static/USERs/" + id + "/" + beforeTitle);
+			File newName = new File("./src/main/resources/static/USERs/" + id + "/" + afterTitle);
+			// 作業ディレクトリが存在する場合
+			try {
+				if (userFileExist.exists()) {
+					userFileExist.renameTo(newName);
+					System.out.println("名前変更完了");
+				}else {
+					//消さないで
+					System.out.println("例外エラー,作業ディレクトリが存在しない");
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 		}
 
 	}

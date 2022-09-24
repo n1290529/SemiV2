@@ -73,6 +73,12 @@ public class Entry_verification_Controller {
 		//USER_IDとtitleからprojecttblのレコードを取得
 		Projecttbl project=projectservice.getProjectOneReco(userId,title);
 		model.addAttribute("project",project);
+		
+		String beforeTitle =project.getName();
+		String afterTitle =form.getName();
+		
+		usertblservice.changeProjectDir(userId,beforeTitle,afterTitle);
+		
 		projectservice.projectUpdate(form,project.getId());
 		
 		return "redirect:/myfolder";

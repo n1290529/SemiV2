@@ -30,7 +30,6 @@ public class User_folder_Controller {
 		
 		
 		String userId=usertblservice.oneReco(authentication.getName()).getId();
-		
 		model.addAttribute("projectList",projectservice.getProjects(userId));
 		
 		model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
