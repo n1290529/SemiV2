@@ -1,11 +1,14 @@
 package com.semi.vp.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
@@ -34,7 +37,7 @@ public class Projecttbl {
 
 //プロジェクトのジャンル
 	@Column(name = "PROJ_GENRE")
-	private String genre;
+	private String genre = "0,0";
 
 //プロジェクト公開非公開
 	@Column(name = "PROJ_OPEN_FLG", nullable = false)
@@ -46,15 +49,15 @@ public class Projecttbl {
 
 //プロジェクトを最後に触った時間
 	@Column(name = "PROJ_LAST_TIME")
-	private Date lasttime;
+	@UpdateTimestamp private LocalDateTime lasttime;
 
 	// プロジェクトをアップロードした時間
 	@Column(name = "PROJ_UP_TIME")
-	private Date uptime;
+	private LocalDateTime uptime;
 
 	// プロジェクトを作成した時間
 	@Column(name = "PROJ_MAKE_TIME")
-	private Date maketime;
+	@CreationTimestamp private LocalDateTime maketime;
 
 	// 閲覧数
 	@Column(name = "PROJ_BROW_CNT")

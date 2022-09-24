@@ -72,7 +72,7 @@
 								</table>
 								<!-- 登録日 -->
 								<p class="userregisterdate"
-									th:text="${#dates.format(user.entry, 'yyyy/MM/dd') + '登録'}"></p>
+									th:text="${#temporals.format(user.entry, 'yyyy/MM/dd HH:mm') + '登録'}"></p>
 							</div>
 						</div>
 						<div class="ap2">
@@ -87,18 +87,18 @@
 								<p class="favoritegenre">お気に入りのジャンル</p>
 								<select class="tag01" name="fav" size="1">
 									<option hidden>ジャンルを選択してください</option>
-									<option value="アクションゲーム">アクションゲーム</option>
-									<option value="ロールプレイングゲーム">ロールプレイングゲーム</option>
-									<option value="シューティングゲーム">シューティングゲーム</option>
-									<option value="アドベンチャーゲーム">アドベンチャーゲーム</option>
-									<option value="シミュレーションゲーム">シミュレーションゲーム</option>
-									<option value="レースゲーム">レースゲーム</option>
-									<option value="パズルゲーム">パズルゲーム</option>
-									<option value="サンドボックス">サンドボックス</option>
-									<option value="音楽ゲーム">音楽ゲーム</option>
-									<option value="テーブルゲーム">テーブルゲーム</option>
-									<option value="スポーツゲーム">スポーツゲーム</option>
-									<option value="その他">その他</option>
+									<option value="1" th:selected="${user.fav=='1'}">アクションゲーム</option>
+									<option value="2" th:selected="${user.fav=='2'}">ロールプレイングゲーム</option>
+									<option value="3" th:selected="${user.fav=='3'}">シューティングゲーム</option>
+									<option value="4" th:selected="${user.fav=='4'}">アドベンチャーゲーム</option>
+									<option value="5" th:selected="${user.fav=='5'}">シミュレーションゲーム</option>
+									<option value="6" th:selected="${user.fav=='6'}">レースゲーム</option>
+									<option value="7" th:selected="${user.fav=='7'}">パズルゲーム</option>
+									<option value="8" th:selected="${user.fav=='8'}">サンドボックス</option>
+									<option value="9" th:selected="${user.fav=='9'}">音楽ゲーム</option>
+									<option value="10" th:selected="${user.fav=='10'}">テーブルゲーム</option>
+									<option value="11" th:selected="${user.fav=='11'}">スポーツゲーム</option>
+									<option value="other" th:selected="${user.fav=='other' || user.fav == null}">その他</option>
 								</select>
 							</div>
 						</div>
