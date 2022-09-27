@@ -95,9 +95,9 @@
 		<div class="profile-details">
 			<div class="profile-content">
 				<a th:href="${'/profile'}"> <img
-					sec:authorize="isAuthenticated()" src="IMG/profile.png"
+					sec:authorize="isAuthenticated()" th:src="@{/IMG/profile.png}"
 					alt="profileImg"> <img sec:authorize="!isAuthenticated()"
-					src="IMG/user-def.png" alt="profileImg"></a>
+					th:src="@{/IMG/user-def.png}" alt="profileImg"></a>
 			</div>
 			<div sec:authorize="isAuthenticated()" class="name-job login">
 				<a th:href="${'/profile'}"> <span class="profile_name" th:text="${user.name}"></span>

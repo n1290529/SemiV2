@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.semi.vp.service.ProjectService;
 import com.semi.vp.service.UsertblService;
 
-
 @Controller
 public class User_folder_Controller {
 	@Autowired
@@ -26,12 +25,10 @@ public class User_folder_Controller {
 		HttpSession session = request.getSession();
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
-		System.out.println("aaaaa" + authentication.getName());
-		
-		
-		String userId=usertblservice.oneReco(authentication.getName()).getId();
-		model.addAttribute("projectList",projectservice.getProjects(userId));
-		
+
+		String userId = usertblservice.oneReco(authentication.getName()).getId();
+		model.addAttribute("projectList", projectservice.getProjects(userId));
+
 		model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		return "HTML/004-01_User_folder";
 	}
