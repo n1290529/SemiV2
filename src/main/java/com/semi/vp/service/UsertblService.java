@@ -68,6 +68,7 @@ public class UsertblService {
 	}
 
 //Emailチェック
+	//未使用?
 	public boolean check(String name) {
 		return UtblRepo.existsByEmail(name);
 	}
@@ -137,7 +138,6 @@ public class UsertblService {
 	/**
 	 * /USERs直下にuserId名のディレクトリーが存在するかどうかを確認し、存在しない場合USERs直下にIDめいのディレクトリを新規作成する。
 	 * 存在しない場合userId名でディレクトリを作成 呼び出し場所:Game_creation_copy_Controller
-	 * 
 	 * @param id userId
 	 */
 	public void searchUserDir(String id) {
@@ -173,6 +173,12 @@ public class UsertblService {
 		}
 	}
 
+	/**
+	 * ゲーム詳細画面でタイトルを変更する際の処理
+	 * @param id
+	 * @param beforeTitle
+	 * @param afterTitle
+	 */
 	public void changeProjectDir(String id, String beforeTitle, String afterTitle) {
 		//作業ディレクトリの名称が変更されている
 		if (beforeTitle != afterTitle) {
@@ -184,7 +190,8 @@ public class UsertblService {
 					userFileExist.renameTo(newName);
 					System.out.println("名前変更完了");
 				}else {
-					//消さないで
+					//消さないで。
+					//このelseは処理の関係上テスト環境以外では絶対に通らない。
 					System.out.println("例外エラー,作業ディレクトリが存在しない");
 				}
 			} catch (Exception e) {

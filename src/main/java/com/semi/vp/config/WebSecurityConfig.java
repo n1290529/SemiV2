@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// アクセス権限に関する設定
 		http
 			// /**はアクセス制限をかけない
-			.authorizeRequests().antMatchers("/CSS/**","/IMG/**","/JS/**",
+			.authorizeRequests().antMatchers("/CSS/**","/IMG/**","/JS/**","/USERs/**",
 
 					//トップ画面
 					"/top",

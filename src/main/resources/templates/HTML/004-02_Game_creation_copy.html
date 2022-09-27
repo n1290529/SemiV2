@@ -675,11 +675,13 @@
 
 		$("#play path").click(function() {
 			alert('play');
+			/*
 			document.getElementById("Object_name").disabled = true;
 			document.getElementById("Object_X").disabled = true;
 			document.getElementById("Object_Y").disabled = true;
 			document.getElementById("Object_size").disabled = true;
 			document.getElementById("Object_direction").disabled = true;
+			*/
 
 			var myCode = Blockly.JavaScript.workspaceToCode(workspace);
 			myInterpreter = new Interpreter(myCode, initFunc);
@@ -688,11 +690,13 @@
 		});
 		$("#stop path").click(function() {
 			alert('stop');
+			/*
 			document.getElementById("Object_name").disabled = false;
 			document.getElementById("Object_X").disabled = false;
 			document.getElementById("Object_Y").disabled = false;
 			document.getElementById("Object_size").disabled = false;
 			document.getElementById("Object_direction").disabled = false;
+			*/
 
 			window.clearTimeout(pid);
 		});

@@ -76,7 +76,7 @@ public class Entry_verification_Controller {
 		
 		String beforeTitle =project.getName();
 		String afterTitle =form.getName();
-		
+		//ディレクトリ名変更用の関数
 		usertblservice.changeProjectDir(userId,beforeTitle,afterTitle);
 		
 		projectservice.projectUpdate(form,project.getId());
