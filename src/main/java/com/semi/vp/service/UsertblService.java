@@ -68,9 +68,27 @@ public class UsertblService {
 	}
 
 //Emailチェック
-	//未使用?
+	// 未使用?
 	public boolean check(String name) {
 		return UtblRepo.existsByEmail(name);
+	}
+
+	/**
+	 * ユーザーディレクトリ作成用関数 呼び出し場所:userRegistration
+	 * 
+	 * @param adress プロジェクトアドレス
+	 */
+	public void makeDir(String adress) {
+
+		Path p = Paths.get("." + adress);
+
+		System.out.println("ディレクトリを作成" + p);
+
+		try {
+			Files.createDirectory(p);
+		} catch (IOException e) {
+			System.out.println("ユーザーディレクトリ作成用関数" + e);
+		}
 	}
 
 	// アカウント作成
@@ -94,111 +112,27 @@ public class UsertblService {
 		user.setEmail(form.getEmail());
 
 		// \SemiV2\src\main\resources\static\USERs/nId
-		user.setAddress("/" + nId);
+		user.setAddress("/users/" + nId);
 
 		user.setRole("USER");
 		UtblRepo.save(user);
 
-		makeDir(nId);
-
+		makeDir("/users/" + nId);
 		return true;
-	}
-
-	/**
-	 * 
-	 * ユーザーディレクトリ作成用関数 呼び出し場所:userRegistration
-	 * \SemiV2\src\main\resources\static\USERs/id として作成
-	 * 
-	 * @param str id=nId
-	 * 
-	 *            USERs直下にid名でディレクトリを作成する関数 呼び出し場所:UsertblService
-	 *            \SemiV2\src\main\resources\static\USERs/id として作成
-	 * 
-	 * @param str id nId
-	 * 
-	 */
-	public void makeDir(String id) {
-
-		Path p = Paths.get("./src/main/resources/static/USERs/" + id);
-
-		System.out.println("ディレクトリを作成");
-
-		try {
-			Files.createDirectory(p);
-		} catch (IOException e) {
-			System.out.println("ユーザーディレクトリ作成用関数" + e);
-		}
-		try {
-			Files.createDirectory(p);
-		} catch (IOException e) {
-			System.out.println("ユーザーディレクトリ作成用関数:" + e);
-		}
 	}
 
 	/**
 	 * /USERs直下にuserId名のディレクトリーが存在するかどうかを確認し、存在しない場合USERs直下にIDめいのディレクトリを新規作成する。
 	 * 存在しない場合userId名でディレクトリを作成 呼び出し場所:Game_creation_copy_Controller
-	 * @param id userId
+	 * 
+	 * @param id ユーザーID
 	 */
 	public void searchUserDir(String id) {
-		File userFileExist = new File("./src/main/resources/static/USERs/" + id);
-		System.out.println("test");
+		File userFileExist = new File("."+searchId(id).getAddress());
 		if (!userFileExist.exists()) {
 			// USERs直下にIDディレクトリが存在しなかった場合の処理
-			makeDir(id);
+			makeDir(searchId(id).getAddress());
 		}
-	}
-
-	/**
-	 * /USERs/ID/直下にアラートから取得したtitleと同一の作業ディレクトリが存在するか確認し、 存在する場合、save.jsonを上書き保存する。
-	 * 存在しなかった場合、作業ディレクトリを新規作成した後、save.jsonを作成する
-	 * 
-	 * @param id    ユーザーID
-	 * @param title プロジェクトタイトル
-	 * @param json  保存情報JSON
-	 */
-	public void searchProjctDir(String id, String title, Object json) {
-		File userFileExist = new File("./src/main/resources/static/USERs/" + id + "/" + title);
-		if (!userFileExist.exists()) {
-			// 作業ディレクトリが存在しない場合の処理
-			makeDir(id + "/" + title);
-		}
-
-		// json保存処理
-		String savepath = "./src/main/resources/static/USERs/" + id + "/" + title + "/save.json";
-		try (PrintWriter out = new PrintWriter(new FileWriter(savepath))) {
-			out.write(json.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * ゲーム詳細画面でタイトルを変更する際の処理
-	 * @param id
-	 * @param beforeTitle
-	 * @param afterTitle
-	 */
-	public void changeProjectDir(String id, String beforeTitle, String afterTitle) {
-		//作業ディレクトリの名称が変更されている
-		if (beforeTitle != afterTitle) {
-			File userFileExist = new File("./src/main/resources/static/USERs/" + id + "/" + beforeTitle);
-			File newName = new File("./src/main/resources/static/USERs/" + id + "/" + afterTitle);
-			// 作業ディレクトリが存在する場合
-			try {
-				if (userFileExist.exists()) {
-					userFileExist.renameTo(newName);
-					System.out.println("名前変更完了");
-				}else {
-					//消さないで。
-					//このelseは処理の関係上テスト環境以外では絶対に通らない。
-					System.out.println("例外エラー,作業ディレクトリが存在しない");
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
-
 	}
 
 	public Usertbl oneReco(String str) {

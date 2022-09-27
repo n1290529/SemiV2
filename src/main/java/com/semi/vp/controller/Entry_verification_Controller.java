@@ -25,63 +25,51 @@ public class Entry_verification_Controller {
 	@Autowired
 	ProjectService projectservice;
 
-
 	/**
-	 * プロジェクトの設定を行うページ
-	 * Projecttbl,ProjectRepository,ProjectServiceを主に使用
-	 * @param request Http
-	 * @param model
-	 * model("project") DBのproject_tblをHTMLに表示する為に使用。
-	 * @param title /myfolderから遷移した際にプロジェクトのタイトルをGETで取得
-	 * @param form ProjectConfigForm
-	 * @return HTML/004-03_Entry_verification
+	 * プロジェクトの設定を行うページ Projecttbl,ProjectRepository,ProjectServiceを主に使用
+	 * 
+	 * @param request http
+	 * @param model   モデル
+	 * @param title   プロジェクトタイトル
+	 * @return 004-03_Entry_verification
 	 */
 	@RequestMapping(value = "/projectconfig/{title}", method = RequestMethod.GET)
-	public String displayList2(HttpServletRequest request, Model model,@PathVariable String title) {
+	public String Entry_verification(HttpServletRequest request, Model model, @PathVariable String title) {
 		HttpSession session = request.getSession();
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
-		//サイドバー用
-		System.out.println("UNKOOOO"+authentication.getName());
+
 		model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
-		
-		//セッション(email)からusertblのユーザーIDを取得,URLのtitleと併せてprojectレコードを一意検索
-		String userId=usertblservice.oneReco(authentication.getName()).getId();
-		model.addAttribute("project",projectservice.getProjectOneReco(userId,title));
-		
+
+		// セッション(email)からusertblのユーザーIDを取得,URLのtitleと併せてprojectレコードを一意検索
+		String userId = usertblservice.oneReco(authentication.getName()).getId();
+		model.addAttribute("project", projectservice.getProjectOneReco(userId, title));
+
 		return "HTML/004-03_Entry_verification";
 	}
-	
+
 	/**
 	 * 
-	 * @param request HHTP
-	 * @param model
-	 * @param title /projectconfig/{title}から遷移した際にGETで取得
-	 * @param form　ProjectConfigForm
-	 * @return　redirect:/myfolder
+	 * @param request http
+	 * @param title   プロジェクトタイトル
+	 * @param form    登録情報
+	 * @return 004-03_Entry_verification
 	 */
 	@RequestMapping(value = "/projectconfig/{title}/edit", method = RequestMethod.PUT)
-	public String displayList3(HttpServletRequest request, Model model,@PathVariable String title,@Valid @ModelAttribute("form") ProjectConfigForm form) {
+	public String Entry_verification_edit(HttpServletRequest request, @PathVariable String title,
+			@Valid @ModelAttribute("form") ProjectConfigForm form) {
 		HttpSession session = request.getSession();
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
-		//サイドバー用
-		model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
-		
-		//ユーザーID取得
-		String userId=usertblservice.oneReco(authentication.getName()).getId();	
-		//USER_IDとtitleからprojecttblのレコードを取得
-		Projecttbl project=projectservice.getProjectOneReco(userId,title);
-		model.addAttribute("project",project);
-		
-		String beforeTitle =project.getName();
-		String afterTitle =form.getName();
-		//ディレクトリ名変更用の関数
-		usertblservice.changeProjectDir(userId,beforeTitle,afterTitle);
-		
-		projectservice.projectUpdate(form,project.getId());
-		
+
+
+		// ユーザーID取得
+		String userId = usertblservice.oneReco(authentication.getName()).getId();
+
+		projectservice.projectUpdate(form, userId, title);
+
+
 		return "redirect:/myfolder";
 	}
-	
+
 }

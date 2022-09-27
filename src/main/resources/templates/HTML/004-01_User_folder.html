@@ -13,28 +13,28 @@
 		<div id="main">
 			<!-- 検索結果 -->
 			<div class="searchlist00">
-
 				<div class="searchlist01" th:each="projects : ${projectList}"
 					th:object="${project}">
 					<div class="searchlist02">
-						<img class="searchfileicon i0" src="IMG/imagegg.jpg" alt=""
-							title="">
+						<img class="searchfileicon i0"
+							th:src="@{${projects.getAddress() + '/thumbnail.png'}}"
+							alt="No Image">
 						<div class="searchfileicon i1">
 							<span class="title" th:text="${projects.name}"></span><br> <span
 								class="ap_flg" th:if="${projects.openflg}">アップロードされています</span> <span
 								class="ap_flg" th:unless="${projects.openflg}">アップロードされていません</span>
-							<br>
-							<a th:href="@{/projectconfig/{title}(title=${projects.name})}">banana</a>
+							<br> <a
+								th:href="@{/projectconfig/{title}(title=${projects.name})}">設定変更</a>
 							<div>
 								<span class="views" th:text="${projects.browcnt+'回閲覧'}"></span><br>
 								<span class="date"
 									th:text="${'制作日：'+#temporals.format(projects.maketime, 'yyyy/MM/dd')}"></span><br>
+								<span class="date"
+									th:text="${'更新日：'+#temporals.format(projects.lasttime, 'yyyy/MM/dd')}"></span>
 							</div>
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</section>

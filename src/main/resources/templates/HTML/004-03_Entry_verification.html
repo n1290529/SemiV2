@@ -12,57 +12,80 @@
 
 	<section class="home-section">
 		<div class="apload">
-			<form th:action="@{/projectconfig/{title}(title=${project.name})}+'/edit'" th:method="put" th:object="${form}">
+			<form
+				th:action="@{/projectconfig/{title}(title=${project.name})}+'/edit'"
+				enctype="multipart/form-data" th:method="put" th:object="${form}">
 				<!-- 画像プレビュー -->
 				<div id="left_item">
-
-					<!-- <div class="ap00"> -->
-					<input type="file" name="inpFile" id="inpFile">
+					<input type="file" name="imgFile" id="inpFile">
 					<div class="image-preview" id="imagePreview">
-						<img src="" alt="Image Preview" class="image-preview__image">
-						<span class="image-preview__default-text">Image Preview</span>
+						<img th:src="@{${project.getAddress() + '/thumbnail.png'}}"
+							alt="Image Preview" class="image-preview__image">
 					</div>
-					<!-- </div> -->
 					<!-- セレクトボックス -->
 					<div class="tag00">
 						<select name="genre1" class="tag01" size="1">
-							<option value="0" >タグを追加する</option>
-							<option value="1" th:selected="${project.genre.split(',')[0]=='1'}">アクションゲーム</option>
-							<option value="2" th:selected="${project.genre.split(',')[0]=='2'}">ロールプレイングゲーム</option>
-							<option value="3" th:selected="${project.genre.split(',')[0]=='3'}">シューティングゲーム</option>
-							<option value="4" th:selected="${project.genre.split(',')[0]=='4'}">アドベンチャーゲーム</option>
-							<option value="5" th:selected="${project.genre.split(',')[0]=='5'}">シミュレーションゲーム</option>
-							<option value="6" th:selected="${project.genre.split(',')[0]=='6'}">レースゲーム</option>
-							<option value="7" th:selected="${project.genre.split(',')[0]=='7'}">パズルゲーム</option>
-							<option value="8" th:selected="${project.genre.split(',')[0]=='8'}">サンドボックス</option>
-							<option value="9" th:selected="${project.genre.split(',')[0]=='9'}">音楽ゲーム</option>
-							<option value="10" th:selected="${project.genre.split(',')[0]=='10'}">テーブルゲーム</option>
-							<option value="11" th:selected="${project.genre.split(',')[0]=='11'}">スポーツゲーム</option>
-						</select><br>
-						<select name="genre2" class="tag02" size="1">
 							<option value="0">タグを追加する</option>
-							<option value="1" th:selected="${project.genre.split(',')[1]=='1'}">アクションゲーム</option>
-							<option value="2" th:selected="${project.genre.split(',')[1]=='2'}">ロールプレイングゲーム</option>
-							<option value="3" th:selected="${project.genre.split(',')[1]=='3'}">シューティングゲーム</option>
-							<option value="4" th:selected="${project.genre.split(',')[1]=='4'}">アドベンチャーゲーム</option>
-							<option value="5" th:selected="${project.genre.split(',')[1]=='5'}">シミュレーションゲーム</option>
-							<option value="6" th:selected="${project.genre.split(',')[1]=='6'}">レースゲーム</option>
-							<option value="7" th:selected="${project.genre.split(',')[1]=='7'}">パズルゲーム</option>
-							<option value="8" th:selected="${project.genre.split(',')[1]=='8'}">サンドボックス</option>
-							<option value="9" th:selected="${project.genre.split(',')[1]=='9'}">音楽ゲーム</option>
-							<option value="10" th:selected="${project.genre.split(',')[1]=='10'}">テーブルゲーム</option>
-							<option value="11" th:selected="${project.genre.split(',')[1]=='11'}">スポーツゲーム</option>
+							<option value="1"
+								th:selected="${project.genre.split(',')[0]=='1'}">アクションゲーム</option>
+							<option value="2"
+								th:selected="${project.genre.split(',')[0]=='2'}">ロールプレイングゲーム</option>
+							<option value="3"
+								th:selected="${project.genre.split(',')[0]=='3'}">シューティングゲーム</option>
+							<option value="4"
+								th:selected="${project.genre.split(',')[0]=='4'}">アドベンチャーゲーム</option>
+							<option value="5"
+								th:selected="${project.genre.split(',')[0]=='5'}">シミュレーションゲーム</option>
+							<option value="6"
+								th:selected="${project.genre.split(',')[0]=='6'}">レースゲーム</option>
+							<option value="7"
+								th:selected="${project.genre.split(',')[0]=='7'}">パズルゲーム</option>
+							<option value="8"
+								th:selected="${project.genre.split(',')[0]=='8'}">サンドボックス</option>
+							<option value="9"
+								th:selected="${project.genre.split(',')[0]=='9'}">音楽ゲーム</option>
+							<option value="10"
+								th:selected="${project.genre.split(',')[0]=='10'}">テーブルゲーム</option>
+							<option value="11"
+								th:selected="${project.genre.split(',')[0]=='11'}">スポーツゲーム</option>
+						</select><br> <select name="genre2" class="tag02" size="1">
+							<option value="0">タグを追加する</option>
+							<option value="1"
+								th:selected="${project.genre.split(',')[1]=='1'}">アクションゲーム</option>
+							<option value="2"
+								th:selected="${project.genre.split(',')[1]=='2'}">ロールプレイングゲーム</option>
+							<option value="3"
+								th:selected="${project.genre.split(',')[1]=='3'}">シューティングゲーム</option>
+							<option value="4"
+								th:selected="${project.genre.split(',')[1]=='4'}">アドベンチャーゲーム</option>
+							<option value="5"
+								th:selected="${project.genre.split(',')[1]=='5'}">シミュレーションゲーム</option>
+							<option value="6"
+								th:selected="${project.genre.split(',')[1]=='6'}">レースゲーム</option>
+							<option value="7"
+								th:selected="${project.genre.split(',')[1]=='7'}">パズルゲーム</option>
+							<option value="8"
+								th:selected="${project.genre.split(',')[1]=='8'}">サンドボックス</option>
+							<option value="9"
+								th:selected="${project.genre.split(',')[1]=='9'}">音楽ゲーム</option>
+							<option value="10"
+								th:selected="${project.genre.split(',')[1]=='10'}">テーブルゲーム</option>
+							<option value="11"
+								th:selected="${project.genre.split(',')[1]=='11'}">スポーツゲーム</option>
 						</select>
 					</div>
 					<!-- チェックボックス -->
 					<div class="checkbox00">
 						<div class="release">
-							<input type="checkbox" name="openflg" style="transform: scale(1.5);"
-								id="checkbox01" class="release0" th:checked="${project.openflg}"/> <label for="checkbox01">コードを公開します</label>
+							<input type="checkbox" name="openflg"
+								style="transform: scale(1.5);" id="checkbox01" class="release0"
+								th:checked="${project.openflg}" /> <label for="checkbox01">コードを公開します</label>
 						</div>
 						<div class="permission">
-							<input type="checkbox" name="dlflg"style="transform: scale(1.5);"
-								id="checkbox02" class="permission0" th:checked="${project.dlflg}"/> <label for="checkbox02">DLを許可します</label>
+							<input type="checkbox" name="dlflg"
+								style="transform: scale(1.5);" id="checkbox02"
+								class="permission0" th:checked="${project.dlflg}" /> <label
+								for="checkbox02">DLを許可します</label>
 						</div>
 					</div>
 					<div class="btn00">
@@ -71,50 +94,39 @@
 				</div>
 				<div id="right_items">
 					<!-- タイトル記入 -->
-					<!-- <div class="title00"> -->
 					<p class="title01">タイトル</p>
-					<input type="text" name="name" class="title02" required maxlength="100" placeholder="タイトルを入力してください" th:value="${project.name}">
-					<!-- </div> -->
-					<!-- <div class="memo00"> -->
+					<input type="text" name="name" class="title02" required
+						maxlength="100" placeholder="タイトルを入力してください"
+						th:value="${project.name}">
+
+
 					<p class="memo01">概要欄</p>
-					<textarea name="intro" cols="50" rows="100" class="memo02" placeholder="概要欄" th:text="${project.intro}"></textarea>
-					<!-- </div> -->
-					<!-- ボタン -->
+					<textarea name="intro" cols="50" rows="100" class="memo02"
+						placeholder="概要欄" th:text="${project.intro}"></textarea>
 				</div>
 			</form>
 
 		</div>
 	</section>
-	<script>
-		/*画像プレビューJS*/
-		const inpFile = document.getElementById("inpFile");
-		const previewContainer = document.getElementById("imagePreview");
-		const previewImage = previewContainer
-				.querySelector(".image-preview__image");
-		const previewDefaultText = previewContainer
-				.querySelector(".image-preview__default-text");
-
-		inpFile.addEventListener("change", function() {
-			const file = this.files[0];
-
-			if (file) {
-				const reader = new FileReader();
-
-				previewDefaultText.style.display = "none";
-				previewImage.style.display = "block";
-
-				reader.addEventListener("load", function() {
-					previewImage.setAttribute("src", this.result);
-				});
-
-				reader.readAsDataURL(file);
-			} else {
-				previewDefaultText.style.display = "null";
-				previewImage.style.display = "null";
-				previewImage.setAttribute("src", "");
-			}
-		});
-	</script>
 </body>
-
+<script>
+/*画像プレビューJS*/
+window.onload = function () {
+    const inpFile = document.getElementById("inpFile");
+    const previewContainer = document.getElementsByClassName("image-preview__image")[0];
+    inpFile.addEventListener("change", function () {
+        const file = this.files[0];
+        const reader = new FileReader();
+        const imgReader = new Image();
+        reader.onloadend = () => {
+            imgReader.onload = () => {
+                const imgType = imgReader.src.substring(5, imgReader.src.indexOf(';'));
+                previewContainer.src = imgReader.src;//インプット画像確認
+            }
+            imgReader.src = reader.result;
+        }
+        reader.readAsDataURL(file);
+    });
+}
+</script>
 </html>
