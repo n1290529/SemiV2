@@ -319,18 +319,19 @@ Blockly.JavaScript['change_background'] = function(block) {
 
 Blockly.JavaScript['change_size'] = function(block) {
   var dropdown_object = Blockly.JavaScript.valueToCode(block, 'input_dropbox', Blockly.JavaScript.ORDER_NONE);
+  var dropdown_select_xy = block.getFieldValue('select_xy');
   var value_input = Blockly.JavaScript.valueToCode(block, 'input', Blockly.JavaScript.ORDER_ATOMIC);
 
   let check_type = block.getInput('input_dropbox').connection.targetConnection.sourceBlock_.type;
   var code = 'Semi_change_size('
   if(check_type === "obj_dropbox"){
-    code += '"' + dropdown_object + '", ' + value_input + ');\n';
+    code += '"' + dropdown_object + '","'+dropdown_select_xy+'",'+value_input+');\n';
   }
   else if(check_type === "text"){
-    code += dropdown_object + ', ' + value_input + ');\n';
+    code += dropdown_object + ',"'+dropdown_select_xy+'",'+value_input+');\n';
   }
   else if(check_type === "variables_get"){
-    code += dropdown_object + ', ' + value_input + ');\n';
+    code += dropdown_object + ',"'+dropdown_select_xy+'",'+value_input+');\n';
   }
   // console.log(dropdown_object+"abcdefg"+value_input);
   
@@ -375,17 +376,18 @@ Blockly.JavaScript['show'] = function(block) {
 
 Blockly.JavaScript['get_size'] = function(block) {
   var dropdown_object = Blockly.JavaScript.valueToCode(block, 'input_dropbox', Blockly.JavaScript.ORDER_NONE);
+  var dropdown_select_xy = block.getFieldValue('select_xy');
 
   let check_type = block.getInput('input_dropbox').connection.targetConnection.sourceBlock_.type;
   var code = 'Semi_get_size('
   if(check_type === "obj_dropbox"){
-    code += '"' + dropdown_object + '")';
+    code += '"' + dropdown_object + '","'+dropdown_select_xy+'")';
   }
   else if(check_type === "text"){
-    code += dropdown_object + ')';
+    code += dropdown_object +',"'+dropdown_select_xy+'")';
   }
   else if(check_type === "variables_get"){
-    code += dropdown_object + ')';
+    code += dropdown_object +',"'+dropdown_select_xy+'")';
   }
 
   return [code, Blockly.JavaScript.ORDER_NONE];
