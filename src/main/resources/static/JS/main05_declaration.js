@@ -489,15 +489,18 @@ Blockly.Blocks['change_background'] = {
   }
 };
 
+
 Blockly.Blocks['change_size'] = {
   init: function () {
     this.appendValueInput("input_dropbox")
       .setCheck(["String"])
     this.appendValueInput("input")
       .setCheck("Number")
-      .appendField("のサイズを");
+      .appendField("の")
+      .appendField(new Blockly.FieldDropdown([["XY", "xy"],["X", "x"], ["Y", "y"]]), "select_xy")
+      .appendField("の大きさを");
     this.appendDummyInput()
-      .appendField("に変更する");
+      .appendField("にする");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -565,7 +568,9 @@ Blockly.Blocks['get_size'] = {
     this.appendValueInput("input_dropbox")
       .setCheck(["String"])
     this.appendDummyInput()
-      .appendField("の現在の大きさを取得する");
+    .appendField("の")
+      .appendField(new Blockly.FieldDropdown([["X", "x"], ["Y", "y"]]), "select_xy")
+      .appendField("の大きさを取得する");
     this.setInputsInline(true);
     this.setOutput(true, "Number");
     this.setColour("#e9724e");
