@@ -3,7 +3,15 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head
 	th:replace="HTML/topsidebar :: meta_header('マイフォルダー',~{::meta},~{::link},~{::script})">
+
 <link rel="stylesheet" th:href="@{/CSS/004-01_User_folder.css}">
+<script th:src="@{/JS/004-01_User_folder.js}"></script>
+<script>
+	var projectsName = [];
+</script>
+<script th:inline="javascript" th:each="projects : ${projectList}">
+	projectsName.push(/*[[${projects.name}]]*/);
+</script>
 </head>
 <body>
 	<div th:replace="HTML/topsidebar :: headbar"></div>

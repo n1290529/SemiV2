@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.semi.vp.entity.Projecttbl;
 import com.semi.vp.form.ProjectConfigForm;
 
 import com.semi.vp.service.ProjectService;
@@ -44,7 +43,7 @@ public class Entry_verification_Controller {
 		// セッション(email)からusertblのユーザーIDを取得,URLのtitleと併せてprojectレコードを一意検索
 		String userId = usertblservice.oneReco(authentication.getName()).getId();
 		model.addAttribute("project", projectservice.getProjectOneReco(userId, title));
-
+		System.out.println(title);
 		return "HTML/004-03_Entry_verification";
 	}
 

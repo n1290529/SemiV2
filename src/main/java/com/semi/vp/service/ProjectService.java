@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.semi.vp.entity.Projecttbl;
-import com.semi.vp.entity.Usertbl;
 import com.semi.vp.form.ProjectConfigForm;
 import com.semi.vp.repository.ProjectRepository;
 
@@ -197,6 +196,8 @@ public class ProjectService {
 	 */
 	public void searchProjctDir(Projecttbl project, Object json) {
 		File userFileExist = new File("." + project.getAddress());
+		System.out.println(userFileExist);
+		System.out.println(!userFileExist.exists());
 		if (!userFileExist.exists()) {
 			// 作業ディレクトリが存在しない場合の処理
 			usertblservice.makeDir(project.getAddress());
