@@ -80,7 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.usernameParameter("username")
 			.passwordParameter("password")
 			// ログインに成功した場合の遷移先
-			.defaultSuccessUrl("/common", true);
+			.defaultSuccessUrl("/top", true);
 		
 		// ログアウトに関する設定
 		http
