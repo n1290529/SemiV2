@@ -1,10 +1,6 @@
 package com.semi.vp.form;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Map;
-
-import antlr.collections.List;
 import lombok.Data;
 
 @Data

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.semi.vp.form.RegisterForm;
-import com.semi.vp.form.SignupForm;
 
 @Controller
 public class foget_pass_Controller {

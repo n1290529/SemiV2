@@ -37,6 +37,18 @@
 
 
 
+<<<<<<< HEAD
+<script th:src="@{https://unpkg.com/fabric@latest/dist/fabric.js}"></script>
+<script
+	th:src="@{https://unpkg.com/fabric@latest/src/mixins/eraser_brush.mixin.js}"></script>
+<script
+	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+<script
+	th:src="@{https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js}"></script>
+<script th:inline="javascript">
+	const inputJson = JSON.parse(/*[[${inputJson}]]*/);
+</script>
+=======
 	<script th:src="@{https://unpkg.com/fabric@latest/dist/fabric.js}"></script>
 	<script th:src="@{https://unpkg.com/fabric@latest/src/mixins/eraser_brush.mixin.js}"></script>
 	<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
@@ -46,6 +58,7 @@
 
 		console.log(inputJson);
 	</script>
+>>>>>>> refs/remotes/origin/master
 </head>
 
 <body>

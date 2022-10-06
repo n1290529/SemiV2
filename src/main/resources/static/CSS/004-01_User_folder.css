@@ -1,9 +1,7 @@
 /* 検索結果画面のcss */
 /* 背景設定（いじるな） */
-html,
-body {
-  min-width: 628px;
-
+html, body {
+	min-width: 628px;
 }
 /*
 #main {
@@ -12,149 +10,149 @@ body {
   height: 100%;
 } */
 body::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+	width: 10px;
+	height: 10px;
 }
 
 body::-webkit-scrollbar-track {
-  background: #11101d;
-  box-shadow: 0 0 5px #100e1d inset;
+	background: #11101d;
+	box-shadow: 0 0 5px #100e1d inset;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #CCC;
-  /* border-left: 3px solid #100e1d;
+	background: #CCC;
+	/* border-left: 3px solid #100e1d;
   border-right: 3px solid #100e1d; */
-  border-radius: 5px;
+	border-radius: 5px;
 }
 
 .searchlist00 {
-  position: relative;
-  margin: 0 auto;
-  padding: 0;
-  width: fit-content;
-  height: 100%;
-  background-color: #222b36;
-  overflow: hidden;
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+	width: fit-content;
+	height: 100%;
+	background-color: #222b36;
+	overflow: hidden;
 }
 
 /* 検索結果制作物一覧(おおまかなところ) */
 .searchlist01 {
-  float: left;
-  margin-top: 20px;
-  margin-left: 20px;
-  padding: 0;
-  min-width: 500px;
-  min-height: 180px;
-  max-width: 500px;
-  max-height: 180px;
-  border: solid 2px;
-  border-color: #fff;
-  border-radius: 6px;
-  background-color: #11101d;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+	padding: 0;
+	min-width: 500px;
+	min-height: 180px;
+	max-width: 500px;
+	max-height: 180px;
+	border: solid 2px;
+	border-color: #fff;
+	border-radius: 6px;
+	background-color: #11101d;
+}
+
+.searchlist01:hover{
+  border-color: rgb(77, 139, 255);
 }
 
 .searchlist02 {
-  position: relative;
-  display: flex;
-  /* margin-top: 20px;
-  margin-left: 20px; */
-  padding: 0;
-  min-width: 500px;
-  min-height: 180px;
-  max-width: 500px;
-  max-height: 180px;
+	position: relative;
+	display: flex;
+	padding: 0;
+	width: 496px;
+	height: 176px;
 }
 
 .searchfile {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  border: none;
-  left: 220px;
-  bottom: 120px;
-  font-size: 20px;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: none;
+	left: 220px;
+	bottom: 120px;
+	font-size: 20px;
 }
 
 .searchfileicon.i0 {
-  position: relative;
-  margin-top: 18px;
-  padding: 0;
-  /* top: 12px; */
-  border: none;
-  display: block;
-  width: 224px;
-  height: 140px;
+	position: relative;
+	margin-top: 18px;
+	padding: 0;
+	/* top: 12px; */
+	border: none;
+	display: block;
+	width: 224px;
+	height: 140px;
 }
 
 /* 検索結果制作物中身 */
 .searchfileicon.i1 {
-  position: relative;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border: none;
-  color: #fff;
-  width: 272px;
-  height: 176px;
+	position: relative;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: none;
+	color: #fff;
+	width: 272px;
+	height: 176px;
 }
 
 .searchfileicon.i1 span.title {
-  font-size: 19px;
+	font-size: 19px;
 }
 
 .searchfileicon.i1 span.ap_flg {
-  font-size: small;
-  color: rgb(129, 129, 129);
+	font-size: small;
+	color: rgb(129, 129, 129);
 }
 
 .searchfileicon.i1 div {
-  position: absolute;
-  bottom: 18px;
-  right: 0;
+	position: absolute;
+	bottom: 18px;
+	right: 0;
 }
 
 .searchfileicon.i1 div span.views {
-  font-size: small;
-  color: rgb(129, 129, 129);
+	font-size: small;
+	color: rgb(129, 129, 129);
 }
 
 .searchfileicon.i1 div span.date {
-  font-size: small;
-  color: rgb(129, 129, 129);
+	font-size: small;
+	color: rgb(129, 129, 129);
 }
 
 .searchproducer {
-  margin-left: 10px;
-  max-width: 200px;
-  font-size: 16px;
-  border: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border: none;
-  color: #fff;
-  background-color: #11101d;
+	margin-left: 10px;
+	max-width: 200px;
+	font-size: 16px;
+	border: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: none;
+	color: #fff;
+	background-color: #11101d;
 }
 
 .searchproductiondate {
-  margin-left: 10px;
-  max-width: 200px;
-  font-size: 16px;
-  border: none;
-  color: #fff;
-  background-color: #11101d;
+	margin-left: 10px;
+	max-width: 200px;
+	font-size: 16px;
+	border: none;
+	color: #fff;
+	background-color: #11101d;
 }
 
 .searchuserviews {
-  margin-left: 10px;
-  max-width: 240px;
-  font-size: 16px;
-  border: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: right;
-  color: #fff;
-  background-color: #11101d;
+	margin-left: 10px;
+	max-width: 240px;
+	font-size: 16px;
+	border: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: right;
+	color: #fff;
+	background-color: #11101d;
 }
