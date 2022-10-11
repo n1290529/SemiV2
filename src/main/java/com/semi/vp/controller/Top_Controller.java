@@ -16,19 +16,17 @@ import com.semi.vp.service.UsertblService;
 public class Top_Controller {
 	@Autowired
 	UsertblService usertblservice;
-	
 
 	@RequestMapping(value = "/top", method = RequestMethod.GET)
 	public String displayList(HttpServletRequest request, Model model) {
-		
-		try {
-			HttpSession session = request.getSession();
-			SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
+
+		HttpSession session = request.getSession();
+		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
+		System.out.println(securityContext != null);
+		if (securityContext != null) {
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
-			System.out.println("aaaaa"+authentication.getName());
-			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));			
-		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("こんにちは" + authentication.getName());
+			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		}
 		return "HTML/002-01-01_Top";
 	}

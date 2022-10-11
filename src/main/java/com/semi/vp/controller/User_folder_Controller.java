@@ -24,12 +24,13 @@ public class User_folder_Controller {
 	public String displayList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
+		if (securityContext != null) {
+			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
+			String userId = usertblservice.oneReco(authentication.getName()).getId();
+			model.addAttribute("projectList", projectservice.getProjects(userId));
 
-		String userId = usertblservice.oneReco(authentication.getName()).getId();
-		model.addAttribute("projectList", projectservice.getProjects(userId));
-
-		model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
+			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
+		}
 		return "HTML/004-01_User_folder";
 	}
 }

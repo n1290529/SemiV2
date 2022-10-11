@@ -53,7 +53,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					//パスワード再登録
 					"/forgetpass","/registerpass",
 					"/common",
-					"/user/create").permitAll()
+					"/create",
+					"/create/2d",
+					"/myfolder"
+					).permitAll()
 
 			// /adminはADMINロールを持つユーザだけアクセス可能
 			.antMatchers("/admin").hasRole("ADMIN")

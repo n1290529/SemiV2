@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org/"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head
-	th:replace="HTML/topsidebar :: meta_header('マイフォルダー',~{::meta},~{::link},~{::script})">
+	th:replace="HTML/topsidebar :: meta_header('マイフォルダ',~{::meta},~{::link},~{::script})">
 
 <link rel="stylesheet" th:href="@{/CSS/004-01_User_folder.css}">
 <script th:src="@{/JS/004-01_User_folder.js}"></script>
@@ -19,10 +19,16 @@
 
 	<section class="home-section">
 		<div id="main">
+			<div sec:authorize="!isAuthenticated()">
+				<p>ログインしないと使用できません。使用したい場合は以下のリンクからログインしてください</p>
+				<a th:href="${'/signin'}">サインイン</a>
+			</div>
 			<!-- 検索結果 -->
-			<div class="searchlist00">
-				<div class="searchlist01" th:each="projects : ${projectList}"
-					th:object="${project}">
+			<div sec:authorize="isAuthenticated()" class="searchlist00">
+				<div th:if=" ${#lists.isEmpty(projectList)}">
+					<p>保存されたプロジェクトは存在しません</p>
+				</div>
+				<div class="searchlist01" th:each="projects : ${projectList}" th:object="${project}">
 					<div class="searchlist02">
 						<img class="searchfileicon i0"
 							th:src="@{${projects.getAddress() + '/thumbnail.png'}}"

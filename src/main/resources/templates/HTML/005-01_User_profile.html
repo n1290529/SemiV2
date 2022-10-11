@@ -5,6 +5,7 @@
 	th:replace="HTML/topsidebar :: meta_header('プロフィール',~{::meta},~{::link},~{::script})">
 
 <link rel="stylesheet" th:href="@{/CSS/005-01_User_profile.css}">
+<script th:src="@{/JS/005-01_User_profile.js}"></script>
 </head>
 <body>
 	<div th:replace="HTML/topsidebar :: headbar"></div>
@@ -21,7 +22,7 @@
 							<div class="ap00">
 								<input type="file" name="inpFile" id="inpFile">
 								<div class="image-preview" id="imagePreview">
-									<img src="" alt="Image Preview" class="image-preview__image">
+									<img src="" class="image-preview_image">
 									<span class="image-preview__default-text">Image Preview</span>
 								</div>
 							</div>
@@ -125,35 +126,5 @@
 			</div>
 		</div>
 	</section>
-	<script>
-		/*画像プレビューJS*/
-		const inpFile = document.getElementById("inpFile");
-		const previewContainer = document.getElementById("imagePreview");
-		const previewImage = previewContainer
-				.querySelector(".image-preview__image");
-		const previewDefaultText = previewContainer
-				.querySelector(".image-preview__default-text");
-
-		inpFile.addEventListener("change", function() {
-			const file = this.files[0];
-
-			if (file) {
-				const reader = new FileReader();
-
-				previewDefaultText.style.display = "none";
-				previewImage.style.display = "block";
-
-				reader.addEventListener("load", function() {
-					previewImage.setAttribute("src", this.result);
-				});
-
-				reader.readAsDataURL(file);
-			} else {
-				previewDefaultText.style.display = "null";
-				previewImage.style.display = "null";
-				previewImage.setAttribute("src", "");
-			}
-		});
-	</script>
 </body>
 </html>
