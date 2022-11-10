@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,6 @@ import com.semi.vp.repository.ProjectRepository;
  */
 @Service
 public class ProjectService {
-
-//User_tblのRpository呼び出しとUtblRepoでの実装
 	@Autowired
 	ProjectRepository ProjctRepo;
 	@Autowired
@@ -48,8 +45,8 @@ public class ProjectService {
 	 * @param id プロジェクトID
 	 * @return プロジェクト情報（一件）
 	 */
-	public Optional<Projecttbl> searchId(String id) {
-		return ProjctRepo.findById(id);
+	public Projecttbl searchId(String id) {
+		return ProjctRepo.findById(id).get();
 	}
 
 	/**
@@ -149,7 +146,7 @@ public class ProjectService {
 	public void setProjectImg(MultipartFile img, Projecttbl project) {
 		if (!img.isEmpty()) {
 			Path path = Paths.get("." + project.getAddress() + "/thumbnail"
-					+ img.getOriginalFilename().substring(img.getOriginalFilename().indexOf(".")));
+					+ img.getOriginalFilename().substring(img.getOriginalFilename().lastIndexOf(".")));
 			File imgFile = new File(path.toString());
 			if (imgFile.exists()) {
 				try {
@@ -184,7 +181,6 @@ public class ProjectService {
 				System.out.println("例外エラー,作業ディレクトリが存在しない");// 消さないで
 			}
 		}
-
 	}
 
 	/**
@@ -196,8 +192,6 @@ public class ProjectService {
 	 */
 	public void searchProjctDir(Projecttbl project, Object json) {
 		File userFileExist = new File("." + project.getAddress());
-		System.out.println(userFileExist);
-		System.out.println(!userFileExist.exists());
 		if (!userFileExist.exists()) {
 			// 作業ディレクトリが存在しない場合の処理
 			usertblservice.makeDir(project.getAddress());

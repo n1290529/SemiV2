@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head
+	th:replace="HTML/topsidebar :: meta_header('プロフィール',~{::meta},~{::link},~{::script})">
+
+<link rel="stylesheet" th:href="@{/CSS/005-01_User_profile.css}">
+<script th:src="@{/JS/005-01_User_profile.js}"></script>
+</head>
+<body>
+	<div th:replace="HTML/topsidebar :: headbar"></div>
+	<div th:replace="HTML/topsidebar :: sidebar"></div>
+	<section class="home-section">
+		<div class="apload">
+			<!-- 画像プレビュー -->
+
+			<!-- 枠のある場所 -->
+			<div class="profilechangelist02">
+				<form th:action="@{/profile/edit}" th:method="put">
+					<div class="profilechangelist01">
+						<div class="ap">
+							<div class="ap00">
+								<div class="image-preview" id="imagePreview">
+									<img src="" class="image-preview_image">
+									<span class="image-preview__default-text">Image Preview</span>
+								</div>
+							</div>
+							<!-- ユーザーの名前 -->
+							<div class="ap01">
+								<p class="tag required">名前</p>
+								<input type="text" class="usernamechange02" name="name"
+									th:value="${user.name}" placeholder="名前を入力してください"
+									required="required">
+								<table>
+									<tr>
+										<td>
+											<p class="userdateofbirth01 required">生年月日</p>
+										</td>
+										<td>
+											<p class="userdateofbirth01 required">性別</p>
+										</td>
+									</tr>
+									<tr>
+										<!-- 生年月日 -->
+										<td>
+											<div class="userdateofbirth00">
+												<input type="date" class="userdateofbirth02" name="birth"
+													required="required" placeholder="生年月日を入力してください"
+													th:value="${user.birth}">
+											</div>
+										</td>
+										<!-- 性別チェックボックス -->
+										<td>tinko</td>
+									</tr>
+								</table>
+								<!-- 登録日 -->
+								<p class="userregisterdate"
+									th:text="${#temporals.format(user.entry, 'yyyy/MM/dd HH:mm') + '登録'}"></p>
+							</div>
+						</div>
+						<div class="ap2">
+							<!-- 職業 -->
+							<div class="userjobs00">
+								<p class="userjobs01">職業</p>
+								<input type="text" class="userjobs02" name="job"
+									placeholder="  職業を入力してください" th:value="${user.job}">
+							</div>
+							<!-- おきにジャンル -->
+							<div class="tag00">
+								<p class="favoritegenre">お気に入りのジャンル</p>
+							</div>
+						</div>
+					</div>
+					<!-- 自己紹介 -->
+					<div class="selfintroduction00">
+						<textarea cols="70" rows="50" class="selfintroduction02"
+							placeholder="自己紹介" th:text="${user.profile}" name="profile"></textarea>
+					</div>
+					<!-- ボタン -->
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

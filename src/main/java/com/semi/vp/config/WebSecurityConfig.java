@@ -42,20 +42,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			// /**はアクセス制限をかけない
 
 			.authorizeRequests().antMatchers(
-					"/CSS/**","/IMG/**","/JS/**","/users/**",
-
+					"/CSS/**","/IMG/**","/JS/**","/users/**","/DEFAULT_DATA/**",
 					//トップ画面
 					"/top",
 					//サインイン画面
 					"/signin",
 					//サインアップ画面
-					"/signup","/signup/register",
+					"/signup",
+					"/signup/register",
 					//パスワード再登録
-					"/forgetpass","/registerpass",
+					"/forgetpass",
+					"/registerpass",
 					"/common",
 					"/create",
-					"/create/2d",
-					"/myfolder"
+					"/create/2d"
 					).permitAll()
 
 			// /adminはADMINロールを持つユーザだけアクセス可能

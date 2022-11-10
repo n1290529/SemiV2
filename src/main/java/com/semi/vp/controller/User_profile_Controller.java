@@ -34,9 +34,15 @@ public class User_profile_Controller {
 		model.addAttribute("user", usertblservise.oneReco(authentication.getName()));
 		return "HTML/005-01_User_profile";
 	}
-	
+	/**
+	 * ユーザー情報更新
+	 * 
+	 * @param request セッション情報
+	 * @param userForm 更新情報
+	 * @return HTML/005-01_User_profileに戻る
+	 */
 	@RequestMapping(value = "/profile/edit", method = RequestMethod.PUT)
-	public String profileEdit(HttpServletRequest request, Model model, @Validated @ModelAttribute UserForm userForm) {
+	public String profileEdit(HttpServletRequest request, @Validated @ModelAttribute UserForm userForm) {
 		HttpSession session = request.getSession();
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
