@@ -1,0 +1,224 @@
+body {
+  min-width: 1000px;
+}
+/* アップロード画面のcss */
+/* 背景設定（いじるな） */
+.apload {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  width: calc(100% - 78px);
+  height: calc(100% - 64px);
+  min-width: 912px;
+  min-height: calc(100% - 64px);
+  background-color: #222b36;
+}
+
+/* 背景その２ */
+.profilechangelist02 {
+  position: absolute;
+  padding: 0;
+  width: 900px;
+  height: 800px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  border: none;
+  border-radius: 24px;
+  background-color: #11101d;
+}
+
+/*問題名*/
+.questionname {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 700px;
+  height: 50px;
+  top: 70px;
+  left: 90px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+/*難易度とかが書いてある場所の全部*/
+.questioncontents {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 700px;
+  height: 200px;
+  top: 210px;
+  left: 90px;
+  font-size: 24px;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+/*中身の整列*/
+.questionnotime {
+  float: left;
+}
+
+.questionlevel {
+  float: left;
+}
+
+.questionhuman {
+  float: left;
+}
+
+.questionanswer {
+  float: left;
+}
+
+/*ボタンどもの配置*/
+.btns {
+  position: absolute;
+  top: 500px;
+  left: 290px;
+}
+
+.btn_06-2 {
+  top: 20px;
+}
+
+/* ボタンその１(挑戦) */
+a.btn_06-2 {
+  display: block;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-decoration: none;
+  text-align: center;
+  padding: 25px 80px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  box-sizing: border-box;
+  max-width: 360px;
+  margin: 0 auto;
+  position: relative;
+}
+
+a.btn_06-2 span {
+  position: relative;
+  display: block;
+  transform: translate(-3px, -3px);
+  transition: 0.3s;
+  z-index: +1;
+}
+
+a.btn_06-2:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background: #e60033;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transform: translate(-3px, -3px);
+  transition: 0.3s;
+}
+
+a.btn_06-2:hover span {
+  transform: translate(0, 0);
+}
+
+a.btn_06-2:hover:after {
+  transform: translate(0, 0);
+}
+
+@media all and (max-width: 1023px) {
+  a.btn_06-2 {
+    font-size: 18px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  a.btn_06-2 {
+    font-size: 16px;
+  }
+}
+
+/* ボタンその２(紹介) */
+a.btn_06-1 {
+  display: block;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-decoration: none;
+  text-align: center;
+  padding: 25px 80px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  box-sizing: border-box;
+  max-width: 360px;
+  margin: 0 auto;
+  position: relative;
+}
+
+a.btn_06-1 span {
+  position: relative;
+  display: block;
+  transform: translate(-3px, -3px);
+  transition: 0.3s;
+  z-index: +1;
+}
+
+a.btn_06-1:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background: #ee7b1a;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transform: translate(-3px, -3px);
+  transition: 0.3s;
+}
+
+a.btn_06-1:hover span {
+  transform: translate(0, 0);
+}
+
+a.btn_06-1:hover:after {
+  transform: translate(0, 0);
+}
+
+@media all and (max-width: 1023px) {
+  a.btn_06-1 {
+    font-size: 18px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  a.btn_06-2 {
+    font-size: 16px;
+  }
+}
+
+/*答えを見る*/
+.answertoker {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 700px;
+  left: 390px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+}

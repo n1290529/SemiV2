@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head
+	th:replace="HTML/topsidebar :: meta_header('トップ',~{::meta},~{::link},~{::script})">
+<title>問題挑戦確認画面</title>
+<link rel="stylesheet" href="/CSS/006-02_Problem_details.css">
+
+</head>
+
+<body>
+	<div th:replace="HTML/topsidebar :: headbar"></div>
+	<div th:replace="HTML/topsidebar :: sidebar"></div>
+	<section class="home-section">
+		<div class="apload">
+			<!-- 囲ってある場所 -->
+			<div class="profilechangelist02">
+				<input type="text" class="questionname" name="name"
+					value="問題名:こちら葛飾区亀有公園前派出所" readonly>
+				<div class="questioncontents">
+					<div class="questionrank">ランクB</div>
+					<div class="questionnotime">制限時間6時間</div>
+					<div class="questionhuman">受講者数4649人</div>
+					<div class="questiontime">平均回答時間36分2秒</div>
+					<div class="questionlevel">難易度999RP</div>
+					<div class="questionanswer">正解率99.9%</div>
+					<div class="questionscore">平均スコア74.0点</div>
+				</div>
+				<div class="btns">
+					<div class="btn01">
+						<a href="#" class="btn_06-1"><span>問題紹介文表示</span></a>
+					</div>
+					<div class="btn00">
+						<a href="#" class="btn_06-2"><span>挑戦する</span></a>
+					</div>
+				</div>
+				<a href="#" class="answertoker">答えを見る</a>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

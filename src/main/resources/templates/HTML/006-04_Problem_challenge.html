@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head
+	th:replace="HTML/topsidebar :: meta_header('トップ',~{::meta},~{::link},~{::script})">
+<link rel="stylesheet" href="/CSS/006-04_Problem_challenge.css">
+<title>問題挑戦画面</title>
+</head>
+
+<body>
+	<div th:replace="HTML/topsidebar :: headbar"></div>
+	<div th:replace="HTML/topsidebar :: sidebar"></div>
+	<section class="home-section">
+		<div id="main">
+			<h1>問題名</h1>
+			<div id="text">
+				<p>本文</p>
+			</div>
+			<div id="terms">
+				<div>
+					<dl>
+						<dt>入力</dt>
+						<dd>用語に対する説明</dd>
+					</dl>
+				</div>
+				<div>
+					<dl>
+						<dt>出力</dt>
+						<dd>用語に対する説明</dd>
+					</dl>
+				</div>
+				<div>
+					<dl>
+						<dt>条件</dt>
+						<dd>用語に対する説明</dd>
+					</dl>
+				</div>
+			</div>
+			<div id="ex">
+				<div>
+					<dl>
+						<dt>入力例１</dt>
+						<dd>入力例</dd>
+					</dl>
+				</div>
+				<div>
+					<dl>
+						<dt>出力例１</dt>
+						<dd>出力例</dd>
+					</dl>
+				</div>
+			</div>
+			<div id="ans_items">
+				<input type="button" value="解答表示" id="ans_btn">
+				<p id="button_inr">※解答を確認した時点で０点になります</p>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

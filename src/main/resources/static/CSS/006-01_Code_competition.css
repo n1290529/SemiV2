@@ -1,0 +1,39 @@
+#main h1 {
+    font-size: 33px;
+}
+
+.task {
+    width: 600px;
+    height: 80px;
+    border: solid 2px rgb(131, 130, 130);
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+
+.task .task_top {
+    display: flex;
+    width: 596px;
+    height: 28px;
+    box-sizing: border-box;
+    background-color: #ccc;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.task .task_top div {
+    margin-left: auto;
+}
+
+.task .task_bottom {
+    width: 596px;
+    height: 48px;
+    background-color: #e0e0e0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-sizing: border-box;
+}
+
+.task .task_bottom span {
+    font-size: 0.3em;
+}
