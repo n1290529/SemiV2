@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="HTML/topsidebar :: meta_header('フォロー.フォロワー確認画面',~{::meta},~{::link},~{::script})">
+	<link rel="stylesheet" th:href="@{/CSS/005-02_User_Follow_list.css}">
+</head>
+
+<body>
+
+	<div th:replace="HTML/topsidebar :: headbar"></div>
+	<div th:replace="HTML/topsidebar :: sidebar"></div>
+
+	<section class="home-section">
+		<div class="area">
+			<input type="radio" name="tab" id="tab1" onchange="Follow_func()" checked>
+			<label class="tab_class" for="tab1">フォローリスト</label>
+			<div id="follow_content" class="content_class">
+				<!-- タブ1のコンテンツを表示します -->
+				<div class="user_info" th:each="follow : ${followList}" th:object="${followList}">
+					<table class="user_table">
+						<tr>
+							<td class="user_icon"><img class="user_icon_img"
+									src="C:\Users\kousu\Desktop\新しいフォルダー (2)\profile.jpg" width="50" height="50"></td>
+							<td class="user_name"><a th:href="${'/top'}" th:text="${follow.name}"></a></td>
+						</tr>
+					</table>
+					<div th:text="${follow.profile}">
+					</div>
+				</div>
+			</div>
+			<input type="radio" name="tab" id="tab2" onchange="Follower_func()">
+			<label class="tab_class" for="tab2">フォロワーリスト</label>
+			<div id="follower_content" class="content_class">
+				<div class="user_info" th:each="follower : ${followerList}" th:object="${followerList}">
+					<table class="user_table">
+						<tr>
+							<td class="user_icon"><img class="user_icon_img"
+									src="C:\Users\kousu\Desktop\新しいフォルダー (2)\profile.jpg" width="50" height="50"></td>
+							<td class="user_name"><a th:href="${'/top'}" th:text="${follower.name}"></a></td>
+						</tr>
+					</table>
+					<div th:text="${follower.profile}">
+					</div>
+				</div>
+				<!-- タブ2のコンテンツを表示します -->
+			</div>
+		</div>
+	</section>
+	<script>
+		/*サイドバーのJS*/
+		let arrow = document.querySelectorAll(".arrow");
+		for (var i = 0; i < arrow.length; i++) {
+			arrow[i].addEventListener("click", (e) => {
+				let arrowParent = e.target.parentElement.parentElement;
+				arrowParent.classList.toggle("showMenu");
+			});
+		}
+		let sidebar = document.querySelector(".sidebar");
+		let sidebarBtn = document.querySelector(".bxs-bug-alt");
+		console.log(sidebarBtn);
+		sidebarBtn.addEventListener("click", () => {
+			sidebar.classList.toggle("close");
+		});
+		/*画像プレビューJS*/
+		const inpFile = document.getElementById("inpFile");
+		const previewContainer = document.getElementById("imagePreview");
+		const previewImage = previewContainer.querySelector(".image-preview__image");
+		const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+
+		inpFile.addEventListener("change", function () {
+			const file = this.files[0];
+
+			if (file) {
+				const reader = new FileReader();
+
+				previewDefaultText.style.display = "none";
+				previewImage.style.display = "block";
+
+				reader.addEventListener("load", function () {
+					previewImage.setAttribute("src", this.result);
+				});
+
+				reader.readAsDataURL(file);
+			} else {
+				previewDefaultText.style.display = "null";
+				previewImage.style.display = "null";
+				previewImage.setAttribute("src", "");
+			}
+		});
+	</script>
+</body>
+
+</html>

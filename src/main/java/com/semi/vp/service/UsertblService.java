@@ -6,12 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.semi.vp.dto.UserDto;
 import com.semi.vp.entity.Usertbl;
 import com.semi.vp.form.SignupForm;
 import com.semi.vp.form.UserForm;
@@ -47,25 +47,28 @@ public class UsertblService {
 		UtblRepo.save(newA);
 	}
 
+	/**
+	 * ユーザー情報変更
+	 * 
+	 * @param id   ユーザーID
+	 * @param form 登録情報
+	 */
 	public void UpdateAccount(String id, UserForm form) {
-		Usertbl changeStatusUser = UtblRepo.findById(id).get();
-		changeStatusUser.setName(form.getName());
-		changeStatusUser.setBirth(form.getBirth());
-		changeStatusUser.setSex(form.getSex());
-		changeStatusUser.setJob(form.getJob());
-		changeStatusUser.setFav(form.getFav());
-		changeStatusUser.setProfile(form.getProfile());
-		System.out.println(form.getFav());
-		UtblRepo.save(changeStatusUser);
+		UtblRepo.save(UtblRepo.findById(id).get().of(form));
 	}
 
+	/**
+	 * ユーザー消去
+	 * 
+	 * @param id ユーザーID
+	 */
 	public void DeleteAccount(String id) {
 		if (UtblRepo.existsById(id)) {
 			UtblRepo.deleteById(id);
 		}
 	}
 
-//Emailチェック
+	// Emailチェック
 	// 未使用?
 	public boolean check(String name) {
 		return UtblRepo.existsByEmail(name);
@@ -77,11 +80,8 @@ public class UsertblService {
 	 * @param adress プロジェクトアドレス
 	 */
 	public void makeDir(String adress) {
-
 		Path p = Paths.get("." + adress);
-
 		System.out.println("ディレクトリを作成" + p);
-
 		try {
 			Files.createDirectory(p);
 		} catch (IOException e) {
@@ -96,26 +96,10 @@ public class UsertblService {
 			System.out.println("email exists");
 			return false;
 		}
-
-		UUID uuid = UUID.randomUUID();
-		String nId = uuid.toString();
-
-		Usertbl user = new Usertbl();
-		user.setId(nId);
-		user.setName(form.getUsername());
-		user.setPass(passwordEncoder.encode(form.getPass()));
-		user.setSex(Integer.parseInt(form.getSex()));
-		user.setBirth(form.getBirth());
-		user.setJob(form.getJob());
-		user.setEmail(form.getEmail());
-
-		// \SemiV2\src\main\resources\static\USERs/nId
-		user.setAddress("/users/" + nId);
-
-		user.setRole("USER");
-		UtblRepo.save(user);
-
-		makeDir("/users/" + nId);
+		Usertbl usertbl = new Usertbl();
+		usertbl.setPass(passwordEncoder.encode(form.getPass()));
+		UtblRepo.save(usertbl.ofSignin(form));
+		makeDir(usertbl.getAddress());
 		return true;
 	}
 
@@ -126,14 +110,20 @@ public class UsertblService {
 	 * @param id ユーザーID
 	 */
 	public void searchUserDir(String id) {
-		File userFileExist = new File("."+searchId(id).getAddress());
+		File userFileExist = new File("." + searchId(id).getAddress());
 		if (!userFileExist.exists()) {
 			// USERs直下にIDディレクトリが存在しなかった場合の処理
 			makeDir(searchId(id).getAddress());
 		}
 	}
 
-	public Usertbl oneReco(String str) {
-		return UserRepo.getByEmail(str);
+	/**
+	 * e-mailからユーザー情報の取得
+	 * 
+	 * @param email メールアドレス
+	 * @return ユーザーDto
+	 */
+	public UserDto oneReco(String email) {
+		return UserDto.of(UserRepo.getByEmail(email));
 	}
 }

@@ -1,0 +1,129 @@
+html,
+body {
+  overflow-y: scroll;
+}
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+ 
+body::-webkit-scrollbar-track {
+   background: #11101d;
+   box-shadow:0 0 5px #100e1d inset ;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background: #CCC;
+  /* border-left: 3px solid #100e1d;
+  border-right: 3px solid #100e1d; */
+  border-radius:5px;
+}
+/* body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+} */
+/* .home-section {
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+} */
+body{
+  width: 100%;
+  height: 100%;
+}
+.area {
+    width: 500px;
+    margin: auto;
+    flex-wrap: wrap;
+    display: flex;
+    font-size: 20px;
+    background-color: #11101d;
+  }
+   
+  .tab_class {
+    width: calc(100%/2);
+    height: 50px;
+    background-color: darkgrey;
+    line-height: 50px;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+    float: left;
+    order: -1;
+    user-select: none;
+    font-size: 19px;
+    font-weight: bold;
+  }
+   
+  input[name="tab"] {
+    display: none;
+  }
+   
+  input:checked + .tab_class {
+    background-color: cadetblue;
+    color: aliceblue;
+  }
+   
+  .content_class {
+    display: none;
+    width: 100%;
+    border: solid 1px #000;
+  }
+   
+  input:checked + .tab_class + .content_class {
+    display: block;
+  }
+  .red_cube {
+    width: 100px;
+    height: 100px;
+    background: #F71E35;
+    /* border-radius: 50%; */
+    cursor: pointer;
+    
+    text-align: center;
+    line-height: 100px;
+    color: #fff;
+  }
+  .user_info{
+      width: 95%;
+      border: solid 1px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 9px;
+      margin-bottom: 9px;
+      padding: auto;
+      border: none;
+      color: #dcdcdc;
+      background-color: #222b36;
+      border-radius: 12px;
+      
+  }
+  .user_icon_img{
+      border-radius: 50%;
+      border: solid 1px;
+  }
+  /*マウスカーソルを合わせたときのuserinfo色*/
+  .user_info:hover{
+      background-color: #222b36;
+  }
+  .user_icon{
+    font-weight: bold;
+  }
+  .user_name{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .user_info div{
+    position: relative;
+    /* left: 10px; */
+  }
+  .user_info div{
+    font-size: small;
+  }
+  .user_name a{
+	color: #FFF;
+	text-decoration: none;
+	}
+	 .user_name a:hover{
+	color: #F71E35;
+	}

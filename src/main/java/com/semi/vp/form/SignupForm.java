@@ -5,6 +5,12 @@ import java.sql.Date;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.sun.istack.NotNull;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Email;
 
@@ -26,8 +32,8 @@ public class SignupForm {
 	@Size(min = 6, max = 30)
 	private String repass;
 
-	@NotEmpty
-	private String sex;
+	@NotNull
+	private Long sex;
 	@NotEmpty
 	private String job;
 	@NotEmpty
@@ -36,6 +42,8 @@ public class SignupForm {
 	@PastOrPresent
 	private Date birth;
 
+	@Autowired
+	static PasswordEncoder passwordEncoder;
 	@AssertTrue
 	public boolean isPasswordValid() {
 		if (pass == null || repass == null) {
@@ -48,7 +56,7 @@ public class SignupForm {
 	public boolean isSexValid() {
 		if (sex == null) {
 			return true;
-		} else if (Integer.parseInt(sex) == 0) {
+		} else if (sex == 0) {
 			return false;
 		} else {
 			return true;
@@ -100,10 +108,10 @@ public class SignupForm {
 		this.repass = repass;
 	}
 
-	public String getSex() {
+	public Long getSex() {
 		return sex;
 	}
-	public void setSex(String sex) {
+	public void setSex(Long sex) {
 			this.sex = sex;
 	}
 	

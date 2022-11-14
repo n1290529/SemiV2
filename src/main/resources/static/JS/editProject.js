@@ -88,10 +88,19 @@ window.onload = function () {
 	 * Blocklyツールボックス
 	 * @type {HTMLElement} 
 	 */
+	// fileObj = new File("./aaa.txt");
+	// flag = fileObj.open("r", "", "");
+	// if (flag) {
+	// 	textObj = activeDocument.textFrames.add();
+	// 	txt = fileObj.read();
+	// 	textObj.contents = txt;
+	// }
 	var toolbox = document.getElementById("toolbox");
+	// toolbox = null;
+	// console.log(textObj.contents);
 	/**
 	 * Blocklyオプション
-	 * @type {{toolbox: HTMLElement, collapse: boolean, comments: boolean,　disable: boolean, maxBlocks: number, trashcan: boolean, horizontalLayout: boolean, toolboxPosition: string, css: boolean, media: 'https://blockly-demo.appspot.com/static/media/', rtl: boolean, scrollbars: boolean, sounds: boolean, oneBasedIndex: boolean, grid: { spacing: number, length: number, colour: color, snap: boolean }, zoom: { wheel: boolean, startScale: number, maxScale: number, scaleSpeed: number}}}
+	 * @type {{toolbox: HTMLElement, collapse: boolean, comments: boolean, disable: boolean, maxBlocks: number, trashcan: boolean, horizontalLayout: boolean, toolboxPosition: string, css: boolean, media: 'https://blockly-demo.appspot.com/static/media/', rtl: boolean, scrollbars: boolean, sounds: boolean, oneBasedIndex: boolean, grid: { spacing: number, length: number, colour: color, snap: boolean }, zoom: { wheel: boolean, startScale: number, maxScale: number, scaleSpeed: number}}}
 	 */
 	var options = {
 		toolbox: toolbox,
@@ -922,7 +931,6 @@ function save() {
  */
 function restore() {//復元
 	if (inputJson != null) {
-		console.log(inputJson)
 		//const inputJson = JSON.parse(inputJson);
 		//BlocklyWorkspaceの復元
 		const xml = Blockly.Xml.textToDom(inputJson["blockly"]);
@@ -1029,7 +1037,6 @@ function noneObject(id) {
  */
 function deleteObj(id) {
 	let obj = getObject(id);
-	console.log(id);
 	if (obj != null) {
 		canvas.remove(obj);
 		checkName.splice(checkName.indexOf(id), 1);

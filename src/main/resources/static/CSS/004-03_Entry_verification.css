@@ -43,7 +43,7 @@
   box-sizing: content-box;
 }
 
-.image-preview__image {
+.image-preview_image {
   width: 224px;
   height: 126px;
 }

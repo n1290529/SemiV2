@@ -1,24 +1,43 @@
 package com.semi.vp.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.semi.vp.entity.Followtbl;
+import com.semi.vp.dto.UserDto;
 import com.semi.vp.repository.FollowtblRepository;
+import com.semi.vp.repository.UsertblRepository;
 
-//User_tblのService宣言
 @Service
 public class FollowtblService {
-
-//User_tblのRpository呼び出しとUtblRepoでの実装
     @Autowired
-    FollowtblRepository FollowRepo;
+    FollowtblRepository followtblRepository;
+	@Autowired
+	UsertblRepository UtblRepo;
     
-    // ユーザーTBLの内容を全検索
-    public List<Followtbl> searchAll() {
-        return FollowRepo.findAll();
+//    public List<Followtbl> getFollowUserId (String fid){
+//    	return followtblRepository.findByFid(fid);
+//    }
+//    
+//    public List<Followtbl> getFollowerUserId (String kid){
+//    	return followtblRepository.findByKid(kid);
+//    }
+    
+    public List<UserDto> getFollowUsertbls (String fid){
+    	List<UserDto> users= new ArrayList<UserDto>();
+    	for(String uid : followtblRepository.findByFidToKid(fid)) {
+    		users.add(UserDto.of(UtblRepo.findById(uid).get()));
+    	}
+    	return users;
     }
     
+    public List<UserDto> getFollowerUsertbls (String kid){
+    	List<UserDto> users= new ArrayList<UserDto>();
+    	for(String uid : followtblRepository.findByKidToFid(kid)) {
+    		users.add(UserDto.of(UtblRepo.findById(uid).get()));
+    	}
+    	return users;
+    }
 }
