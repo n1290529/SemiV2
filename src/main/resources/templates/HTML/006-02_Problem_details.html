@@ -16,15 +16,15 @@
 			<!-- 囲ってある場所 -->
 			<div class="profilechangelist02">
 				<input type="text" class="questionname" name="name"
-					value="問題名:こちら葛飾区亀有公園前派出所" readonly>
+					th:value="${'問題名:'+problem.title}" readonly>
 				<div class="questioncontents">
-					<div class="questionrank">ランクB</div>
-					<div class="questionnotime">制限時間6時間</div>
-					<div class="questionhuman">受講者数4649人</div>
-					<div class="questiontime">平均回答時間36分2秒</div>
-					<div class="questionlevel">難易度999RP</div>
-					<div class="questionanswer">正解率99.9%</div>
-					<div class="questionscore">平均スコア74.0点</div>
+					<div class="questionrank" th:text="${'ランク'+problem.dif}"></div>
+					<div class="questionnotime" th:text="${'制限時間'+problem.timeLimit}"></div>
+					<div class="questionhuman" th:text="${'受講者数'+problem.num+'人'}"></div>
+					<div class="questiontime" th:text="${'平均回答時間'+problem.timeaverage}"></div>
+					<div class="questionlevel" th:text="${'難易度'+problem.rate}"></div>
+					<div class="questionanswer" th:text="${'正解率'+problem.correct+'%'}"></div>
+					<div class="questionscore" th:text="${'平均点'+problem.scoreaverage+'点'}"></div>
 				</div>
 				<div class="btns">
 					<div class="btn01">

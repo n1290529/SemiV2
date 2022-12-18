@@ -12,20 +12,23 @@ import lombok.Data;
 @Data
 @Table(name = "answerflg_tbl")
 public class Anserflgtbl {
-	// 問題ID
-	@Id
-	@Column(name = "TASK_ID", nullable = false, length = 5)
-	private String id;
-
+	//ID
+	@Column(name ="ID", nullable = false)
+	private int id;
+	
 	// ユーザーID
 	@Column(name = "FK_USER_ID", nullable = false, length = 10)
 	private String uid;
+	// 問題ID
+	@Id
+	@Column(name = "TASK_ID", nullable = false, length = 5)
+	private String taskid;
 
 	// スコア
 	@Column(name = "SCORE", nullable = false)
-	private int score = -1;
+	private int score = 0;
 
 	// タイム
 	@Column(name = "TIME", nullable = false)
-	private int time = -1;
+	private int time = 0;
 }

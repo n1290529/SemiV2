@@ -17,11 +17,19 @@ public class Tasktbl {
 	@Column(name = "TASK_ID", nullable = false, unique = true, length = 5)
 	private String id;
 
+	// 問題名
+	@Column(name = "TITLE", nullable = false, unique = true, length = 45)
+	private String title = "0";
+
 	// 難易度
 	@Column(name = "DIFFICULTY", nullable = false, length = 1)
 	private String dif;
 
 	// 正解率
+	@Column(name = "CORRECT_ANSWER", nullable = false)
+	private float correct = 0;
+
+	// 難易度
 	@Column(name = "ANSWER_RATE", nullable = false)
 	private long rate = 0;
 
@@ -39,5 +47,9 @@ public class Tasktbl {
 
 	// 問題内容、説明
 	@Column(name = "TASK_PROFILE", nullable = false, length = 5200)
-	private String PROFILE;
+	private String profile;
+
+	// 回答者数
+	@Column(name = "TIME_LIMIT", nullable = false)
+	private long timeLimit = 0;
 }

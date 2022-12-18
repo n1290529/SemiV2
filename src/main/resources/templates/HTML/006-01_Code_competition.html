@@ -12,10 +12,10 @@
 	<section class="home-section">
 		<div id="main">
 			<h1>問題一覧</h1>
-			<div id="tasks">
+			<div id="tasks" th:each="list : ${problemList}" th:object="${followList}">
 				<div class="task">
 					<div class="task_top">
-						<a href="">A001:問題１</a>
+						<a th:href="@{'/problems/'+${list.id}}" th:text="${list.id+':'+list.title}"></a>
 						<div>
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
 								width="16" height="16">
@@ -23,13 +23,16 @@
 									d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
                                 <path d="M13 7h-2v6h6v-2h-4z" />
                             </svg>
-							<span>平均回答時間：</span> <strong>00分00秒</strong>
+							<span>平均回答時間：</span> <strong th:text="${list.timeaverage}"></strong>
 						</div>
 					</div>
 					<div class="task_bottom">
-						<span>正解率：</span><strong>30.95%</strong> <span>平均スコア：</span><strong>41.51点</strong>
-						<span>受験者数：</span><strong>3,011人</strong> <span>難易度：</span><strong>1873
-							±9</strong> <input type="button" value="解答" class="anser"> <input
+					<span>正解率：</span><strong th:text="${list.correct}+'%'"></strong>
+					<span>平均点：</span><strong th:text="${list.scoreaverage}+'点'"></strong>
+					<span>受験者数：</span><strong th:text="${list.num}+'人'"></strong>
+					<span>難易度：</span><strong th:text="${list.rate}"></strong> 
+					<span>制限時間：</span><strong th:text="${list.timeLimit}"></strong> 
+					<input type="button" value="解答" class="anser"> <input
 							type="button" value="スタート" class="start">
 					</div>
 				</div>
