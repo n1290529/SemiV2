@@ -2,9 +2,9 @@
 <html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head
-	th:replace="HTML/topsidebar :: meta_header('トップ',~{::meta},~{::link},~{::script})">
-<link rel="stylesheet" href="/CSS/006-04_Problem_challenge.css">
-<title>問題挑戦画面</title>
+	th:replace="HTML/topsidebar :: meta_header('問題挑戦',~{::meta},~{::link},~{::script})">
+<link rel="stylesheet" th:href="@{/CSS/006-04_Problem_challenge.css}">
+<script th:src="@{/JS/answerFlgCheck.js}"></script>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
 				</div>
 			</div>
 			<div id="ans_items">
-				<input type="button" value="解答表示" id="ans_btn">
+				<input type="button" value="解答表示" id="ans_btn" th:onclick="|jumpAnswer('__${problem.id}__')|">
 				<p id="button_inr">※解答を確認した時点で０点になります</p>
 			</div>
 		</div>

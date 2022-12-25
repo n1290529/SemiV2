@@ -15,13 +15,13 @@ import com.semi.vp.service.TaskService;
 import com.semi.vp.service.UsertblService;
 
 @Controller
-public class Problem_challenge_Controller {
+public class Problem_Answer_Controller {
 	@Autowired
 	UsertblService usertblservice;
 	@Autowired
 	TaskService tskservice;
 	
-	@RequestMapping(value = "/problems/{id}/challenge", method = RequestMethod.GET)
+	@RequestMapping(value = "/problems/{id}/Answer", method = RequestMethod.GET)
 	public String displayList(HttpServletRequest request, Model model, @PathVariable String id) {
 
 		HttpSession session = request.getSession();
@@ -31,8 +31,8 @@ public class Problem_challenge_Controller {
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		}
-		model.addAttribute("problem", tskservice.getOneRecode(id));
 		
-		return "HTML/006-04_Problem_challenge";
+		model.addAttribute("problem", tskservice.getProfile(id));
+		return "HTML/004-02_Game_creation_copy";
 	}
 }

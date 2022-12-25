@@ -4,11 +4,12 @@
 <head
 	th:replace="HTML/topsidebar :: meta_header('トップ',~{::meta},~{::link},~{::script})">
 <title>問題挑戦確認画面</title>
-<link rel="stylesheet" href="/CSS/006-02_Problem_details.css">
-
+<link rel="stylesheet" th:href="@{/CSS/006-02_Problem_details.css}">
+<script th:src="@{/JS/answerFlgCheck.js}"></script>
 </head>
 
 <body>
+	
 	<div th:replace="HTML/topsidebar :: headbar"></div>
 	<div th:replace="HTML/topsidebar :: sidebar"></div>
 	<section class="home-section">
@@ -31,10 +32,10 @@
 						<a href="#" class="btn_06-1"><span>問題紹介文表示</span></a>
 					</div>
 					<div class="btn00">
-						<a href="#" class="btn_06-2"><span>挑戦する</span></a>
+						<a th:href="@{'/problems/'+${problem.id}+'/challenge'}" class="btn_06-2"><span>挑戦する</span></a>
 					</div>
 				</div>
-				<a href="#" class="answertoker">答えを見る</a>
+				<div th:onclick="|jumpAnswer('__${problem.id}__')|" class="answertoker">答えを見る</div>
 			</div>
 		</div>
 	</section>

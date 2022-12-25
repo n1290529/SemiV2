@@ -221,4 +221,5 @@ a.btn_06-1:hover:after {
   text-decoration: none;
   color: #fff;
   font-size: 20px;
+  cursor:pointer;
 }
