@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.semi.vp.dto.UserDto;
 import com.semi.vp.entity.Usertbl;
@@ -125,5 +126,8 @@ public class UsertblService {
 	 */
 	public UserDto oneReco(String email) {
 		return UserDto.of(UserRepo.getByEmail(email));
+	}
+	public void saveUserImg(MultipartFile imgFile) {
+		
 	}
 }
