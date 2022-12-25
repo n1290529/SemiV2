@@ -100,7 +100,7 @@
 		<div class="profile-details">
 			<div class="profile-content">
 				<a sec:authorize="isAuthenticated()" th:href="${'/profile'}"> <img
-					th:src="@{/IMG/profile.png}" alt="profileImg"> <img
+					th:src="@{'/getProfileImg/'+${user.id}}" alt="profileImg"> <img
 					sec:authorize="!isAuthenticated()" th:src="@{/IMG/user-def.png}"
 					alt="profileImg"></a> <a sec:authorize="!isAuthenticated()"
 					th:href="${'/signin'}"> <img th:src="@{/IMG/user-def.png}"

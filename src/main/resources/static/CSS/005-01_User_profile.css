@@ -1,427 +1,426 @@
 .apload {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #222b36;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #222b36;
 }
 
 .ap {
-  position: relative;
-  width: 100%;
-  height: 242px;
-  display: flex;
+	position: relative;
+	width: 100%;
+	height: 242px;
+	display: flex;
 }
 
 .ap2 {
-  position: relative;
-  width: calc(100% - 295px);
-  margin-left: auto;
-  display: flex;
-  justify-content: space-between;
+	position: relative;
+	width: calc(100% - 295px);
+	margin-left: auto;
+	display: flex;
+	justify-content: space-between;
 }
 
 .ap3 {
-  position: relative;
-  width: 100%;
-  display: flex;
+	position: relative;
+	width: 100%;
+	display: flex;
 }
 
 /* サムネ設定（デザイン） */
 .ap00 {
-  position: relative;
-  width: 200px;
-
+	position: relative;
+	width: 200px;
 }
 
 .ap01 {
-  position: relative;
-  width: calc(100% - 200px);
+	position: relative;
+	width: calc(100% - 200px);
 }
 
 .ap01 table {
-  width: 470px;
-  margin-left: 95px;
-  width: calc(100% - 95px);
+	width: 470px;
+	margin-left: 95px;
+	width: calc(100% - 95px);
 }
 
 .image-preview {
-  max-width: 200px;
-  max-height: 200px;
-  min-width: 200px;
-  min-height: 200px;
-  border: 2px solid #dddddd;
-  margin-top: 15px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: #cccccc;
+	max-width: 200px;
+	max-height: 200px;
+	min-width: 200px;
+	min-height: 200px;
+	border: 2px solid #dddddd;
+	margin-top: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: #cccccc;
 }
 
-.image-preview__image {
-  display: none;
-  max-width: 200px;
-  max-height: 200px;
-  min-width: 200px;
-  min-height: 200px;
+.image-preview_image{
+	max-width: 196px;
+	max-height: 196px;
+	min-width: 196px;
+	min-height: 196px;
 }
 
 /* 生年月日 */
 .userdateofbirth00 {
-  position: relative;
+	position: relative;
 }
 
 .userdateofbirth01 {
-  color: #fff;
+	color: #fff;
 }
 
 .userdateofbirth02 {
-  padding: 7px;
-  width: 170px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: none;
-  color: #fff;
-  background-color: #1d1b31;
+	padding: 7px;
+	width: 170px;
+	font-size: 16px;
+	border-radius: 6px;
+	border: none;
+	color: #fff;
+	background-color: #1d1b31;
 }
 
 /* 職業入力欄 */
 .userjobs00 {
-  position: relative;
-  margin: 0;
-  padding: 0;
+	position: relative;
+	margin: 0;
+	padding: 0;
 }
 
 .userjobs01 {
-  color: #fff;
+	color: #fff;
 }
 
 .userjobs02 {
-  padding: 7px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: none;
-  color: #fff;
-  background-color: #1d1b31;
+	padding: 7px;
+	font-size: 16px;
+	border-radius: 6px;
+	border: none;
+	color: #fff;
+	background-color: #1d1b31;
 }
 
 /* タグ設定（デザイン） */
 .tag00 {
-  position: relative;
-  margin: 0;
-  padding: 0;
+	position: relative;
+	margin: 0;
+	padding: 0;
 }
 
 .tag01 {
-  position: relative;
-  font-size: 18px;
-  margin: 0;
-  padding: 0;
-  height: 39px;
-  border-radius: 6px;
-  border: none;
-  color: #fff;
-  background-color: #1d1b31;
+	position: relative;
+	font-size: 18px;
+	margin: 0;
+	padding: 0;
+	height: 39px;
+	border-radius: 6px;
+	border: none;
+	color: #fff;
+	background-color: #1d1b31;
 }
 
 .favoritegenre {
-  color: #fff;
+	color: #fff;
 }
 
 /* 登録日 */
 .userregisterdate {
-  position: relative;
-  margin-left: 95px;
-  padding: 0;
-  border: none;
-  font-size: 15px;
-  color: #ccc;
-  background-color: #222b36;
-  width: fit-content;
+	position: relative;
+	margin-left: 95px;
+	padding: 0;
+	border: none;
+	font-size: 15px;
+	color: #ccc;
+	background-color: #222b36;
+	width: fit-content;
 }
 
 /* 背景その２ */
 .profilechangelist02 {
-  position: absolute;
-  padding: 20px;
-  width: 900px;
-  height: 800px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  border: none;
-  border-radius: 6px;
-  background-color: #11101d;
+	position: absolute;
+	padding: 20px;
+	width: 900px;
+	height: 800px;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	border: none;
+	border-radius: 6px;
+	background-color: #11101d;
 }
+
 .usernamechange02 {
-  position: relative;
-  margin-left: 95px;
-  padding: 0;
-  width: calc(100% - 95px);
-  height: 40px;
-  font-size: 24px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border-radius: 6px;
-  border: none;
-  color: #fff;
-  background-color: #1d1b31;
+	position: relative;
+	margin-left: 95px;
+	padding: 0;
+	width: calc(100% - 95px);
+	height: 40px;
+	font-size: 24px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border-radius: 6px;
+	border: none;
+	color: #fff;
+	background-color: #1d1b31;
 }
 
 /* 性別選択 */
 .checkbox00 {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  font-size: 24px;
-  color: #fff;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  user-select: none;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	color: #fff;
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+	user-select: none;
 }
 
 .permission0 {
-  width: 20px;
-  height: 20px;
+	width: 20px;
+	height: 20px;
 }
 
 .men {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  width: 50px;
-  height: 50px;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 50px;
+	height: 50px;
 }
 
 .women {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  width: 50px;
-  height: 50px;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 50px;
+	height: 50px;
 }
 
 .lgbt {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  width: 100px;
-  height: 50px;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 100px;
+	height: 50px;
 }
 
 /* メアド設定*/
 .useremailchange01 {
-  position: relative;
-  margin-left: 95px;
-  padding: 0;
-  width: calc(100% - 95px);
-  height: 40px;
-  font-size: 24px;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  background-color: #1d1b31;
+	position: relative;
+	margin-left: 95px;
+	padding: 0;
+	width: calc(100% - 95px);
+	height: 40px;
+	font-size: 24px;
+	border: none;
+	border-radius: 6px;
+	color: #fff;
+	background-color: #1d1b31;
 }
 
 .useremailchange00 {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  height: 50px;
-  top: 260px;
-  left: 650px;
-  text-align: center;
-  border: none;
-  border-radius: 6px;
-  background-color: #ccc;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 200px;
+	height: 50px;
+	top: 260px;
+	left: 650px;
+	text-align: center;
+	border: none;
+	border-radius: 6px;
+	background-color: #ccc;
 }
 
 .useremailchange02 {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  top: 12px;
-  font-weight: bold;
-  text-decoration: none;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	top: 12px;
+	font-weight: bold;
+	text-decoration: none;
 }
 
-
 .userchangepass00 {
-  position: relative;
-  margin: 25px 0 25px 0;
-  width: 180px;
-  height: 50px;
-  margin-left: auto;
-  text-align: center;
-  border: none;
-  border-radius: 6px;
-  background-color: #e1000e;
+	position: relative;
+	margin: 25px 0 25px 0;
+	width: 180px;
+	height: 50px;
+	margin-left: auto;
+	text-align: center;
+	border: none;
+	border-radius: 6px;
+	background-color: #e1000e;
 }
 /* パスワード設定 */
 .userchangepass10 {
-  position: relative;
-  margin: 25px 0 25px 0;
-  width: 180px;
-  height: 50px;
-  margin-left: 13.5px;
-  text-align: center;
-  border: none;
-  border-radius: 6px;
-  background-color: #ccc;
+	position: relative;
+	margin: 25px 0 25px 0;
+	width: 180px;
+	height: 50px;
+	margin-left: 13.5px;
+	text-align: center;
+	border: none;
+	border-radius: 6px;
+	background-color: #ccc;
 }
 
 .userchangepass01 {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  width: 180px;
-  height: 50px;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 93%;
-  color: #fff;
-  user-select: none;
-  background: none;
-  border: none;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 180px;
+	height: 50px;
+	border-radius: 6px;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 93%;
+	color: #fff;
+	user-select: none;
+	background: none;
+	border: none;
 }
 
 .userchangepass11 {
-  position: relative;
-  margin: 0;
-  top: 13px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 93%;
-  color: #000;
-  user-select: none;
-}
-.userchangepass11.email{
-  padding: 13.5px 0px 13.5px 0px;
-}
-.userchangepass11.pass{
-  padding: 13.5px 15.5px 13.5px 15.5px;
+	position: relative;
+	margin: 0;
+	top: 13px;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 93%;
+	color: #000;
+	user-select: none;
 }
 
+.userchangepass11.email {
+	padding: 13.5px 0px 13.5px 0px;
+}
 
+.userchangepass11.pass {
+	padding: 13.5px 15.5px 13.5px 15.5px;
+}
 
 /* 自己紹介デザイン */
 .selfintroduction00 {
-  position: relative;
-  border: none;
-  border-radius: 6px;
-  width: 860px;
+	position: relative;
+	border: none;
+	border-radius: 6px;
+	width: 860px;
 }
 
 .selfintroduction01 {
-  padding-left: 15px;
-  font-size: 24px;
-  color: #fff;
+	padding-left: 15px;
+	font-size: 24px;
+	color: #fff;
 }
 
 .selfintroduction02 {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 353px;
-  font-size: 24px;
-  border: none;
-  border-radius: 6px;
-  padding-left: 30px;
-  padding-top: 10px;
-  color: #fff;
-  background-color: #1d1b31;
-  resize: none;
-  box-sizing: border-box;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 353px;
+	font-size: 24px;
+	border: none;
+	border-radius: 6px;
+	padding-left: 30px;
+	padding-top: 10px;
+	color: #fff;
+	background-color: #1d1b31;
+	resize: none;
+	box-sizing: border-box;
 }
 
 /* ボタン配置、設定（デザイン） */
 .btn00 {
-  position: relative;
-  width: 250px;
-  top: calc((100% - 800px)/2 + 800px - 124px);
-  left: calc((100% - 900px)/2 + 900px);
-  margin-left: 60px;
+	position: relative;
+	width: 250px;
+	top: calc(( 100% - 800px)/2+ 800px- 124px);
+	left: calc(( 100% - 900px)/2+ 900px);
+	margin-left: 60px;
 }
 
 /*=============
 a.btn_06-2
 =============*/
 a.btn_06-2 {
-  display: block;
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 1.2;
-  text-decoration: none;
-  text-align: center;
-  padding: 50px 80px;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid transparent;
-  border-radius: 6px;
-  box-sizing: border-box;
-  max-width: 360px;
-  margin: 0 auto;
-  position: relative;
+	display: block;
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 1.2;
+	text-decoration: none;
+	text-align: center;
+	padding: 50px 80px;
+	background: rgba(0, 0, 0, 0.2);
+	border: 1px solid transparent;
+	border-radius: 6px;
+	box-sizing: border-box;
+	max-width: 360px;
+	margin: 0 auto;
+	position: relative;
 }
 
 a.btn_06-2 span {
-  position: relative;
-  display: block;
-  transform: translate(-3px, -3px);
-  transition: 0.3s;
-  z-index: +1;
+	position: relative;
+	display: block;
+	transform: translate(-3px, -3px);
+	transition: 0.3s;
+	z-index: +1;
 }
 
 a.btn_06-2:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  background: #e1000e;
-  border-radius: 6px;
-  box-sizing: border-box;
-  transform: translate(-3px, -3px);
-  transition: 0.3s;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+	background: #e1000e;
+	border-radius: 6px;
+	box-sizing: border-box;
+	transform: translate(-3px, -3px);
+	transition: 0.3s;
 }
 
 a.btn_06-2:hover span {
-  transform: translate(0, 0);
+	transform: translate(0, 0);
 }
 
 a.btn_06-2:hover:after {
-  transform: translate(0, 0);
+	transform: translate(0, 0);
 }
 
 @media all and (max-width: 1023px) {
-  a.btn_06-2 {
-    font-size: 18px;
-  }
+	a.btn_06-2 {
+		font-size: 18px;
+	}
 }
 
 @media all and (max-width: 767px) {
-  a.btn_06-2 {
-    font-size: 16px;
-  }
+	a.btn_06-2 {
+		font-size: 16px;
+	}
 }
+
 .tag {
-  margin-left: 95px;
-  color: #fff;
+	margin-left: 95px;
+	color: #fff;
 }
+
 .required::after {
-  content: " *";
-  color: #e1000e;
-  vertical-align: middle;
+	content: " *";
+	color: #e1000e;
+	vertical-align: middle;
 }

@@ -20,10 +20,13 @@
 					<div class="profilechangelist01">
 						<div class="ap">
 							<div class="ap00">
-								<input type="file" name="inpFile" id="inpFile">
-								<div class="image-preview" id="imagePreview">
-									<img src="" class="image-preview_image">
-									<span class="image-preview__default-text">Image Preview</span>
+								<input type="file" name="imgFile" id="inpFile" accept="image/*">
+								<div class="image-preview" id="imagePreview"
+									th:with="img=@{'/getProfileImg/'+${user.id}}">
+									<img class="image-preview_image" th:if="${img}"
+										th:src="${img}" alt="profileImg">
+									<span th:unless="${img}"
+										class="image-preview__default-text">Image Preview</span>
 								</div>
 							</div>
 							<!-- ユーザーの名前 -->
@@ -99,7 +102,8 @@
 									<option value="9" th:selected="${user.fav=='9'}">音楽ゲーム</option>
 									<option value="10" th:selected="${user.fav=='10'}">テーブルゲーム</option>
 									<option value="11" th:selected="${user.fav=='11'}">スポーツゲーム</option>
-									<option value="other" th:selected="${user.fav=='other' || user.fav == null}">その他</option>
+									<option value="other"
+										th:selected="${user.fav=='other' || user.fav == null}">その他</option>
 								</select>
 							</div>
 						</div>
