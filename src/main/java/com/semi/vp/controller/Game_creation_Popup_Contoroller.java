@@ -34,4 +34,5 @@ public class Game_creation_Popup_Contoroller {
 		
 		return "HTML/004-02_Game_creation_popup";
 	}
+	
 }

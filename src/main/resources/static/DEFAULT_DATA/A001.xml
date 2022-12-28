@@ -1,0 +1,506 @@
+<xml>
+  <category name="動き" colour="#e94e4e">
+    <block type="n_move">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <value name="input">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="n_rotation">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <field name="select_lr">select_r</field>
+      <value name="input">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="xy_both_coordinate">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <value name="input">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="input2">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="x_coordinate">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox"> </shadow>
+      </value>
+      <field name="select_xy">select_x</field>
+      <value name="input">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="n_turn">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <value name="input">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="n_rebound">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+    </block>
+    <block type="get_x_coordinates">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <field name="select_xy">select_x</field>
+    </block>
+    <block type="get_turn">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox"> </shadow>
+      </value>
+    </block>
+    <block type="obj_dropbox">
+
+    </block>
+  </category>
+  <category name="見た目" colour="#e9724e">
+    <block type="text_display">
+      <value name="input">
+        <shadow type="text">
+          <field name="TEXT">こんにちわ</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="wait_for_input"></block>
+    <block type="input_info"></block>
+    <block type="change_costume">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox"> </shadow>
+      </value>
+      <field name="select_costume">costume</field>
+    </block>
+    <block type="change_background">
+      <value name="input_back_dropbox">
+        <shadow type="back_dropbox">
+          <field name="background_object">background_object0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="change_size">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <field name="select_xy">xy</field>
+      <value name="input">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="change_effect">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <field name="set_effect">effect</field>
+      <value name="input">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="remove_image_effect">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <field name="set_effect">effect</field>
+    </block>
+    <block type="show">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <field name="set_show">show</field>
+    </block>
+    <block type="get_size">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox">
+        </shadow>
+      </value>
+      <field name="select_xy">select_x</field>
+    </block>
+    <block type="get_effect">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox"> </shadow>
+      </value>
+    </block>
+    <block type="get_image_name">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox"> </shadow>
+      </value>
+    </block>
+    <block type="get_background">
+      <value name="input_back_dropbox">
+        <shadow type="back_dropbox">
+          <field name="background_object">background_object0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="get_costume">
+      <value name="input_dropbox">
+        <shadow type="obj_dropbox"> </shadow>
+      </value>
+    </block>
+    <block type="o_print"></block>
+
+  </category>
+  <category name="音" colour="#F79428">
+    <block type="play_sound">
+      <value name="input_sound_dropbox">
+        <shadow type="sound_dropbox">
+          <field name="sound_object">sound_object0</field>
+        </shadow>
+      </value>
+      <field name="select_ps">play</field>
+    </block>
+    <block type="change_sound_volume">
+      <value name="input">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="change_sound_effect">
+      <field name="select_sound">sound</field>
+      <field name="set_se">se</field>
+      <value name="input">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="remove_sound_effect">
+      <field name="select_sound">sound</field>
+    </block>
+    <block type="get_sound_volume">
+      <field name="select_sound">sound</field>
+    </block>
+    <block type="get_sound_effect">
+      <field name="select_sound">sound</field>
+      <field name="set_se">se</field>
+    </block>
+    <block type="get_sound_name"></block>
+  </category>
+  <category name="制御" colour="#4169e1">
+    <block type="comparison_operator_equal"></block>
+    <block type="comparison_operator"></block>
+    <block type="logical_operator"></block>
+    <block type="for"></block>
+    <block type="wait_n_seconds"></block>
+    <block type="while"></block>
+    <block type="if">
+      <value name="if0">
+        <shadow type="o_true"></shadow>
+      </value>
+    </block>
+    <block type="switch">
+      <value name="input"> </value>
+      <value name="ADD0"></value>
+    </block>
+    <block type="break"></block>
+    <block type="o_return"></block>
+    <block type="o_true"></block>
+    <block type="o_false"></block>
+    <block type="o_null"></block>
+  </category>
+  <category name="調べる" colour="#6881ee">
+    <block type="get_mouse_xy">
+      <field name="select_xy">select_x</field>
+    </block>
+    <block type="listen_and_wait">
+      <value name="input">
+        <shadow type="text">
+          <field name="TEXT">あなたの名前は?</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="get_answer"></block>
+    <block type="get_key_num"></block>
+    <block type="get_username"></block>
+    <block type="get_date"></block>
+    <block type="get_time"></block>
+    <block type="timer">
+      <field name="select_ms">move</field>
+    </block>
+    <block type="get_timer"></block>
+  </category>
+  <category name="演算" colour="#1e90ff">
+    <block type="o_num"> </block>
+    <block type="operator">
+      <field name="select_op">plus</field>
+      <value name="ADD0"> </value>
+      <value name="ADD1"></value>
+    </block>
+    <block type="bit_operator"></block>
+    <block type="assignment">
+      <value name="input">
+        <shadow type="o_num">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="assignment_paz">
+      <value name="input">
+        <shadow type="o_num">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="in_de_crement"></block>
+    <block type="in_de_crement_paz"></block>
+
+
+    <block type="calculation_1"></block>
+    <block type="calculation_2"></block>
+    <block type="calculation_3"></block>
+    <block type="calculation_4"></block>
+    <block type="calculation_5"></block>
+    <block type="calculation"></block>
+    <block type="lenght">
+      <value name="input">
+        <block type="variables_get">
+          <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="random"></block>
+    <block type="length"></block>
+  </category>
+  <category name="変数" colour="#13c5c5" custom="VARIABLE"></category>
+  <category name="関数" colour="#995BA5">
+    <block type="procedures_defnoreturn">
+      <field name="NAME">do
+        something</field>
+    </block>
+    <block type="procedures_defreturn">
+      <field name="NAME">do something</field>
+    </block>
+  </category>
+  <category name="イベント" colour="#FFD700">
+    <block type="startup"></block>
+    <block type="key_event"></block>
+    <block type="mouse_event"></block>
+    <block type="mouse_over"></block>
+    <block type="wait_event">
+      <value name="input">
+        <shadow type="o_num">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="clear_time"></block>
+  </category>
+  <category name="配列" colour="#d89f2c">
+    <block type="lists_create_with">
+      <mutation items="0"></mutation>
+    </block>
+    <block type="procedures_mutatorarg">
+      <mutation items="3"></mutation>
+    </block>
+    <block type="lists_repeat">
+      <value name="NUM">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="get_array">
+      <value name="input_array">
+        <block type="variables_get">
+          <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+        </block>
+      </value>
+      <value name="input_index">
+        <shadow type="o_num">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="set_array">
+      <value name="input_array">
+        <block type="variables_get">
+          <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+        </block>
+      </value>
+      <value name="input_index">
+        <shadow type="o_num">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="o_join">
+      <value name="input_array">
+        <block type="variables_get">
+          <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+        </block>
+      </value>
+      <value name="input_index">
+        <shadow type="text">
+          <field name="TEXT">,</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="list_slice">
+      <value name="input_StrAndAry">
+        <block type="variables_get">
+          <field name="VAR" id="0qyDafC[,)`i67OcuGL3">list</field>
+        </block>
+      </value>
+      <value name="input_first">
+        <shadow type="o_num">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="input_last">
+        <shadow type="o_num">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="o_indexof">
+      <value name="input_StrAndAry">
+        <block type="variables_get">
+          <field name="VAR">list</field>
+        </block>
+      </value>
+      <value name="input_index">
+        <shadow type="text">
+          <field name="TEXT">a</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="テキスト" colour="#5BA58C">
+    <block type="text">
+      <field name="TEXT"></field>
+    </block>
+    <block type="text_join">
+      <mutation items="2"></mutation>
+    </block>
+    <block type="text_append">
+      <field name="VAR" id="DDAAA}B]RM{:tQHC0DAm">item</field>
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_charat"></block>
+    <block type="text_changeCase">
+      <field name="CASE">UPPERCASE</field>
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_trim">
+      <field name="MODE">BOTH</field>
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_print">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_prompt_ext">
+      <mutation type="TEXT"></mutation>
+      <field name="TYPE">TEXT</field>
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="o_split">
+      <value name="input_str">
+        <block type="variables_get">
+          <field name="VAR">str</field>
+        </block>
+      </value>
+      <value name="input_index">
+        <shadow type="text">
+          <field name="TEXT">,</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="カラー" colour="#e48172">
+    <block type="colour_picker">
+      <field name="COLOUR">#ff0000</field>
+    </block>
+    <block type="colour_random"></block>
+    <block type="colour_rgb">
+      <value name="RED">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+      <value name="GREEN">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="BLUE">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="colour_blend">
+      <value name="COLOUR1">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#ff0000</field>
+        </shadow>
+      </value>
+      <value name="COLOUR2">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#3333ff</field>
+        </shadow>
+      </value>
+      <value name="RATIO">
+        <shadow type="math_number">
+          <field name="NUM">0.5</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+</xml>

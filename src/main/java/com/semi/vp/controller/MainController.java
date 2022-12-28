@@ -112,15 +112,22 @@ public class MainController {
 		}
 		return new HttpEntity<byte[]>(byteImg, headers);
 	}
+
 	@RequestMapping("/responseTest")
 	@ResponseBody
 	public String responseTest() {
 		return "通信完了";
 	}
-	@RequestMapping("/getBlocklyData")
+
+	@RequestMapping("/getBlocklyData/{dataType}")
 	@ResponseBody
-	public String getBlocklyData() {
-		Path path = Paths.get("./src/main/resources/static/DEFAULT_DATA/DefaultXml.xml");
+	public String getBlocklyData(@PathVariable String dataType) {
+		Path path;
+		if (dataType.equals("default")) {
+			path = Paths.get("./src/main/resources/static/DEFAULT_DATA/DefaultXml.xml");
+		}else {
+			path = Paths.get("./src/main/resources/static/DEFAULT_DATA/"+dataType+".xml");
+		}
 
 		String content;
 		try {
@@ -130,6 +137,6 @@ public class MainController {
 			System.out.println("error");
 			return null;
 		}
-		
+
 	}
 }

@@ -89,8 +89,14 @@ window.onload = function() {
 	 */
 
 	var toolbox;
-	console.log(location.pathname.split('/'));
-	$.get("/getBlocklyData")
+	var url;
+	console.log(location.pathname.split('/')[2]);
+	if(location.pathname.split('/')[1]=="create"){
+		url="/getBlocklyData/default";
+	}else{
+		url="/getBlocklyData/"+location.pathname.split('/')[2];
+	}
+	$.get(url)
 		//①サーバーからの返信を受け取る 
 		.done(function(data) {
 			toolbox = data;
@@ -166,7 +172,7 @@ window.onload = function() {
 
 			document.getElementsByClassName("blocklyZoom")[2].parentElement.style.transform = 'translate(' + default_w + ',' + default_h + ')';
 
-			Siber_event();
+			// Siber_event();
 			document.getElementById("objects").oncontextmenu = function() { return false; }//右クリック消去
 			document.getElementById("BGinformation").oncontextmenu = function() { return false; }//右クリック消去
 			// object_match_id['1KB'] = 0;//消去予定
@@ -837,29 +843,29 @@ function Set_item_focus(name) {
 	}
 }
 
-function Siber_event() {//サイドバー
-	let arrow = document.querySelectorAll(".arrow");
-	for (var i = 0; i < arrow.length; i++) {
-		arrow[i].addEventListener("click", (e) => {
-			let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-			arrowParent.classList.toggle("showMenu");
-		});
-	}
-	let sidebar = document.querySelector(".sidebar");
+// function Siber_event() {//サイドバー
+// 	let arrow = document.querySelectorAll(".arrow");
+// 	for (var i = 0; i < arrow.length; i++) {
+// 		arrow[i].addEventListener("click", (e) => {
+// 			let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+// 			arrowParent.classList.toggle("showMenu");
+// 		});
+// 	}
+// 	let sidebar = document.querySelector(".sidebar");
 
-	let headerBtn = document.getElementById("header_bug");
-	let sidebarBtn = document.getElementById("side_bug");
+// 	let headerBtn = document.getElementById("header_bug");
+// 	let sidebarBtn = document.getElementById("side_bug");
 
 
-	sidebarBtn.addEventListener("click", () => {
-		$("body").css("overflow", "")
-		sidebar.classList.toggle("close");
-	});
-	headerBtn.addEventListener("click", () => {
-		$("body").css("overflow", "hidden")
-		sidebar.classList.toggle("close");
-	});
-}
+// 	sidebarBtn.addEventListener("click", () => {
+// 		$("body").css("overflow", "")
+// 		sidebar.classList.toggle("close");
+// 	});
+// 	headerBtn.addEventListener("click", () => {
+// 		$("body").css("overflow", "hidden")
+// 		sidebar.classList.toggle("close");
+// 	});
+// }
 document.addEventListener('DOMContentLoaded', function() {//タブ
 	// タブに対してクリックイベントを適用
 	const tabs = document.getElementsByClassName('tab');
