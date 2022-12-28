@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	
+
 	<div th:replace="HTML/topsidebar :: headbar"></div>
 	<div th:replace="HTML/topsidebar :: sidebar"></div>
 	<section class="home-section">
@@ -25,17 +25,19 @@
 					<div class="questiontime" th:text="${'平均回答時間'+problem.timeaverage}"></div>
 					<div class="questionlevel" th:text="${'難易度'+problem.rate}"></div>
 					<div class="questionanswer" th:text="${'正解率'+problem.correct+'%'}"></div>
-					<div class="questionscore" th:text="${'平均点'+problem.scoreaverage+'点'}"></div>
+					<div class="questionscore"
+						th:text="${'平均点'+problem.scoreaverage+'点'}"></div>
 				</div>
 				<div class="btns">
 					<div class="btn01">
 						<a href="#" class="btn_06-1"><span>問題紹介文表示</span></a>
 					</div>
 					<div class="btn00">
-						<a th:href="@{'/problems/'+${problem.id}+'/challenge'}" class="btn_06-2"><span>挑戦する</span></a>
+						<a th:onclick="|jumpChallenge('__${problem.id}__')|" class="btn_06-2"><span>挑戦する</span></a>
 					</div>
 				</div>
-				<div th:onclick="|jumpAnswer('__${problem.id}__')|" class="answertoker">答えを見る</div>
+				<div th:onclick="|jumpAnswer('__${problem.id}__')|"
+					class="answertoker">答えを見る</div>
 			</div>
 		</div>
 	</section>

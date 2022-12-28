@@ -33,7 +33,7 @@
 					<span>難易度：</span><strong th:text="${list.rate}"></strong> 
 					<span>制限時間：</span><strong th:text="${list.timeLimit}"></strong> 
 					<input type="button" value="解答" class="anser" th:onclick="|jumpAnswer('__${list.id}__')|"> <input
-							type="button" value="スタート" class="start">
+							type="button" value="スタート" class="start"  th:onclick="|jumpChallenge('__${list.id}__')|">
 					</div>
 				</div>
 

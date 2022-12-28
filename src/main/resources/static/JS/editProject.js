@@ -88,16 +88,24 @@ window.onload = function () {
 	 * Blocklyツールボックス
 	 * @type {HTMLElement} 
 	 */
-	// fileObj = new File("./aaa.txt");
-	// flag = fileObj.open("r", "", "");
-	// if (flag) {
-	// 	textObj = activeDocument.textFrames.add();
-	// 	txt = fileObj.read();
-	// 	textObj.contents = txt;
-	// }
-	var toolbox = document.getElementById("toolbox");
-	// toolbox = null;
-	// console.log(textObj.contents);
+
+	var toolbox = '<xml>' +
+		'<category name="動き" colour="#e94e4e">' +
+		'<block type="n_move">' +
+		'<value name="input_dropbox">' +
+		'<shadow type="obj_dropbox">' +
+		'</shadow>' +
+		'</value>' +
+		'<value name="input">' +
+		'<shadow type="math_number">' +
+		'<field name="NUM">0</field>' +
+		'</shadow>' +
+		'</value>' +
+		'</block>' +
+		'</category>' +
+		'</xml>';
+
+
 	/**
 	 * Blocklyオプション
 	 * @type {{toolbox: HTMLElement, collapse: boolean, comments: boolean, disable: boolean, maxBlocks: number, trashcan: boolean, horizontalLayout: boolean, toolboxPosition: string, css: boolean, media: 'https://blockly-demo.appspot.com/static/media/', rtl: boolean, scrollbars: boolean, sounds: boolean, oneBasedIndex: boolean, grid: { spacing: number, length: number, colour: color, snap: boolean }, zoom: { wheel: boolean, startScale: number, maxScale: number, scaleSpeed: number}}}

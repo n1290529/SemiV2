@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.semi.vp.service.TaskService;
+import com.semi.vp.service.ProjectService;
 import com.semi.vp.service.UsertblService;
 
 @Controller
-public class Problem_details_Controller {
+public class Game_creation_Popup_Contoroller {
 	@Autowired
 	UsertblService usertblservice;
 	@Autowired
-	TaskService tskservice;
+	ProjectService projectservice;
 	
-	@RequestMapping(value = "/problems/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/problems/{id}/slove", method = RequestMethod.GET)
 	public String displayList(HttpServletRequest request, Model model, @PathVariable String id) {
 
 		HttpSession session = request.getSession();
@@ -32,7 +32,6 @@ public class Problem_details_Controller {
 			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		}
 		
-		model.addAttribute("problem", tskservice.getOneRecode(id));
-		return "HTML/006-02_Problem_details";
+		return "HTML/004-02_Game_creation_popup";
 	}
 }
