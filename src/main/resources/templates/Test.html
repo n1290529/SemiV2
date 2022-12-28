@@ -11,8 +11,9 @@
 	<div th:replace="HTML/topsidebar :: sidebar"></div>
 	<section class="home-section">
 		<p>画像表示</p>
-		<img th:src="@{./getProfileImg/7efed887-db80-4d9d-8924-aa446390fd9a}" width="52" height="52">
-		<a th:href="@{'./getProfileImg'+'/7efed887-db80-4d9d-8924-aa446390fd9a'}">aaaa</a>
+		<img th:src="@{/getProfileImg/7efed887-db80-4d9d-8924-aa446390fd9a}"
+			width="52" height="52"> <a
+			th:href="@{'/getProfileImg'+'/7efed887-db80-4d9d-8924-aa446390fd9a'}">aaaa</a>
 	</section>
 </body>
 

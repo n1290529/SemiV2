@@ -1,7 +1,5 @@
 package com.semi.vp.dto;
 
-import java.util.List;
-
 import com.semi.vp.entity.Tasktbl;
 
 import lombok.Data;

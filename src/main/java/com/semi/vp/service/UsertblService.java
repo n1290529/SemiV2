@@ -2,9 +2,11 @@ package com.semi.vp.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,29 @@ public class UsertblService {
 	 * @param form 登録情報
 	 */
 	public void UpdateAccount(String id, UserForm form) {
-		UtblRepo.save(UtblRepo.findById(id).get().of(form));
+		Usertbl usertbl = UtblRepo.save(UtblRepo.findById(id).get().of(form));
+		setProjectImg(form.getImgFile(), usertbl.getAddress());
+	}
+
+	public void setProjectImg(MultipartFile img, String adress) {
+		if (!img.isEmpty()) {
+			Path path = Paths.get("." + adress + "/ProfileImage"
+					+ img.getOriginalFilename().substring(img.getOriginalFilename().lastIndexOf(".")));
+			File imgFile = new File(path.toString());
+			System.out.println(path.toString());
+			if (imgFile.exists()) {
+				try {
+					Files.delete(path);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			try (OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE)) {
+				byte[] bytes = img.getBytes();
+				os.write(bytes);
+			} catch (Exception e) {
+			}
+		}
 	}
 
 	/**
@@ -82,7 +106,6 @@ public class UsertblService {
 	 */
 	public void makeDir(String adress) {
 		Path p = Paths.get("." + adress);
-		System.out.println("ディレクトリを作成" + p);
 		try {
 			Files.createDirectory(p);
 		} catch (IOException e) {
@@ -94,7 +117,7 @@ public class UsertblService {
 	public boolean userRegistration(SignupForm form) {
 		// emailが存在した場合,if分にはtrueが返ってくる。
 		if (UtblRepo.existsByEmail(form.getEmail())) {
-			System.out.println("email exists");
+			System.out.println("例外エラー：すでに存在するメールアドレスです");
 			return false;
 		}
 		Usertbl usertbl = new Usertbl();
@@ -106,7 +129,7 @@ public class UsertblService {
 
 	/**
 	 * /USERs直下にuserId名のディレクトリーが存在するかどうかを確認し、存在しない場合USERs直下にIDめいのディレクトリを新規作成する。
-	 * 存在しない場合userId名でディレクトリを作成 呼び出し場所:Game_creation_copy_Controller
+	 * 存在しない場合userId名でディレクトリを作成 呼び出し場所:Game_creation_copy_Controller 使っていない
 	 * 
 	 * @param id ユーザーID
 	 */
@@ -126,8 +149,5 @@ public class UsertblService {
 	 */
 	public UserDto oneReco(String email) {
 		return UserDto.of(UserRepo.getByEmail(email));
-	}
-	public void saveUserImg(MultipartFile imgFile) {
-		
 	}
 }

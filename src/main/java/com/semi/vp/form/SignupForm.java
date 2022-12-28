@@ -34,11 +34,14 @@ public class SignupForm {
 
 	@NotNull
 	private Long sex;
+	
 	@NotEmpty
 	private String job;
+	
 	@NotEmpty
 	private String check;
-//	@NotEmpty　使えないっぽい
+	
+	@NotNull
 	@PastOrPresent
 	private Date birth;
 

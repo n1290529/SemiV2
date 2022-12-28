@@ -82,212 +82,208 @@ let BackgroundArray = {};//背景保存配列
 
 //関数群
 //イベント
-window.onload = function () {
-	// var blocklyDiv = document.getElementById('blocklyDiv');
+window.onload = function() {
 	/**
 	 * Blocklyツールボックス
 	 * @type {HTMLElement} 
 	 */
 
-	var toolbox = '<xml>' +
-		'<category name="動き" colour="#e94e4e">' +
-		'<block type="n_move">' +
-		'<value name="input_dropbox">' +
-		'<shadow type="obj_dropbox">' +
-		'</shadow>' +
-		'</value>' +
-		'<value name="input">' +
-		'<shadow type="math_number">' +
-		'<field name="NUM">0</field>' +
-		'</shadow>' +
-		'</value>' +
-		'</block>' +
-		'</category>' +
-		'</xml>';
+	var toolbox;
+	console.log(location.pathname.split('/'));
+	$.get("/getBlocklyData")
+		//①サーバーからの返信を受け取る 
+		.done(function(data) {
+			toolbox = data;
+		})
+		//②通信エラーの場合
+		.fail(function() {
+			console.log("error");
+		})
+		//③通信が終了した場合
+		.always(function() {
+			/**
+				* Blocklyオプション
+				* @type {{toolbox: HTMLElement, collapse: boolean, comments: boolean, disable: boolean, maxBlocks: number, trashcan: boolean, horizontalLayout: boolean, toolboxPosition: string, css: boolean, media: 'https://blockly-demo.appspot.com/static/media/', rtl: boolean, scrollbars: boolean, sounds: boolean, oneBasedIndex: boolean, grid: { spacing: number, length: number, colour: color, snap: boolean }, zoom: { wheel: boolean, startScale: number, maxScale: number, scaleSpeed: number}}}
+				*/
+			var options = {
+				toolbox: toolbox,
+				collapse: true,
+				comments: true,
+				disable: true,
+				maxBlocks: Infinity,
+				trashcan: true,
+				horizontalLayout: false,
+				toolboxPosition: 'start',
+				css: true,
+				media: 'https://blockly-demo.appspot.com/static/media/',
+				rtl: false,
+				scrollbars: true,
+				sounds: true,
+				oneBasedIndex: true,
+				grid: {
+					spacing: 20,
+					length: 1,
+					colour: '#888',
+					snap: false
+				},
+				zoom: {
+					controls: true,
+					wheel: false,
+					startScale: 0.85,
+					maxScale: 0.85,
+					minScale: 0.85,
+					scaleSpeed: 1.2
+				}
+			};
 
+			workspace = Blockly.inject("blocklyDiv", options);
+			workspaceBlocks = document.getElementById("workspaceBlocks");
 
-	/**
-	 * Blocklyオプション
-	 * @type {{toolbox: HTMLElement, collapse: boolean, comments: boolean, disable: boolean, maxBlocks: number, trashcan: boolean, horizontalLayout: boolean, toolboxPosition: string, css: boolean, media: 'https://blockly-demo.appspot.com/static/media/', rtl: boolean, scrollbars: boolean, sounds: boolean, oneBasedIndex: boolean, grid: { spacing: number, length: number, colour: color, snap: boolean }, zoom: { wheel: boolean, startScale: number, maxScale: number, scaleSpeed: number}}}
-	 */
-	var options = {
-		toolbox: toolbox,
-		collapse: true,
-		comments: true,
-		disable: true,
-		maxBlocks: Infinity,
-		trashcan: true,
-		horizontalLayout: false,
-		toolboxPosition: 'start',
-		css: true,
-		media: 'https://blockly-demo.appspot.com/static/media/',
-		rtl: false,
-		scrollbars: true,
-		sounds: true,
-		oneBasedIndex: true,
-		grid: {
-			spacing: 20,
-			length: 1,
-			colour: '#888',
-			snap: false
-		},
-		zoom: {
-			controls: true,
-			wheel: false,
-			startScale: 0.85,
-			maxScale: 0.85,
-			minScale: 0.85,
-			scaleSpeed: 1.2
-		}
-	};
-
-	workspace = Blockly.inject("blocklyDiv", options);
-	workspaceBlocks = document.getElementById("workspaceBlocks");
-
-	// Blockly.Xml.domToWorkspace(workspaceBlocks, workspace);
-	workspace.addChangeListener(function (e) {
-		if (!e.isOpen && e.type == "bubble_open" && e.bubbleType == "mutator") {//ミュテーターアイコンが閉じたとき
-			const block_type = workspace.getBlockById(e.blockId).type;//変更されたブロックタイプ
-			if (block_type == "operator" || block_type == "switch") {
-				const o_nums = workspace.getBlocksByType("o_num", true);
-				for (let i = 0; i < o_nums.length; i++) {
-					if (o_nums[i].isShadow() && o_nums[i].getSurroundParent() == null) {
-						o_nums[i].dispose();
+			// Blockly.Xml.domToWorkspace(workspaceBlocks, workspace);
+			workspace.addChangeListener(function(e) {
+				if (!e.isOpen && e.type == "bubble_open" && e.bubbleType == "mutator") {//ミュテーターアイコンが閉じたとき
+					const block_type = workspace.getBlockById(e.blockId).type;//変更されたブロックタイプ
+					if (block_type == "operator" || block_type == "switch") {
+						const o_nums = workspace.getBlocksByType("o_num", true);
+						for (let i = 0; i < o_nums.length; i++) {
+							if (o_nums[i].isShadow() && o_nums[i].getSurroundParent() == null) {
+								o_nums[i].dispose();
+							}
+						}
 					}
 				}
+			});
+			Blockly.Flyout.prototype.autoClose = false;//フライアウトの固定化
+			//zoomの+,-を消去し、中央に戻すボタンの位置を変更する。
+			document.getElementsByClassName("blocklyZoom")[0].style.display = "none";
+			document.getElementsByClassName("blocklyZoom")[1].style.display = "none";
+
+			var default_w = document.getElementById("tst").style.width;
+			var default_h = document.getElementById("tst").style.height;
+
+			default_w = (parseInt(default_w.slice(0, -2)) - 74) + "px";//74
+			default_h = (parseInt(default_h.slice(0, -2)) - 196) + "px";//196
+
+			document.getElementsByClassName("blocklyZoom")[2].parentElement.style.transform = 'translate(' + default_w + ',' + default_h + ')';
+
+			Siber_event();
+			document.getElementById("objects").oncontextmenu = function() { return false; }//右クリック消去
+			document.getElementById("BGinformation").oncontextmenu = function() { return false; }//右クリック消去
+			// object_match_id['1KB'] = 0;//消去予定
+
+			window.onclick = function() {
+				document.getElementById('contextmenu').style.display = "none";
 			}
-		}
-	});
-	Blockly.Flyout.prototype.autoClose = false;//フライアウトの固定化
-	//zoomの+,-を消去し、中央に戻すボタンの位置を変更する。
-	document.getElementsByClassName("blocklyZoom")[0].style.display = "none";
-	document.getElementsByClassName("blocklyZoom")[1].style.display = "none";
 
-	var default_w = document.getElementById("tst").style.width;
-	var default_h = document.getElementById("tst").style.height;
+			//キャンバス初期処理
+			canvas = this.__canvas = new fabric.Canvas('operation_canvas', {
+				perPixelTargetFind: true//透明部分無視ドラッグ
+			});
+			fabric.Object.NUM_FRACTION_DIGITS = 17;
 
-	default_w = (parseInt(default_w.slice(0, -2)) - 74) + "px";//74
-	default_h = (parseInt(default_h.slice(0, -2)) - 196) + "px";//196
+			canvas.on({//fabric.jsイベント
+				'object:moving': function(e) {
+					e.target.opacity = 0.7;
 
-	document.getElementsByClassName("blocklyZoom")[2].parentElement.style.transform = 'translate(' + default_w + ',' + default_h + ')';
+				},
+				'object:modified': function(e) {
+					e.target.opacity = 1;
+					e.target.bringToFront();//最前面処理
+				},
+				'selection:created': function(e) {
+					let activeObject = canvas.getActiveObject();
+					let target = document.getElementsByClassName('is-select')[0];
+					Remove_item_focus(target.id);
+					target.classList.remove('is-select');
+					document.getElementById(activeObject.id).classList.add('is-select');
+					setObjectData(activeObject.id);
+				},
+				'selection:updated': function(e) {
+					let activeObject = canvas.getActiveObject();
+					let target = document.getElementsByClassName('is-select')[0];
+					Remove_item_focus(target.id);
+					target.classList.remove('is-select');
+					document.getElementById(activeObject.id).classList.add('is-select');
+					setObjectData(activeObject.id);
+				},
+				'object:moving': function(e) {
+					setObjectData(e.target.id);
+				},
+				'object:scaling': function(e) {
+					setObjectData(e.target.id);
+				},
+				'object:rotating': function(e) {
+					setObjectData(e.target.id);
+				}
+			});
 
-	Siber_event();
-	document.getElementById("objects").oncontextmenu = function () { return false; }//右クリック消去
-	document.getElementById("BGinformation").oncontextmenu = function () { return false; }//右クリック消去
-	// object_match_id['1KB'] = 0;//消去予定
+			inputName = document.getElementById("Object_name");
+			inputSizeX = document.getElementById("sizeX");
+			inputSizeY = document.getElementById("sizeY");
+			Angles = document.getElementById("Object_direction");
+			inputPositionX = document.getElementById("Object_X");
+			inputPositionY = document.getElementById("Object_Y");
+			inputName.onfocus = function() {
+				inputName.dataset.name = this.value;
+			};
+			inputName.onchange = function() {
+				let name = setObjectName(this.value);
+				getObject(this.dataset.name).id = setObjectName(name);
+				document.getElementById(this.dataset.name).id = name;
+				document.getElementById(name).getElementsByClassName("obj img")[0].children[0].id = "img" + name;
+				document.getElementById(name).getElementsByClassName("obj name")[0].innerHTML = name;
+				checkName[checkName.indexOf(this.dataset.name)] = name;
+				canvas.renderAll();
 
-	window.onclick = function () {
-		document.getElementById('contextmenu').style.display = "none";
-	}
+				let blocks = workspace.getBlocksByType('objdropbox', true);
+				for (let b in blocks) {
+					console.log(blocks[b].getField('object'));
+					if (this.dataset.name == blocks[b].getField('object').selectedOption[0]) {
+						blocks[b].generateOptions();
+						blocks[b].getField('object').doValueUpdate(name);
+						blocks[b].getField('object').selectedOption = [name, name];
+						workspace.render();//workspaceの更新
+					}
+				}
+				workspace.getToolbox().refreshSelection();//toolboxの更新
 
-	//キャンバス初期処理
-	canvas = this.__canvas = new fabric.Canvas('operation_canvas', {
-		perPixelTargetFind: true//透明部分無視ドラッグ
-	});
-	fabric.Object.NUM_FRACTION_DIGITS = 17;
+				this.dataset.name = name;
 
-	canvas.on({//fabric.jsイベント
-		'object:moving': function (e) {
-			e.target.opacity = 0.7;
-
-		},
-		'object:modified': function (e) {
-			e.target.opacity = 1;
-			e.target.bringToFront();//最前面処理
-		},
-		'selection:created': function (e) {
-			let activeObject = canvas.getActiveObject();
-			let target = document.getElementsByClassName('is-select')[0];
-			Remove_item_focus(target.id);
-			target.classList.remove('is-select');
-			document.getElementById(activeObject.id).classList.add('is-select');
-			setObjectData(activeObject.id);
-		},
-		'selection:updated': function (e) {
-			let activeObject = canvas.getActiveObject();
-			let target = document.getElementsByClassName('is-select')[0];
-			Remove_item_focus(target.id);
-			target.classList.remove('is-select');
-			document.getElementById(activeObject.id).classList.add('is-select');
-			setObjectData(activeObject.id);
-		},
-		'object:moving': function (e) {
-			setObjectData(e.target.id);
-		},
-		'object:scaling': function (e) {
-			setObjectData(e.target.id);
-		},
-		'object:rotating': function (e) {
-			setObjectData(e.target.id);
-		}
-	});
-
-	inputName = document.getElementById("Object_name");
-	inputSizeX = document.getElementById("sizeX");
-	inputSizeY = document.getElementById("sizeY");
-	Angles = document.getElementById("Object_direction");
-	inputPositionX = document.getElementById("Object_X");
-	inputPositionY = document.getElementById("Object_Y");
-	inputName.onfocus = function () {
-		inputName.dataset.name = this.value;
-	};
-	inputName.onchange = function () {
-		let name = setObjectName(this.value);
-		getObject(this.dataset.name).id = setObjectName(name);
-		document.getElementById(this.dataset.name).id = name;
-		document.getElementById(name).getElementsByClassName("obj img")[0].children[0].id = "img" + name;
-		document.getElementById(name).getElementsByClassName("obj name")[0].innerHTML = name;
-		checkName[checkName.indexOf(this.dataset.name)] = name;
-		canvas.renderAll();
-
-		let blocks = workspace.getBlocksByType('objdropbox', true);
-		for (let b in blocks) {
-			console.log(blocks[b].getField('object'));
-			if (this.dataset.name == blocks[b].getField('object').selectedOption[0]) {
-				blocks[b].generateOptions();
-				blocks[b].getField('object').doValueUpdate(name);
-				blocks[b].getField('object').selectedOption = [name, name];
-				workspace.render();//workspaceの更新
-			}
-		}
-		workspace.getToolbox().refreshSelection();//toolboxの更新
-
-		this.dataset.name = name;
-
-	};
-	inputSizeX.onchange = function () {
-		let object = getObject(inputName.value);
-		console.log(this.value);
-		console.log(object);
-		object.scaleX = Number(this.value) / 100;
-		canvas.renderAll();
-		setObjectData(object.id);
-	};
-	inputSizeY.onchange = function () {
-		let object = getObject(inputName.value);
-		object.scaleY = Number(this.value) / 100;
-		canvas.renderAll();
-		setObjectData(object.id);
-	};
-	Angles.onchange = function () {
-		let object = getObject(inputName.value);
-		object.rotate(Number(this.value));
-		canvas.renderAll();
-		setObjectData(object.id);
-	};
-	inputPositionX.onchange = function () {
-		let object = getObject(inputName.value);
-		object.set({ left: Number(inputPositionX.value) });
-		canvas.renderAll();
-		setObjectData(object.id);
-	};
-	inputPositionY.onchange = function () {
-		let object = getObject(inputName.value);
-		object.set({ top: Number(inputPositionY.value) });
-		canvas.renderAll();
-		setObjectData(object.id);
-	};
-	restore();
+			};
+			inputSizeX.onchange = function() {
+				let object = getObject(inputName.value);
+				console.log(this.value);
+				console.log(object);
+				object.scaleX = Number(this.value) / 100;
+				canvas.renderAll();
+				setObjectData(object.id);
+			};
+			inputSizeY.onchange = function() {
+				let object = getObject(inputName.value);
+				object.scaleY = Number(this.value) / 100;
+				canvas.renderAll();
+				setObjectData(object.id);
+			};
+			Angles.onchange = function() {
+				let object = getObject(inputName.value);
+				object.rotate(Number(this.value));
+				canvas.renderAll();
+				setObjectData(object.id);
+			};
+			inputPositionX.onchange = function() {
+				let object = getObject(inputName.value);
+				object.set({ left: Number(inputPositionX.value) });
+				canvas.renderAll();
+				setObjectData(object.id);
+			};
+			inputPositionY.onchange = function() {
+				let object = getObject(inputName.value);
+				object.set({ top: Number(inputPositionY.value) });
+				canvas.renderAll();
+				setObjectData(object.id);
+			};
+			restore();
+		})
 }
 
 function AddPropertyObj(e) {//オブジェクト追加処理
@@ -419,9 +415,9 @@ function setObjectImg(src, name, width, height, scaleX, scaleY, angle, visible) 
 	set_box_spr(name, src, width, height);//スプライトに追加
 	img.onload = () => {
 		fabric.Image.fromURL(src,
-			function (img) {
+			function(img) {
 				img.id = name;//オブジェクトIDの設定
-				img.on('added', function () { setObjectData(this.id); });//追加された際のプロパティ表示処置
+				img.on('added', function() { setObjectData(this.id); });//追加された際のプロパティ表示処置
 				canvas.add(img);
 				canvas.renderAll();
 			}, { crossOrigin: 'anonymous', scaleX: scaleX, scaleY: scaleY, angle: angle, visible: visible }
@@ -447,8 +443,8 @@ function setBackgroundImg(src, width, height) {//画像をFabric.jsでキャン�
 	back_cnt += 1;
 	img.onload = () => {
 		fabric.Image.fromURL(src,
-			function (img) {
-				canvas.setBackgroundImage(img, function () {//背景画像を配置後の処理
+			function(img) {
+				canvas.setBackgroundImage(img, function() {//背景画像を配置後の処理
 					console.log("背景追加");
 					console.log(canvas.getCenter());
 					img.id = "back" + back_cnt;
@@ -487,8 +483,8 @@ function changeBackgroundImg(num) {//画像をFabric.jsでキャンバス背景�
 	img.src = BackgroundArray[num].src;
 	img.onload = () => {
 		fabric.Image.fromURL(BackgroundArray[num].src,
-			function (img) {
-				canvas.setBackgroundImage(img, function () {//背景画像を配置後の処理
+			function(img) {
+				canvas.setBackgroundImage(img, function() {//背景画像を配置後の処理
 					console.log("背景変更");
 					console.log(canvas.getCenter());
 					img.id = "back" + num;
@@ -571,7 +567,6 @@ function set_bginfo_img_back(src, nw, nh, back_num) {//divとimgの追加
 		'</div>'
 	);
 	const backImg = document.getElementById("backImg " + back_num);
-	console.log("w:" + nw + ", h:" + nh);
 	if (nw < nh) {//高さの方が大きい場合
 		backImg.width = nw * 44 / nh;
 		backImg.height = 44;
@@ -764,7 +759,7 @@ function Add_property_Event(name) {//プロパティアイテムにイベント�
 
 	if (target.classList[0] == "sprite") {
 		target.addEventListener("click",
-			function () {
+			function() {
 				if (Array.from(this.classList).indexOf("is-select") == -1) {
 					try {
 						Remove_item_focus(document.getElementsByClassName("is-select")[0].id);
@@ -781,7 +776,7 @@ function Add_property_Event(name) {//プロパティアイテムにイベント�
 			}
 		);
 		target.addEventListener('contextmenu',
-			function (e) {
+			function(e) {
 				//マウスの位置をstyleへ設定（左上の開始位置を指定）
 				document.getElementById('contextmenu').style.left = e.pageX + "px";//ページ全体におけるx
 				document.getElementById('contextmenu').style.top = e.pageY + "px";//ページ全体におけるy
@@ -794,7 +789,7 @@ function Add_property_Event(name) {//プロパティアイテムにイベント�
 	}
 	else if (target.classList[0] == "back") {
 		target.addEventListener("click",
-			function () {
+			function() {
 				if (Array.from(this.classList).indexOf("is-select-bg") == -1) {
 					Remove_item_focus(document.getElementsByClassName("is-select-bg")[0].id);
 					this.classList.add("is-select-bg");
@@ -804,7 +799,7 @@ function Add_property_Event(name) {//プロパティアイテムにイベント�
 			}
 		);
 		target.addEventListener("contextmenu",
-			function (e) {
+			function(e) {
 				//マウスの位置をstyleへ設定（左上の開始位置を指定）
 				document.getElementById('contextmenu').style.left = e.pageX + "px";//ページ全体におけるx
 				document.getElementById('contextmenu').style.top = e.pageY + "px";//ページ全体におけるy
@@ -865,7 +860,7 @@ function Siber_event() {//サイドバー
 		sidebar.classList.toggle("close");
 	});
 }
-document.addEventListener('DOMContentLoaded', function () {//タブ
+document.addEventListener('DOMContentLoaded', function() {//タブ
 	// タブに対してクリックイベントを適用
 	const tabs = document.getElementsByClassName('tab');
 	for (let i = 0; i < tabs.length; i++) {
@@ -899,8 +894,6 @@ let outputJson;
  */
 function save() {
 	const savename = window.prompt("保存名を入力してください");
-	console.log("tsttrtttt");
-	console.log(savename);
 
 	if (savename != null) {
 		const XMLcode = Blockly.Xml.workspaceToDom(workspace);
@@ -914,7 +907,7 @@ function save() {
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 
-		$(document).ajaxSend(function (e, xhr, options) {
+		$(document).ajaxSend(function(e, xhr, options) {
 			xhr.setRequestHeader(header, token);
 		});
 
@@ -925,9 +918,9 @@ function save() {
 			contentType: 'application/json',
 			dataType: "json"  // レスポンスデータをjson形式と指定する
 		})
-			.done(function (data, textStatus, jqXHR) {
+			.done(function(data, textStatus, jqXHR) {
 			})
-			.fail(function (jqXHR, textStatus, errorThrown) {
+			.fail(function(jqXHR, textStatus, errorThrown) {
 				alert("error!");
 			})
 	}
@@ -969,8 +962,6 @@ function restore() {//復元
 		back_cnt = inputJson["background_cnt"];
 		for (let key in inputJson["background_src"]) {
 			set_bginfo_img_back(inputJson["background_src"][key].src, inputJson["background_src"][key].width, inputJson["background_src"][key].height, key);
-			console.log("ok1");
-
 		}
 
 	}
@@ -1019,7 +1010,7 @@ function setObjectData(id) {//オブジェクトデータを画面に表示処�
  */
 function getObject(id) {
 	let active = null;
-	canvas.getObjects().forEach(function (element) {
+	canvas.getObjects().forEach(function(element) {
 		if (element.id == id) {
 			active = element;
 			return;

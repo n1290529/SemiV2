@@ -3,6 +3,8 @@ package com.semi.vp.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.semi.vp.service.ProjectService;
 import com.semi.vp.service.UsertblService;
 
 @Controller
@@ -41,6 +44,8 @@ public class MainController {
 	UsertblService usertblservice;
 	@Autowired
 	UserDetailsService uds;
+	@Autowired
+	ProjectService projectService;
 
 	@GetMapping("/user")
 	public String user(HttpServletRequest request, Model model) {
@@ -54,9 +59,9 @@ public class MainController {
 		model.addAttribute("udsi", usertblservice.oneReco(authentication.getName()));
 		return "user";
 	}
-	
+
 	@GetMapping("/Test/{id}")
-	public String TestCot(HttpServletRequest request,@PathVariable String id, Model model) throws IOException {
+	public String TestCot(HttpServletRequest request, @PathVariable String id, Model model) throws IOException {
 //	public HttpEntity<byte[]> TestCot(HttpServletRequest request,@PathVariable String id, Model model) throws IOException {
 		HttpSession session = request.getSession();
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
@@ -64,27 +69,67 @@ public class MainController {
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		}
-		
-	    return "Test";
+
+		return "Test";
 	}
+
 	@RequestMapping("/getProfileImg/{id}")
 	@ResponseBody
-	public HttpEntity<byte[]> getImg(HttpServletRequest request, @PathVariable String id){
-		File fileImg = new File("." + usertblservice.searchId(id).getAddress() + "/" + "profileImg.png");
+	public HttpEntity<byte[]> getProfileImg(@PathVariable String id) {
+		File fileImg = new File("." + usertblservice.searchId(id).getAddress() + "/ProfileImage.png");
 		byte[] byteImg = null;
 		HttpHeaders headers = null;
 		try {
-			//バイト列に変換
+			// バイト列に変換
 			byteImg = Files.readAllBytes(fileImg.toPath());
 			headers = new HttpHeaders();
-			
-			//Responseのヘッダーを作成
+
+			// Responseのヘッダーを作成
 			headers.setContentType(MediaType.IMAGE_PNG);
 			headers.setContentLength(byteImg.length);
-		}catch(IOException e) {
+		} catch (IOException e) {
 			return null;
 		}
-		return new HttpEntity<byte[]>(byteImg,headers);
+		return new HttpEntity<byte[]>(byteImg, headers);
 	}
 
+	@RequestMapping("/getProjectImg/{id}")
+	@ResponseBody
+	public HttpEntity<byte[]> getProjectImg(HttpServletRequest request, @PathVariable String id) {
+		File fileImg = new File("." + projectService.searchId(id).getAddress() + "/thumbnail.png");
+		byte[] byteImg = null;
+		HttpHeaders headers = null;
+		try {
+			// バイト列に変換
+			byteImg = Files.readAllBytes(fileImg.toPath());
+			headers = new HttpHeaders();
+
+			// Responseのヘッダーを作成
+			headers.setContentType(MediaType.IMAGE_PNG);
+			headers.setContentLength(byteImg.length);
+		} catch (IOException e) {
+			return null;
+		}
+		return new HttpEntity<byte[]>(byteImg, headers);
+	}
+	@RequestMapping("/responseTest")
+	@ResponseBody
+	public String responseTest() {
+		return "通信完了";
+	}
+	@RequestMapping("/getBlocklyData")
+	@ResponseBody
+	public String getBlocklyData() {
+		Path path = Paths.get("./src/main/resources/static/DEFAULT_DATA/DefaultXml.xml");
+
+		String content;
+		try {
+			content = Files.readString(path);
+			return content;
+		} catch (IOException e) {
+			System.out.println("error");
+			return null;
+		}
+		
+	}
 }

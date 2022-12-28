@@ -26,8 +26,10 @@ public class ProjectConfigForm {
 	
 	//ゲームジャンル1
 	private String genre1;
+	
 	//ゲームジャンル2
 	private String genre2;
+	
 	//プロジェクトサムネイル
 	private MultipartFile imgFile;
 }

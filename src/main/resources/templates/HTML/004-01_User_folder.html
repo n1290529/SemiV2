@@ -28,10 +28,10 @@
 				<div th:if=" ${#lists.isEmpty(projectList)}">
 					<p>保存されたプロジェクトは存在しません</p>
 				</div>
-				<div class="searchlist01" th:each="projects : ${projectList}" th:object="${project}">
+				<div class="searchlist01" th:each="projects : ${projectList}" th:object="${projects}">
 					<div class="searchlist02">
 						<img class="searchfileicon i0"
-							th:src="@{${projects.getAddress() + '/thumbnail.png'}}"
+							th:src="@{'/getProjectImg/' + ${projects.id}}"
 							alt="No Image">
 						<div class="searchfileicon i1">
 							<span class="title" th:text="${projects.name}"></span><br> <span
