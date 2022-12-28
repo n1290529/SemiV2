@@ -11,11 +11,13 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.semi.vp.dto.ProjectDto;
 import com.semi.vp.entity.Projecttbl;
 import com.semi.vp.form.ProjectConfigForm;
 import com.semi.vp.repository.ProjectRepository;
@@ -55,9 +57,8 @@ public class ProjectService {
 	 * @param uId ユーザーID
 	 * @return プロジェクト情報
 	 */
-	public List<Projecttbl> getProjects(String uId) {
-		List<Projecttbl> projectRecord = ProjctRepo.findByUid(uId);
-		return projectRecord;
+	public List<ProjectDto> getProjects(String uId) {
+		return ProjctRepo.findByUid(uId).stream().map(ProjectDto::of).collect(Collectors.toList());
 	}
 
 	/**
@@ -92,16 +93,11 @@ public class ProjectService {
 	 */
 	public void projectUpdate(ProjectConfigForm form, String uid, String title) {
 
-		Projecttbl project = getProjectOneReco(uid, title);
-		String newName = form.getName();
-		changeProjectDir(project, newName);
-		project.setName(newName);
-		project.setAddress(usertblservice.searchId(project.getUid()).getAddress() + "/" + newName);
-		project.setIntro(form.getIntro());
-		project.setOpenflg(form.isOpenflg());
-		project.setDlflg(form.isDlflg());
-		project.setGenre(form.getGenre1() + "," + form.getGenre2());
-		setProjectImg(form.getImgFile(), project);
+		Projecttbl project = getProjectOneReco(uid, title).of(form);
+		// String newName = form.getName();
+		// changeProjectDir(project, newName);
+
+		setProjectImg(form.getImgFile(), project.getAddress());
 
 		ProjctRepo.save(project);
 	}
@@ -143,9 +139,9 @@ public class ProjectService {
 	 * @param img     保存画像ファイル
 	 * @param project 変更を実行するプロジェクト
 	 */
-	public void setProjectImg(MultipartFile img, Projecttbl project) {
+	public void setProjectImg(MultipartFile img, String adress) {
 		if (!img.isEmpty()) {
-			Path path = Paths.get("." + project.getAddress() + "/thumbnail"
+			Path path = Paths.get("." + adress + "/thumbnail"
 					+ img.getOriginalFilename().substring(img.getOriginalFilename().lastIndexOf(".")));
 			File imgFile = new File(path.toString());
 			if (imgFile.exists()) {
@@ -164,7 +160,7 @@ public class ProjectService {
 	}
 
 	/**
-	 * プロジェクトデータ変更処理
+	 * プロジェクトデータ変更処理 いらない
 	 * 
 	 * @param project    変更対象プロジェクト
 	 * @param afterTitle 変更するプロジェクト名
@@ -191,11 +187,11 @@ public class ProjectService {
 	 * @param json    保存情報JSON
 	 */
 	public void searchProjctDir(Projecttbl project, Object json) {
-		File userFileExist = new File("." + project.getAddress());
-		if (!userFileExist.exists()) {
-			// 作業ディレクトリが存在しない場合の処理
-			usertblservice.makeDir(project.getAddress());
-		}
+		// File userFileExist = new File("." + project.getAddress());
+		// if (!userFileExist.exists()) {
+		// // 作業ディレクトリが存在しない場合の処理
+		// usertblservice.makeDir(project.getAddress());
+		// }
 		// json保存処理
 		String savepath = "." + project.getAddress() + "/save.json";
 		try (PrintWriter out = new PrintWriter(new FileWriter(savepath))) {

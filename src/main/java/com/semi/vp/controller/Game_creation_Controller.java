@@ -104,8 +104,8 @@ public class Game_creation_Controller {
 			String userId = usertblservice.oneReco(authentication.getName()).getId();
 			String title = json.getSavename();
 
-			// USERs直下にuserId名のディレクトリーが存在するか確認。ない場合は新規作成
-			usertblservice.searchUserDir(userId);
+			// USERs直下にuserId名のディレクトリーが存在するか確認。ない場合は新規作成 いらないかも
+			//usertblservice.searchUserDir(userId);
 
 			// userIdとtitleからDB上に一意のレコードが存在するか確認し、更新または登録を行う
 			projectservice.setProjectJson(userId, title, new ObjectMapper().writeValueAsString(json));

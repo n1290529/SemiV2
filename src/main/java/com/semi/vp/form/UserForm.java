@@ -2,27 +2,32 @@ package com.semi.vp.form;
 
 import java.sql.Date;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.sun.istack.NotNull;
 
 import lombok.Data;
 
 @Data
 public class UserForm {
 	// 名前
-	@NotBlank
+	@NotEmpty
+	@Size(max = 30)
 	private String name;
 
 	// 生年月日
-	@NotBlank
+	@NotNull
 	private Date birth;
 
 	// 性別
-	@NotBlank
+	@NotNull
 	private long sex;
 
 	// 仕事
+	@NotEmpty
 	private String job;
 
 	// お気に入りのジャンル

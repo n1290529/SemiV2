@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.semi.vp.form.ProjectConfigForm;
+
 import lombok.Data;
 
 //porject_tblのEntity宣言
@@ -70,4 +72,19 @@ public class Projecttbl {
 	// プロジェクトの紹介文
 	@Column(name = "PROJ_INTRO")
 	private String intro;
+	
+	/**
+	 * ProjectConfigFormをProjecttblエンティティに変換する処理
+	 * 
+	 * @param ProjectConfigForm
+	 * @return Projecttbl
+	 */
+	public Projecttbl of(ProjectConfigForm form) {
+		setName(form.getName());
+		setIntro(form.getIntro());
+		setOpenflg(form.isOpenflg());
+		setDlflg(form.isDlflg());
+		setGenre(form.getGenre1() + "," + form.getGenre2());
+		return this;
+	}
 }

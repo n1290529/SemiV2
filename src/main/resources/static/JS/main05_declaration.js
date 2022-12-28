@@ -489,18 +489,15 @@ Blockly.Blocks['change_background'] = {
   }
 };
 
-
 Blockly.Blocks['change_size'] = {
   init: function () {
     this.appendValueInput("input_dropbox")
       .setCheck(["String"])
     this.appendValueInput("input")
       .setCheck("Number")
-      .appendField("の")
-      .appendField(new Blockly.FieldDropdown([["XY", "xy"],["X", "x"], ["Y", "y"]]), "select_xy")
-      .appendField("の大きさを");
+      .appendField("のサイズを");
     this.appendDummyInput()
-      .appendField("にする");
+      .appendField("に変更する");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -568,9 +565,7 @@ Blockly.Blocks['get_size'] = {
     this.appendValueInput("input_dropbox")
       .setCheck(["String"])
     this.appendDummyInput()
-    .appendField("の")
-      .appendField(new Blockly.FieldDropdown([["X", "x"], ["Y", "y"]]), "select_xy")
-      .appendField("の大きさを取得する");
+      .appendField("の現在の大きさを取得する");
     this.setInputsInline(true);
     this.setOutput(true, "Number");
     this.setColour("#e9724e");
@@ -2340,7 +2335,7 @@ Blockly.Blocks['o_join'] = {
 
 Blockly.Blocks['list_slice'] = {
   init: function () {
-    this.appendValueInput("input_str&ary")
+    this.appendValueInput("input_StrAndAry")
       .setCheck(["String", "Array"]);
     this.appendValueInput("input_first")
       .setCheck("Number")
@@ -2359,7 +2354,7 @@ Blockly.Blocks['list_slice'] = {
   },
   onchange: function (e) {
     if (!this.isInFlyout) {
-      if (this.getInput("input_str&ary").connection.connect()) {
+      if (this.getInput("input_StrAndAry").connection.connect()) {
         this.setEnabled(true);
       } else {
         this.setEnabled(false);
@@ -2370,7 +2365,7 @@ Blockly.Blocks['list_slice'] = {
 
 Blockly.Blocks['o_indexof'] = {
   init: function () {
-    this.appendValueInput("input_str&ary")
+    this.appendValueInput("input_StrAndAry")
       .setCheck(["String", "Array"]);
     this.appendValueInput("input_index")
       .setCheck(null)
@@ -2387,7 +2382,7 @@ Blockly.Blocks['o_indexof'] = {
   },
   onchange: function (e) {
     if (!this.isInFlyout) {
-      if (this.getInput("input_str&ary").connection.connect()) {
+      if (this.getInput("input_StrAndAry").connection.connect()) {
         this.setEnabled(true);
       } else {
         this.setEnabled(false);
@@ -2765,7 +2760,7 @@ Blockly.Blocks['block_type'] = {
 
 Blockly.Blocks['list_ary_slice1'] = {
   init: function () {
-    this.appendValueInput("input_str&ary")
+    this.appendValueInput("input_StrAndAry")
       .setCheck(["Array", "String"]);
     this.appendValueInput("input_first")
       .setCheck("Number")
@@ -2780,7 +2775,7 @@ Blockly.Blocks['list_ary_slice1'] = {
   },
   onchange: function (e) {
     if (!this.isInFlyout) {
-      if (this.getInput("input_str&ary").connection.connect()) {
+      if (this.getInput("input_StrAndAry").connection.connect()) {
         this.setEnabled(true);
       } else {
         this.setEnabled(false);

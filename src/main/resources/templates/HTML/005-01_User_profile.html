@@ -16,7 +16,7 @@
 
 			<!-- 枠のある場所 -->
 			<div class="profilechangelist02">
-				<form th:action="@{/profile/edit}" th:method="put">
+				<form th:action="@{/profile/edit}" enctype="multipart/form-data" th:method="put">
 					<div class="profilechangelist01">
 						<div class="ap">
 							<div class="ap00">
@@ -35,10 +35,6 @@
 								<input type="text" class="usernamechange02" name="name"
 									th:value="${user.name}" placeholder="名前を入力してください"
 									required="required">
-								<!-- メアド -->
-								<!--<p class="tag required">メールアドレス</p>
-								<input type="email" class="useremailchange01"
-									th:value="${'aaa'}" disabled="disabled">-->
 								<table>
 									<tr>
 										<td>

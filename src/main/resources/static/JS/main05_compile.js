@@ -319,19 +319,18 @@ Blockly.JavaScript['change_background'] = function(block) {
 
 Blockly.JavaScript['change_size'] = function(block) {
   var dropdown_object = Blockly.JavaScript.valueToCode(block, 'input_dropbox', Blockly.JavaScript.ORDER_NONE);
-  var dropdown_select_xy = block.getFieldValue('select_xy');
   var value_input = Blockly.JavaScript.valueToCode(block, 'input', Blockly.JavaScript.ORDER_ATOMIC);
 
   let check_type = block.getInput('input_dropbox').connection.targetConnection.sourceBlock_.type;
   var code = 'Semi_change_size('
   if(check_type === "obj_dropbox"){
-    code += '"' + dropdown_object + '","'+dropdown_select_xy+'",'+value_input+');\n';
+    code += '"' + dropdown_object + '", ' + value_input + ');\n';
   }
   else if(check_type === "text"){
-    code += dropdown_object + ',"'+dropdown_select_xy+'",'+value_input+');\n';
+    code += dropdown_object + ', ' + value_input + ');\n';
   }
   else if(check_type === "variables_get"){
-    code += dropdown_object + ',"'+dropdown_select_xy+'",'+value_input+');\n';
+    code += dropdown_object + ', ' + value_input + ');\n';
   }
   // console.log(dropdown_object+"abcdefg"+value_input);
   
@@ -376,18 +375,17 @@ Blockly.JavaScript['show'] = function(block) {
 
 Blockly.JavaScript['get_size'] = function(block) {
   var dropdown_object = Blockly.JavaScript.valueToCode(block, 'input_dropbox', Blockly.JavaScript.ORDER_NONE);
-  var dropdown_select_xy = block.getFieldValue('select_xy');
 
   let check_type = block.getInput('input_dropbox').connection.targetConnection.sourceBlock_.type;
   var code = 'Semi_get_size('
   if(check_type === "obj_dropbox"){
-    code += '"' + dropdown_object + '","'+dropdown_select_xy+'")';
+    code += '"' + dropdown_object + '")';
   }
   else if(check_type === "text"){
-    code += dropdown_object +',"'+dropdown_select_xy+'")';
+    code += dropdown_object + ')';
   }
   else if(check_type === "variables_get"){
-    code += dropdown_object +',"'+dropdown_select_xy+'")';
+    code += dropdown_object + ')';
   }
 
   return [code, Blockly.JavaScript.ORDER_NONE];
@@ -1166,7 +1164,7 @@ Blockly.JavaScript['o_join'] = function(block) {
 };
 
 Blockly.JavaScript['list_slice'] = function(block) {
-  var value_input_str_ary = Blockly.JavaScript.valueToCode(block, 'input_str&ary', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_input_str_ary = Blockly.JavaScript.valueToCode(block, 'input_StrAndAry', Blockly.JavaScript.ORDER_ATOMIC);
   var value_input_first = Blockly.JavaScript.valueToCode(block, 'input_first', Blockly.JavaScript.ORDER_ATOMIC);
   var value_input_last = Blockly.JavaScript.valueToCode(block, 'input_last', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
@@ -1176,7 +1174,7 @@ Blockly.JavaScript['list_slice'] = function(block) {
 };
 
 Blockly.JavaScript['o_indexof'] = function(block) {
-  var value_input_str_ary = Blockly.JavaScript.valueToCode(block, 'input_str&ary', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_input_str_ary = Blockly.JavaScript.valueToCode(block, 'input_StrAndAry', Blockly.JavaScript.ORDER_ATOMIC);
   var dropdown_select_fl = block.getFieldValue('select_fl');
   var value_input_index = Blockly.JavaScript.valueToCode(block, 'input_index', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
@@ -1539,7 +1537,7 @@ Blockly.JavaScript['block_type'] = function(block) {
 };
 
 Blockly.JavaScript['list_ary_slice1'] = function(block) {
-  var value_input_str_ary = Blockly.JavaScript.valueToCode(block, 'input_str&ary', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_input_str_ary = Blockly.JavaScript.valueToCode(block, 'input_StrAndAry', Blockly.JavaScript.ORDER_ATOMIC);
   var value_input_first = Blockly.JavaScript.valueToCode(block, 'input_first', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
   var code = value_input_str_ary + '.slice(' + value_input_first + ')';

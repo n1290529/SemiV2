@@ -1,7 +1,5 @@
 package com.semi.vp.controller;
 
-import java.util.stream.Collectors;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.semi.vp.dto.ProjectDto;
 import com.semi.vp.service.ProjectService;
 import com.semi.vp.service.UsertblService;
 
@@ -30,8 +27,8 @@ public class User_folder_Controller {
 		if (securityContext != null) {
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 			String userId = usertblservice.oneReco(authentication.getName()).getId();
-			model.addAttribute("projectList", projectservice.getProjects(userId).stream().map(ProjectDto::of).collect(Collectors.toList()));
-			
+			model.addAttribute("projectList", projectservice.getProjects(userId));
+
 			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		}
 		return "HTML/004-01_User_folder";
