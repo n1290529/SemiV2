@@ -90,7 +90,6 @@ window.onload = function() {
 
 	var toolbox;
 	var url;
-	console.log(location.pathname.split('/')[2]);
 	if(location.pathname.split('/')[1]=="create"){
 		url="/getBlocklyData/default";
 	}else{
@@ -164,8 +163,8 @@ window.onload = function() {
 			document.getElementsByClassName("blocklyZoom")[0].style.display = "none";
 			document.getElementsByClassName("blocklyZoom")[1].style.display = "none";
 
-			var default_w = document.getElementById("tst").style.width;
-			var default_h = document.getElementById("tst").style.height;
+			var default_w = document.getElementById("left_element").style.width;
+			var default_h = document.getElementById("left_element").style.height;
 
 			default_w = (parseInt(default_w.slice(0, -2)) - 74) + "px";//74
 			default_h = (parseInt(default_h.slice(0, -2)) - 196) + "px";//196

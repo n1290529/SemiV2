@@ -55,7 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					"/registerpass",
 					"/common",
 					"/create",
-					"/create/2d"
+					"/create/2d",
+					"/getProfileImg",
+					"/getBlocklyData/**"
 					).permitAll()
 
 			// /adminはADMINロールを持つユーザだけアクセス可能

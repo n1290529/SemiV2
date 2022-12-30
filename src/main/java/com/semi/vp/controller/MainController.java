@@ -125,8 +125,8 @@ public class MainController {
 		Path path;
 		if (dataType.equals("default")) {
 			path = Paths.get("./src/main/resources/static/DEFAULT_DATA/DefaultXml.xml");
-		}else {
-			path = Paths.get("./src/main/resources/static/DEFAULT_DATA/"+dataType+".xml");
+		} else {
+			path = Paths.get("./src/main/resources/static/DEFAULT_DATA/" + dataType + ".xml");
 		}
 
 		String content;

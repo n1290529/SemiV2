@@ -2,13 +2,11 @@
 <html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:replace="HTML/topsidebar :: meta_header('制作',~{::meta},~{::link},~{::script})">
+<head th:replace="HTML/topsidebar :: meta_header('問題解答',~{::meta},~{::link},~{::script})">
 
 	<meta th:name="_csrf" th:content="${_csrf.token}" />
 	<meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
-
-	<link rel="stylesheet" th:href="@{/CSS/sidebar_GC.css}">
-	<link rel="stylesheet" th:href="@{/CSS/004-02_Game_creation.css}">
+	<link rel="stylesheet" th:href="@{/CSS/006-03_Game_creation_problem.css}">
 	<link th:href='@{https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css}' rel='stylesheet'>
 
 	<script th:src="@{/JS/API/google-blockly/blockly_compressed.js}"></script>
@@ -22,7 +20,7 @@
 	<script th:src="@{https://unpkg.com/fabric@latest/src/mixins/eraser_brush.mixin.js}"></script>
 	<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
 	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js}"></script>
-	<script th:src="@{/JS/004-02_Game_creation.js}"></script>
+	<!--  <script th:src="@{/JS/004-02_Game_creation.js}"></script> -->
 	<script th:src="@{/JS/compile_functions.js}"></script>
 	<script th:src="@{/JS/acorn_interpreter.js}"></script>
 	<script th:src="@{/JS/editProject.js}"></script>
@@ -32,6 +30,7 @@
 </head>
 
 <body>
+
 	<script>
 		function showCode() {
 			var code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -47,9 +46,6 @@
 			}
 		}
 	</script>
-	<div th:replace="HTML/topsidebar :: headbar"></div>
-	<div th:replace="HTML/topsidebar :: sidebar"></div>
-
 	<section class="home-section">
 		<div id="main">
 			<div id="left_element" class="item">
@@ -222,7 +218,6 @@
 			</div>
 		</div>
 	</section>
-
 	<script>
 		var myInterpreter = null;
 		var initFunc = function (interpreter, scope) {
@@ -286,18 +281,16 @@
 			}
 
 			var wrapper_Semi_change_size = function (dropdown_object,
-				dropdown_select_xy, value_input) {
-				return Semi_change_size(dropdown_object, dropdown_select_xy,
-					value_input);
+				value_input) {
+				return Semi_change_size(dropdown_object, value_input);
 			}
 
 			var wrapper_Semi_show = function (dropdown_object, dropdown_set_show) {
 				return Semi_show(dropdown_object, dropdown_set_show);
 			}
 
-			var wrapper_Semi_get_size = function (dropdown_object,
-				dropdown_select_xy) {
-				return Semi_get_size(dropdown_object, dropdown_select_xy);
+			var wrapper_Semi_get_size = function (dropdown_object) {
+				return Semi_get_size(dropdown_object);
 			}
 
 			var wrapper_Semi_get_background = function (dropdown_object) {
@@ -397,13 +390,11 @@
 
 		$("#play path").click(function () {
 			alert('play');
-			/*
 			document.getElementById("Object_name").disabled = true;
 			document.getElementById("Object_X").disabled = true;
 			document.getElementById("Object_Y").disabled = true;
 			document.getElementById("Object_size").disabled = true;
 			document.getElementById("Object_direction").disabled = true;
-			 */
 
 			var myCode = Blockly.JavaScript.workspaceToCode(workspace);
 			myInterpreter = new Interpreter(myCode, initFunc);
@@ -412,13 +403,11 @@
 		});
 		$("#stop path").click(function () {
 			alert('stop');
-			/*
 			document.getElementById("Object_name").disabled = false;
 			document.getElementById("Object_X").disabled = false;
 			document.getElementById("Object_Y").disabled = false;
 			document.getElementById("Object_size").disabled = false;
 			document.getElementById("Object_direction").disabled = false;
-			 */
 
 			window.clearTimeout(pid);
 		});
@@ -427,27 +416,23 @@
 		});
 	</script>
 	<div id="contextmenu">
-		<ol>
-			<li id="copyBtn" onclick="menu1()">複製</li>
-			<li id="saveBtn" onclick="menu2()">保存</li>
-			<li id="deleteBtn" onclick="menu3()">削除</li>
-		</ol>
+		<li id="copyBtn" onclick="menu1()">複製</li>
+		<li id="saveBtn" onclick="menu2()">保存</li>
+		<li id="deleteBtn" onclick="menu3()">削除</li>
 	</div>
 </body>
 <script>
-	Ready();
+	// Ready();
 
 	function resizeWindow() {
 		var resize_w = document.getElementById("left_element").style.width;
 		var resize_h = document.getElementById("left_element").style.height;
-
 		resize_w = (parseInt(resize_w.slice(0, -2)) - 74) + "px";//74
 		resize_h = (parseInt(resize_h.slice(0, -2)) - 196) + "px";//196
-
 		document.getElementsByClassName("blocklyZoom")[2].parentElement.style.transform = 'translate('
 			+ resize_w + ',' + resize_h + ')';
-
 	}
+
 	window.onresize = resizeWindow;
 
 	var scroll_cnt = 0;
@@ -455,11 +440,6 @@
 		document.getElementById("BGinformation").addEventListener(
 			'scroll',
 			function () {
-				console.log("hello")
-				console.log("縦スクロール：" + $(this).scrollTop());
-				console.log($("#BGinformation").height());
-				console.log($("#BGinformation").height() - 46
-					+ $(this).scrollTop());
 				if (scroll_cnt < $(this).scrollTop()) {//下にスクロール
 					//下方向に無限にスクロールしない為の分岐
 					if ($("#BGinformation").height() > $("#BGinformation")
@@ -479,7 +459,6 @@
 					scroll_cnt = $(this).scrollTop();
 				}
 			});
-
 	});
 </script>
 

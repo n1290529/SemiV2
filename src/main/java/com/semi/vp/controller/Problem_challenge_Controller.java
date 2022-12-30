@@ -26,7 +26,6 @@ public class Problem_challenge_Controller {
 
 		HttpSession session = request.getSession();
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-		System.out.println(securityContext != null);
 		if (securityContext != null) {
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));

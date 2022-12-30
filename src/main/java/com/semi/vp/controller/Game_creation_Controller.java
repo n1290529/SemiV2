@@ -16,6 +16,7 @@ import com.semi.vp.form.BlocklyJson;
 import com.semi.vp.service.ProjectService;
 import com.semi.vp.service.UsertblService;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,11 +48,14 @@ public class Game_creation_Controller {
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 
-			Path path = Paths.get("./src/main/resources/static/DEFAULT_DATA/save.json");
-
-			String content = Files.readString(path);
-			model.addAttribute("inputJson", content);
 		} catch (Exception e) {
+		}
+		Path path = Paths.get("./src/main/resources/static/DEFAULT_DATA/save.json");
+		String content;
+		try {
+			content = Files.readString(path);
+			model.addAttribute("inputJson", content);
+		} catch (IOException e) {
 		}
 		return "HTML/004-02_Game_creation_copy";
 	}
@@ -105,7 +109,7 @@ public class Game_creation_Controller {
 			String title = json.getSavename();
 
 			// USERs直下にuserId名のディレクトリーが存在するか確認。ない場合は新規作成 いらないかも
-			//usertblservice.searchUserDir(userId);
+			// usertblservice.searchUserDir(userId);
 
 			// userIdとtitleからDB上に一意のレコードが存在するか確認し、更新または登録を行う
 			projectservice.setProjectJson(userId, title, new ObjectMapper().writeValueAsString(json));

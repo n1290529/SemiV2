@@ -1,5 +1,10 @@
 package com.semi.vp.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,13 +31,22 @@ public class Game_creation_Popup_Contoroller {
 
 		HttpSession session = request.getSession();
 		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-		System.out.println(securityContext != null);
 		if (securityContext != null) {
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		}
+		Path path = Paths.get("./src/main/resources/static/DEFAULT_DATA/save.json");
+
+		String content;
+		try {
+			content = Files.readString(path);
+			model.addAttribute("inputJson", content);
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		
-		return "HTML/004-02_Game_creation_popup";
+		return "HTML/006-03_Game_creation_problem";
 	}
 	
 }
