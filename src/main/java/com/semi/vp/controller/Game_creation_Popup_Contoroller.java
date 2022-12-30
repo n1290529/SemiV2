@@ -31,7 +31,7 @@ public class Game_creation_Popup_Contoroller {
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		}
-		
+		model.addAttribute("id", id);
 		return "HTML/004-02_Game_creation_popup";
 	}
 	

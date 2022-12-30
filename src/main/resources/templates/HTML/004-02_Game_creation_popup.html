@@ -3,16 +3,14 @@
 	xmlns:th="http://www.thymeleaf.org/"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head
-	th:replace="HTML/topsidebar :: meta_header('クローンA001',~{::meta},~{::link},~{::script})">
+<head th:replace="HTML/topsidebar :: meta_header('クローンA001',~{::meta},~{::link},~{::script})">
 
 <meta th:name="_csrf" th:content="${_csrf.token}" />
 <meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
 
 <link rel="stylesheet" th:href="@{/CSS/sidebar_GC.css}">
 <link rel="stylesheet" th:href="@{/CSS/004-02_Game_creation.css}">
-<link th:href='@{https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css}'
-	rel='stylesheet'>
+<link th:href='@{https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css}' rel='stylesheet'>
 
 <script th:src="@{/JS/API/google-blockly/blockly_compressed.js}"></script>
 <script th:src="@{/JS/API/google-blockly/blocks_compressed.js}"></script>
@@ -37,12 +35,14 @@
 <script th:src="@{/JS/compile_functions.js}"></script>
 <script th:src="@{/JS/acorn_interpreter.js}"></script>
 <script th:src="@{/JS/editProject.js}"></script>
+<script th:src="@{/JS/answerFlgCheck.js}"></script>
 <script th:inline="javascript">
 	const inputJson = JSON.parse(/*[[${inputJson}]]*/);
 </script>
 </head>
 
 <body>
+	<div th:onclick="|jumpSlove('__${id}__')|" class="slove">答えを見る</div>
 	<script>
 		function showCode() {
 			var code = Blockly.JavaScript.workspaceToCode(workspace);
