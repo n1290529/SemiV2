@@ -13,8 +13,6 @@ html {
    position: absolute;
    top: 0;
    left: 0;
-   /* width: 100%;
-   height: 100%; */
 }
 
 @media (max-width: 1266px) {
@@ -107,7 +105,7 @@ html {
 
 #objects {
    position: absolute;
-   padding: 0px 0px 0px 0px;
+   padding: 0;
    height: calc(100% - 132px);
    width: 500px;
    background-color: white;
@@ -152,11 +150,6 @@ html {
    margin: 0 14.5px;
    z-index: 100;
 }
-
-/* #blocklyDiv {
-   height: 910px;
-   width: 1122px;
-} */
 
 .item {
    float: left;
@@ -323,10 +316,12 @@ table.example1 tr td {
 }
 
 .tab-group {
+   position: relative;
    display: flex;
    margin: 0;
    padding: 0;
    float: left;
+   z-index: 10;
 }
 
 li.tab {
@@ -585,7 +580,6 @@ li.tab svg path {
    left: 450px;
    margin-left: 8px;
 }
-
 
 .shortcut.redo {
    left: 498px;

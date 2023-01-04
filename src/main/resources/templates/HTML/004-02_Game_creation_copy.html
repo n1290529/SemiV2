@@ -22,7 +22,6 @@
 	<script th:src="@{https://unpkg.com/fabric@latest/src/mixins/eraser_brush.mixin.js}"></script>
 	<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
 	<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js}"></script>
-	<script th:src="@{/JS/004-02_Game_creation.js}"></script>
 	<script th:src="@{/JS/compile_functions.js}"></script>
 	<script th:src="@{/JS/acorn_interpreter.js}"></script>
 	<script th:src="@{/JS/editProject.js}"></script>
@@ -56,7 +55,7 @@
 				<div class="tab-panel">
 					<!--タブ-->
 					<ul class="tab-group">
-						<li class="tab tab-A is-active"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+						<li class="tab tab-A is-active" id="aiueo"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
 								width="17pt" height="8pt" viewBox="0 0 80.000000 34.000000"
 								preserveAspectRatio="xMidYMid meet">
 								<g transform="translate(0.000000,34.000000) scale(0.100000,-0.100000)" fill="#000000"
@@ -435,52 +434,75 @@
 	</div>
 </body>
 <script>
-	Ready();
 
-	function resizeWindow() {
-		var resize_w = document.getElementById("left_element").style.width;
-		var resize_h = document.getElementById("left_element").style.height;
+	// function resizeWindow() {
+	// 	var resize_w = document.getElementById("left_element").style.width;
+	// 	var resize_h = document.getElementById("left_element").style.height;
 
-		resize_w = (parseInt(resize_w.slice(0, -2)) - 74) + "px";//74
-		resize_h = (parseInt(resize_h.slice(0, -2)) - 196) + "px";//196
+	// 	resize_w = (parseInt(resize_w.slice(0, -2)) - 74) + "px";//74
+	// 	resize_h = (parseInt(resize_h.slice(0, -2)) - 196) + "px";//196
 
-		document.getElementsByClassName("blocklyZoom")[2].parentElement.style.transform = 'translate('
-			+ resize_w + ',' + resize_h + ')';
+	// 	document.getElementsByClassName("blocklyZoom")[2].parentElement.style.transform = 'translate('
+	// 		+ resize_w + ',' + resize_h + ')';
 
-	}
-	window.onresize = resizeWindow;
+	// }
+	// window.onresize = resizeWindow;
 
-	var scroll_cnt = 0;
-	document.addEventListener('DOMContentLoaded', function () {
-		document.getElementById("BGinformation").addEventListener(
-			'scroll',
-			function () {
-				console.log("hello")
-				console.log("縦スクロール：" + $(this).scrollTop());
-				console.log($("#BGinformation").height());
-				console.log($("#BGinformation").height() - 46
-					+ $(this).scrollTop());
-				if (scroll_cnt < $(this).scrollTop()) {//下にスクロール
-					//下方向に無限にスクロールしない為の分岐
-					if ($("#BGinformation").height() > $("#BGinformation")
-						.height()
-						- 46 + $(this).scrollTop()) {
-						$("#bg_div").css(
-							"top",
-							$("#BGinformation").height() - 46
-							+ $(this).scrollTop());
-					}
-					scroll_cnt = $(this).scrollTop();
-				} else {//上にスクロール
-					$("#bg_div").css(
-						"top",
-						$("#BGinformation").height() - 48
-						+ $(this).scrollTop());
-					scroll_cnt = $(this).scrollTop();
-				}
-			});
+	// var scroll_cnt = 0;
+	// document.addEventListener('DOMContentLoaded', function () {
+	// 	document.getElementById("BGinformation").addEventListener(
+	// 		'scroll',
+	// 		function () {
+	// 			console.log("hello")
+	// 			console.log("縦スクロール：" + $(this).scrollTop());
+	// 			console.log($("#BGinformation").height());
+	// 			console.log($("#BGinformation").height() - 46
+	// 				+ $(this).scrollTop());
+	// 			if (scroll_cnt < $(this).scrollTop()) {//下にスクロール
+	// 				//下方向に無限にスクロールしない為の分岐
+	// 				if ($("#BGinformation").height() > $("#BGinformation")
+	// 					.height()
+	// 					- 46 + $(this).scrollTop()) {
+	// 					$("#bg_div").css(
+	// 						"top",
+	// 						$("#BGinformation").height() - 46
+	// 						+ $(this).scrollTop());
+	// 				}
+	// 				scroll_cnt = $(this).scrollTop();
+	// 			} else {//上にスクロール
+	// 				$("#bg_div").css(
+	// 					"top",
+	// 					$("#BGinformation").height() - 48
+	// 					+ $(this).scrollTop());
+	// 				scroll_cnt = $(this).scrollTop();
+	// 			}
+	// 		});
 
-	});
+	// });
+	// const tabs =  Array.from(document.getElementsByClassName('tab'));
+
+	// console.log(tabs);
+	// tabs.forEach(function (tab) {
+	// 	tab.addEventListener('click', function () {
+	// 		console.log('click');
+	// 		// タブのclassの値を変更
+	// 		document.getElementsByClassName('is-active')[0].classList.remove('is-active');
+	// 		this.classList.add('is-active');
+	// 		// コンテンツのclassの値を変更
+	// 		document.getElementsByClassName('is-show')[0].classList.remove('is-show');
+	// 		const arrayTabs = Array.prototype.slice.call(tabs);
+	// 		const index = arrayTabs.indexOf(this);
+	// 		document.getElementsByClassName('panel')[index].classList.add('is-show');
+	// 		//リサイズした状態でのパネル変更を行った際のバグを解消
+	// 		if (document.getElementsByClassName('panel')[index].classList.value == "panel tab-A is-show") {
+	// 			workspace.setVisible(true);
+	// 			Blockly.svgResize(workspace);
+	// 		} else {
+	// 			workspace.setVisible(false);
+	// 		}
+	// 	});
+	// 	console.log(tab);
+	// });
 </script>
 
 </html>
