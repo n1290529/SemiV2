@@ -25,7 +25,7 @@ public class Game_creation_Popup_Contoroller {
 	UsertblService usertblservice;
 	@Autowired
 	ProjectService projectservice;
-	
+
 	@RequestMapping(value = "/problems/{id}/slove", method = RequestMethod.GET)
 	public String displayList(HttpServletRequest request, Model model, @PathVariable String id) {
 
@@ -42,10 +42,8 @@ public class Game_creation_Popup_Contoroller {
 			content = Files.readString(path);
 			model.addAttribute("inputJson", content);
 		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
 		}
 		return "HTML/006-03_Game_creation_problem";
 	}
-	
+
 }

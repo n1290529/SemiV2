@@ -57,7 +57,7 @@ public class Game_creation_Controller {
 			model.addAttribute("inputJson", content);
 		} catch (IOException e) {
 		}
-		return "HTML/004-02_Game_creation_copy";
+		return "HTML/004-02_Game_creation";
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class Game_creation_Controller {
 		} catch (Exception e) {
 		}
 
-		return "HTML/004-02_Game_creation_copy";
+		return "HTML/004-02_Game_creation";
 	}
 
 	/**
