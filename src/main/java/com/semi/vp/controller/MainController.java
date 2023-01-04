@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -115,13 +116,21 @@ public class MainController {
 
 	@RequestMapping("/responseTest")
 	@ResponseBody
-	public String responseTest() {
+	public String responseTest(@RequestBody String data) {
+		System.out.println("hello");
+		System.out.println(data);
 		return "通信完了";
 	}
 
+	/**
+	 * 問題読み込み
+	 * @param dataType
+	 * @return
+	 */
 	@RequestMapping("/getBlocklyData/{dataType}")
 	@ResponseBody
 	public String getBlocklyData(@PathVariable String dataType) {
+		
 		Path path;
 		if (dataType.equals("default")) {
 			path = Paths.get("./src/main/resources/static/DEFAULT_DATA/DefaultXml.xml");
@@ -139,4 +148,5 @@ public class MainController {
 		}
 
 	}
+	
 }
