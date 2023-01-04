@@ -45,7 +45,6 @@ public class Game_creation_Popup_Contoroller {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		
 		return "HTML/006-03_Game_creation_problem";
 	}
 	
