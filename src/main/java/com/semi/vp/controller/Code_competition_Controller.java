@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.semi.vp.service.AnswerflgService;
 import com.semi.vp.service.TaskService;
 import com.semi.vp.service.UsertblService;
 
@@ -18,8 +17,6 @@ import com.semi.vp.service.UsertblService;
 public class Code_competition_Controller {
 	@Autowired
 	UsertblService usertblservice;
-	@Autowired 
-	AnswerflgService answerflgservice;
 	@Autowired
 	TaskService tskservice;
 	

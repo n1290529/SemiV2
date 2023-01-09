@@ -1551,3 +1551,8 @@ Blockly.JavaScript['print_alert'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['solution'] = function(block) {
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_NONE);
+  var code = 'Semi_wnidow_alert('+value_name+');\n';
+  return code;
+};

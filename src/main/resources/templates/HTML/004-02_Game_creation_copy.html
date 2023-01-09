@@ -2,11 +2,13 @@
 <html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:replace="HTML/topsidebar :: meta_header('問題解答',~{::meta},~{::link},~{::script})">
+<head th:replace="HTML/topsidebar :: meta_header('制作',~{::meta},~{::link},~{::script})">
 
 	<meta th:name="_csrf" th:content="${_csrf.token}" />
 	<meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
-	<link rel="stylesheet" th:href="@{/CSS/006-03_Game_creation_problem.css}">
+
+	<link rel="stylesheet" th:href="@{/CSS/sidebar_GC.css}">
+	<link rel="stylesheet" th:href="@{/CSS/004-02_Game_creation.css}">
 	<link th:href='@{https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css}' rel='stylesheet'>
 
 	<script th:src="@{/JS/API/google-blockly/blockly_compressed.js}"></script>
@@ -23,36 +25,41 @@
 	<script th:src="@{/JS/compile_functions.js}"></script>
 	<script th:src="@{/JS/acorn_interpreter.js}"></script>
 	<script th:src="@{/JS/editProject.js}"></script>
-	<script th:src="@{/JS/answerFlgCheck.js}"></script>
 	<script th:inline="javascript">
 		const inputJson = JSON.parse(/*[[${inputJson}]]*/);
 	</script>
 </head>
 
 <body>
-
 	<script>
 		function showCode() {
 			var code = Blockly.JavaScript.workspaceToCode(workspace);
+			console.log("showCode");
 			console.log(code);
 		}
 
 		function run_tst() {
 			var code = Blockly.JavaScript.workspaceToCode(workspace);
+			console.log("run_test");
+			console.log(code);
 			try {
-				eval(code);
+				console.log("test"+eval("2 + 2"));
+				console.log("main"+eval(code));
 			} catch (e) {
 				alert("構文エラー:" + e);
 			}
 		}
 	</script>
+	<div th:replace="HTML/topsidebar :: headbar"></div>
+	<div th:replace="HTML/topsidebar :: sidebar"></div>
+
 	<section class="home-section">
 		<div id="main">
 			<div id="left_element" class="item">
 				<div class="tab-panel">
 					<!--タブ-->
 					<ul class="tab-group">
-						<li class="tab tab-A is-active"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+						<li class="tab tab-A is-active" id="aiueo"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
 								width="17pt" height="8pt" viewBox="0 0 80.000000 34.000000"
 								preserveAspectRatio="xMidYMid meet">
 								<g transform="translate(0.000000,34.000000) scale(0.100000,-0.100000)" fill="#000000"
@@ -117,7 +124,6 @@
 							<p>
 								<button onclick="showCode()">JSにコンパイル(console)</button>
 								<button onclick="run_tst()">実行</button>
-								<button onclick="jumpSlove()">回答提出</button>
 								<textarea id="printbox" rows="10" cols="100"></textarea>
 							</p>
 						</div>
@@ -219,6 +225,7 @@
 			</div>
 		</div>
 	</section>
+
 	<script>
 		var myInterpreter = null;
 		var initFunc = function (interpreter, scope) {
@@ -282,16 +289,18 @@
 			}
 
 			var wrapper_Semi_change_size = function (dropdown_object,
-				value_input) {
-				return Semi_change_size(dropdown_object, value_input);
+				dropdown_select_xy, value_input) {
+				return Semi_change_size(dropdown_object, dropdown_select_xy,
+					value_input);
 			}
 
 			var wrapper_Semi_show = function (dropdown_object, dropdown_set_show) {
 				return Semi_show(dropdown_object, dropdown_set_show);
 			}
 
-			var wrapper_Semi_get_size = function (dropdown_object) {
-				return Semi_get_size(dropdown_object);
+			var wrapper_Semi_get_size = function (dropdown_object,
+				dropdown_select_xy) {
+				return Semi_get_size(dropdown_object, dropdown_select_xy);
 			}
 
 			var wrapper_Semi_get_background = function (dropdown_object) {
@@ -391,11 +400,13 @@
 
 		$("#play path").click(function () {
 			alert('play');
+			/*
 			document.getElementById("Object_name").disabled = true;
 			document.getElementById("Object_X").disabled = true;
 			document.getElementById("Object_Y").disabled = true;
 			document.getElementById("Object_size").disabled = true;
 			document.getElementById("Object_direction").disabled = true;
+			 */
 
 			var myCode = Blockly.JavaScript.workspaceToCode(workspace);
 			myInterpreter = new Interpreter(myCode, initFunc);
@@ -404,11 +415,13 @@
 		});
 		$("#stop path").click(function () {
 			alert('stop');
+			/*
 			document.getElementById("Object_name").disabled = false;
 			document.getElementById("Object_X").disabled = false;
 			document.getElementById("Object_Y").disabled = false;
 			document.getElementById("Object_size").disabled = false;
 			document.getElementById("Object_direction").disabled = false;
+			 */
 
 			window.clearTimeout(pid);
 		});
@@ -417,50 +430,83 @@
 		});
 	</script>
 	<div id="contextmenu">
-		<li id="copyBtn" onclick="menu1()">複製</li>
-		<li id="saveBtn" onclick="menu2()">保存</li>
-		<li id="deleteBtn" onclick="menu3()">削除</li>
+		<ol>
+			<li id="copyBtn" onclick="menu1()">複製</li>
+			<li id="saveBtn" onclick="menu2()">保存</li>
+			<li id="deleteBtn" onclick="menu3()">削除</li>
+		</ol>
 	</div>
 </body>
 <script>
-	// Ready();
 
-	function resizeWindow() {
-		var resize_w = document.getElementById("left_element").style.width;
-		var resize_h = document.getElementById("left_element").style.height;
-		resize_w = (parseInt(resize_w.slice(0, -2)) - 74) + "px";//74
-		resize_h = (parseInt(resize_h.slice(0, -2)) - 196) + "px";//196
-		document.getElementsByClassName("blocklyZoom")[2].parentElement.style.transform = 'translate('
-			+ resize_w + ',' + resize_h + ')';
-	}
+	// function resizeWindow() {
+	// 	var resize_w = document.getElementById("left_element").style.width;
+	// 	var resize_h = document.getElementById("left_element").style.height;
 
-	window.onresize = resizeWindow;
+	// 	resize_w = (parseInt(resize_w.slice(0, -2)) - 74) + "px";//74
+	// 	resize_h = (parseInt(resize_h.slice(0, -2)) - 196) + "px";//196
 
-	var scroll_cnt = 0;
-	document.addEventListener('DOMContentLoaded', function () {
-		document.getElementById("BGinformation").addEventListener(
-			'scroll',
-			function () {
-				if (scroll_cnt < $(this).scrollTop()) {//下にスクロール
-					//下方向に無限にスクロールしない為の分岐
-					if ($("#BGinformation").height() > $("#BGinformation")
-						.height()
-						- 46 + $(this).scrollTop()) {
-						$("#bg_div").css(
-							"top",
-							$("#BGinformation").height() - 46
-							+ $(this).scrollTop());
-					}
-					scroll_cnt = $(this).scrollTop();
-				} else {//上にスクロール
-					$("#bg_div").css(
-						"top",
-						$("#BGinformation").height() - 48
-						+ $(this).scrollTop());
-					scroll_cnt = $(this).scrollTop();
-				}
-			});
-	});
+	// 	document.getElementsByClassName("blocklyZoom")[2].parentElement.style.transform = 'translate('
+	// 		+ resize_w + ',' + resize_h + ')';
+
+	// }
+	// window.onresize = resizeWindow;
+
+	// var scroll_cnt = 0;
+	// document.addEventListener('DOMContentLoaded', function () {
+	// 	document.getElementById("BGinformation").addEventListener(
+	// 		'scroll',
+	// 		function () {
+	// 			console.log("hello")
+	// 			console.log("縦スクロール：" + $(this).scrollTop());
+	// 			console.log($("#BGinformation").height());
+	// 			console.log($("#BGinformation").height() - 46
+	// 				+ $(this).scrollTop());
+	// 			if (scroll_cnt < $(this).scrollTop()) {//下にスクロール
+	// 				//下方向に無限にスクロールしない為の分岐
+	// 				if ($("#BGinformation").height() > $("#BGinformation")
+	// 					.height()
+	// 					- 46 + $(this).scrollTop()) {
+	// 					$("#bg_div").css(
+	// 						"top",
+	// 						$("#BGinformation").height() - 46
+	// 						+ $(this).scrollTop());
+	// 				}
+	// 				scroll_cnt = $(this).scrollTop();
+	// 			} else {//上にスクロール
+	// 				$("#bg_div").css(
+	// 					"top",
+	// 					$("#BGinformation").height() - 48
+	// 					+ $(this).scrollTop());
+	// 				scroll_cnt = $(this).scrollTop();
+	// 			}
+	// 		});
+
+	// });
+	// const tabs =  Array.from(document.getElementsByClassName('tab'));
+
+	// console.log(tabs);
+	// tabs.forEach(function (tab) {
+	// 	tab.addEventListener('click', function () {
+	// 		console.log('click');
+	// 		// タブのclassの値を変更
+	// 		document.getElementsByClassName('is-active')[0].classList.remove('is-active');
+	// 		this.classList.add('is-active');
+	// 		// コンテンツのclassの値を変更
+	// 		document.getElementsByClassName('is-show')[0].classList.remove('is-show');
+	// 		const arrayTabs = Array.prototype.slice.call(tabs);
+	// 		const index = arrayTabs.indexOf(this);
+	// 		document.getElementsByClassName('panel')[index].classList.add('is-show');
+	// 		//リサイズした状態でのパネル変更を行った際のバグを解消
+	// 		if (document.getElementsByClassName('panel')[index].classList.value == "panel tab-A is-show") {
+	// 			workspace.setVisible(true);
+	// 			Blockly.svgResize(workspace);
+	// 		} else {
+	// 			workspace.setVisible(false);
+	// 		}
+	// 	});
+	// 	console.log(tab);
+	// });
 </script>
 
 </html>

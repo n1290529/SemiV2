@@ -503,4 +503,7 @@
       </value>
     </block>
   </category>
+  <category name="解答提出用" colour="#13c5c5">
+    <block type="solution"></block>
+  </category>
 </xml>
