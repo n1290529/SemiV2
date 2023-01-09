@@ -1,5 +1,59 @@
+@media (max-width: 800px) {
+    .home-section {
+        width: 722px;
+    }
+    #group-div {
+        width: 722px;
+    }
+    #main h1 {
+        width: 722px;
+    }
+}
+
+@media (max-height: 725px) {
+    .home-section {
+        height: 725px;
+    }
+}
+
+@media (min-width: 800px) {
+    .home-section {
+        width: calc(100% - 78px);
+    }
+    #group-div {
+        width: -webkit-fill-available;
+    }
+    #main h1 {
+        width: -webkit-fill-available;
+    }
+}
+
+@media (min-height: 725px) {
+    .home-section {
+        height: calc(100% - 64px);
+    }
+}
+#main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 #main h1 {
+    position: fixed;
     font-size: 33px;
+    color: #eee;
+    text-align: center;
+    user-select: none;
+    background: #222b36;
+    z-index: 10;
+}
+
+#tasks {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    top: 88px;
+    padding-top: 10px;
 }
 
 .task {
@@ -36,4 +90,66 @@
 
 .task .task_bottom span {
     font-size: 0.3em;
+}
+
+.tab-group {
+    display: flex;
+    justify-content: center;
+}
+
+.tab {
+    flex-grow: 1;
+    padding: 5px;
+    list-style: none;
+    border: 1px #CCC;
+    text-align: center;
+    cursor: pointer;
+    border-bottom-style: solid;
+
+}
+
+.tab.tab-B,
+.tab.tab-C,
+.tab.tab-D,
+.tab.tab-E {
+    border-left-style: solid;
+}
+
+.panel-group {
+    height: 100px;
+}
+
+.panel {
+    display: none;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.tab.is-active {
+    background: rgb(196, 70, 70);
+    /* color: #FFF; */
+    transition: all 0.2s ease-out;
+}
+
+.panel.is-show {
+    display: block;
+}
+
+#group-div {
+    position: fixed;
+    top: 115px;
+    margin: 0 auto;
+    background: #222b36;
+    z-index: 10;
+    user-select: none;
+    color: #eee;
+}
+
+.anser,
+.start {
+    position: relative;
+    width: 60px;
+    height: 24px;
+    top: -28px;
+    left: 463px;
 }

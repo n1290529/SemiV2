@@ -22,10 +22,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.semi.vp.service.ProjectService;
 import com.semi.vp.service.UsertblService;
+
+import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.Engine;
+import org.graalvm.polyglot.Source;
 
 @Controller
 public class MainController {
@@ -39,9 +44,10 @@ public class MainController {
 
 	/**
 	 * 初期リンクでトップへ推移
+	 * 
 	 * @return
 	 */
-	@GetMapping("/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String mainTop() {
 		return "redirect:/top";
 	}
@@ -104,6 +110,7 @@ public class MainController {
 	public String responseTest(@RequestBody String data) {
 		System.out.println("hello");
 		System.out.println(data);
+
 		return "通信完了";
 	}
 
@@ -135,7 +142,6 @@ public class MainController {
 
 	}
 
-
 	// テスト用------------------
 	@GetMapping("/common")
 	public String common() {
@@ -159,9 +165,9 @@ public class MainController {
 		model.addAttribute("udsi", usertblservice.oneReco(authentication.getName()));
 		return "user";
 	}
-	
-	@GetMapping("/Test/{id}")
-	public String TestCot(HttpServletRequest request, @PathVariable String id, Model model) throws IOException {
+
+	@GetMapping("/Test")
+	public String TestCot(HttpServletRequest request, Model model) throws IOException {
 		// public HttpEntity<byte[]> TestCot(HttpServletRequest request,@PathVariable
 		// String id, Model model) throws IOException {
 		HttpSession session = request.getSession();
@@ -170,7 +176,16 @@ public class MainController {
 			org.springframework.security.core.Authentication authentication = securityContext.getAuthentication();
 			model.addAttribute("user", usertblservice.oneReco(authentication.getName()));
 		}
-		
+		try (Engine engine = Engine.create()) {
+			Source source = Source.create("js", "function sum(a, b) { return a + b }");
+			Source source2 = Source.create("js", "sum(1111, 2222)");
+			try (Context context = Context.newBuilder().engine(engine).build()) {
+				context.eval(source);
+				int v = context.eval(source2).asInt();
+				System.out.println(v);
+			}
+		}
+
 		return "Test";
 	}
 	// テスト用------------------

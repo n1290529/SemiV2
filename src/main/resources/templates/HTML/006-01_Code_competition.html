@@ -4,42 +4,153 @@
 <head	th:replace="HTML/topsidebar :: meta_header('コード競争',~{::meta},~{::link},~{::script})">
 <link rel="stylesheet" th:href="@{/CSS/006-01_Code_competition.css}">
 <script th:src="@{/JS/answerFlgCheck.js}"></script>
+<script th:src="@{/JS/006-01_Code_competition.js}"></script>
 </head>
 
 <body>
 	<div th:replace="HTML/topsidebar :: headbar"></div>
 	<div th:replace="HTML/topsidebar :: sidebar"></div>
 	<section class="home-section">
-		<div id="main">
-			<h1>問題一覧</h1>
-			<div id="tasks" th:each="list : ${problemList}" th:object="${followList}">
-				<div class="task">
-					<div class="task_top">
-						<a th:href="@{'/problems/'+${list.id}}" th:text="${list.id+':'+list.title}"></a>
-						<div>
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-								width="16" height="16">
-                                <path
-									d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
-                                <path d="M13 7h-2v6h6v-2h-4z" />
-                            </svg>
-							<span>平均回答時間：</span> <strong th:text="${list.timeaverage}"></strong>
-						</div>
-					</div>
-					<div class="task_bottom">
-					<span>正解率：</span><strong th:text="${list.correct}+'%'"></strong>
-					<span>平均点：</span><strong th:text="${list.scoreaverage}+'点'"></strong>
-					<span>受験者数：</span><strong th:text="${list.num}+'人'"></strong>
-					<span>難易度：</span><strong th:text="${list.rate}"></strong> 
-					<span>制限時間：</span><strong th:text="${list.timeLimit}"></strong> 
-					<input type="button" value="解答" class="anser" th:onclick="|jumpAnswer('__${list.id}__')|"> <input
-							type="button" value="スタート" class="start"  th:onclick="|jumpChallenge('__${list.id}__')|">
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
+        <div id="main">
+            <h1>問題一覧</h1>
+            <div id="group-div">
+                <ul class="tab-group">
+                    <li class="tab tab-A is-active">A</li>
+                    <li class="tab tab-B">B</li>
+                    <li class="tab tab-C">C</li>
+                    <li class="tab tab-D">D</li>
+                    <li class="tab tab-E">E</li>
+                </ul>
+            </div>
+            <div id="tasks" class="panel-group" th:object="${problemList}">
+                <div class="panel tab-A is-show">
+                    <div class="task" th:each="A : *{problemA}">
+                        <div class="task_top">
+                            <a th:href="@{'/problems/' + ${A.id}}" th:text="${A.id+'：'+A.title}"></a>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 24 24' width="16" height="16">
+                                    <path
+                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+                                    <path d="M13 7h-2v6h6v-2h-4z" />
+                                </svg>
+                                <span>平均回答時間：</span>
+                                <strong th:text="${A.timeaverage}"></strong>
+                            </div>
+                        </div>
+                        <div class="task_bottom">
+                            <span>正解率：</span><strong th:text="${A.correct} + '%'"></strong>
+                            <span>平均スコア：</span><strong th:text="${A.scoreaverage} + '点'"></strong>
+                            <span>受験者数：</span><strong th:text="${A.num} + '人'"></strong>
+                            <span>難易度：</span><strong th:text="${A.rate}"></strong>
+                            <span>制限時間：</span><strong th:text="${A.timeLimit}"></strong>
+                        </div>
+                        <input type="button" value="解答" class="anser" th:onclick="|jumpAnswer('__${A.id}__')|">
+                        <input type="button" value="スタート" class="start" th:onclick="|jumpChallenge('__${A.id}__')|">
+                    </div>
+                </div>
+                <div class="panel tab-B">
+                    <div class="task" th:each="B : *{problemB}">
+                        <div class="task_top">
+                            <a th:href="@{'/problems/' + ${B.id}}" th:text="${B.id+'：'+B.title}"></a>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 24 24' width="16" height="16">
+                                    <path
+                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+                                    <path d="M13 7h-2v6h6v-2h-4z" />
+                                </svg>
+                                <span>平均回答時間：</span>
+                                <strong th:text="${B.timeaverage}"></strong>
+                            </div>
+                        </div>
+                        <div class="task_bottom">
+                            <span>正解率：</span><strong th:text="${B.correct} + '%'"></strong>
+                            <span>平均スコア：</span><strong th:text="${B.scoreaverage} + '点'"></strong>
+                            <span>受験者数：</span><strong th:text="${B.num} + '人'"></strong>
+                            <span>難易度：</span><strong th:text="${B.rate}"></strong>
+                            <span>制限時間：</span><strong th:text="${B.timeLimit}"></strong>
+                        </div>
+                        <input type="button" value="解答" class="anser" th:onclick="|jumpAnswer('__${B.id}__')|">
+                        <input type="button" value="スタート" class="start" th:onclick="|jumpChallenge('__${B.id}__')|">
+                    </div>
+                </div>
+                <div class="panel tab-C">
+                    <div class="task" th:each="C : *{problemC}">
+                        <div class="task_top">
+                            <a th:href="@{'/problems/' + ${C.id}}" th:text="${C.id+'：'+C.title}"></a>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 24 24' width="16" height="16">
+                                    <path
+                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+                                    <path d="M13 7h-2v6h6v-2h-4z" />
+                                </svg>
+                                <span>平均回答時間：</span>
+                                <strong th:text="${C.timeaverage}"></strong>
+                            </div>
+                        </div>
+                        <div class="task_bottom">
+                            <span>正解率：</span><strong th:text="${C.correct} + '%'"></strong>
+                            <span>平均スコア：</span><strong th:text="${C.scoreaverage} + '点'"></strong>
+                            <span>受験者数：</span><strong th:text="${C.num} + '人'"></strong>
+                            <span>難易度：</span><strong th:text="${C.rate}"></strong>
+                            <span>制限時間：</span><strong th:text="${C.timeLimit}"></strong>
+                        </div>
+                        <input type="button" value="解答" class="anser" th:onclick="|jumpAnswer('__${C.id}__')|">
+                        <input type="button" value="スタート" class="start" th:onclick="|jumpChallenge('__${C.id}__')|">
+                    </div>
+                </div>
+                <div class="panel tab-D">
+                    <div class="task" th:each="D : *{problemD}">
+                        <div class="task_top">
+                            <a th:href="@{'/problems/' + ${D.id}}" th:text="${D.id+'：'+D.title}"></a>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 24 24' width="16" height="16">
+                                    <path
+                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+                                    <path d="M13 7h-2v6h6v-2h-4z" />
+                                </svg>
+                                <span>平均回答時間：</span>
+                                <strong th:text="${D.timeaverage}"></strong>
+                            </div>
+                        </div>
+                        <div class="task_bottom">
+                            <span>正解率：</span><strong th:text="${D.correct} + '%'"></strong>
+                            <span>平均スコア：</span><strong th:text="${D.scoreaverage} + '点'"></strong>
+                            <span>受験者数：</span><strong th:text="${D.num} + '人'"></strong>
+                            <span>難易度：</span><strong th:text="${D.rate}"></strong>
+                            <span>制限時間：</span><strong th:text="${D.timeLimit}"></strong>
+                        </div>
+                        <input type="button" value="解答" class="anser" th:onclick="|jumpAnswer('__${D.id}__')|">
+                        <input type="button" value="スタート" class="start" th:onclick="|jumpChallenge('__${D.id}__')|">
+                    </div>
+                </div>
+                <div class="panel tab-E">
+                    <div class="task" th:each="E : *{problemE}">
+                        <div class="task_top">
+                            <a th:href="@{'/problems/' + ${E.id}}" th:text="${E.id+'：'+E.title}"></a>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox='0 0 24 24' width="16" height="16">
+                                    <path
+                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+                                    <path d="M13 7h-2v6h6v-2h-4z" />
+                                </svg>
+                                <span>平均回答時間：</span>
+                                <strong th:text="${E.timeaverage}"></strong>
+                            </div>
+                        </div>
+                        <div class="task_bottom">
+                            <span>正解率：</span><strong th:text="${E.correct} + '%'"></strong>
+                            <span>平均スコア：</span><strong th:text="${E.scoreaverage} + '点'"></strong>
+                            <span>受験者数：</span><strong th:text="${E.num} + '人'"></strong>
+                            <span>難易度：</span><strong th:text="${E.rate}"></strong>
+                            <span>制限時間：</span><strong th:text="${E.timeLimit}"></strong>
+                        </div>
+                        <input type="button" value="解答" class="anser" th:onclick="|jumpAnswer('__${E.id}__')|">
+                        <input type="button" value="スタート" class="start" th:onclick="|jumpChallenge('__${E.id}__')|">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>

@@ -11,4 +11,5 @@ import com.semi.vp.entity.Tasktbl;
 @Repository
 public interface TaskRepository extends JpaRepository<Tasktbl, String> {
     List<Tasktbl> findAll();
+    List<Tasktbl> findByDif(String dif);
 }

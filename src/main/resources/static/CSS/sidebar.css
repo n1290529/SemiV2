@@ -369,11 +369,11 @@ html, body{
 	width: calc(100% - 78px);
 	transition: all 0s ease;
 }
-
+/*
 .sidebar.close ~.home-section {
-	/* left: 78px; */
 	width: calc(100% - 78px);
 }
+*/
 
 .home-section .home-content {
 	height: 60px;

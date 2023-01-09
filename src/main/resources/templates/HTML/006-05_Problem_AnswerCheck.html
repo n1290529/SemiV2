@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head
+	th:replace="HTML/topsidebar :: meta_header('問題挑戦確認画面',~{::meta},~{::link},~{::script})">
+	
+<link rel="stylesheet" th:href="@{/CSS/006-05_Problem_AnswerCheck.css}">
+</head>
+
+<body>
+	<div th:replace="HTML/topsidebar :: headbar"></div>
+	<div th:replace="HTML/topsidebar :: sidebar"></div>
+	<section class="home-section">
+		<div id="main">
+			<!-- 囲ってある場所 -->
+			<div class="AnswersCheack">
+				<h2>A001:問題1</h2>
+				<hr>
+				<div class="tests"></div>
+				<div class="tests"></div>
+				<div class="tests"></div>
+				<div class="tests"></div>
+				<div class="tests"></div>
+				<div class="tests"></div>
+				<div class="tests"></div>
+				<div class="tests"></div>
+				<div class="tests"></div>
+				<div class="tests"></div>
+
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
